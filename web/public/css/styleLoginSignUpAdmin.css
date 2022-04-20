@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;500&display=swap');
+
+/*------------------------------------- Custom styles ------------------------------------*/
+
+body {
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+/* ============> Text */
+.txt-style1 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 1.7;
+	margin: 0px;
+	color: #666666;
+	text-align: center;
+}
+
+.txt-style2 {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 1.4;
+	margin: 0px;
+	color: #4C2CB8;
+}
+
+a {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	line-height: 1.7;
+	text-decoration: none;
+}
+
+a:focus {
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #9D8AB1;
+}
+
+/* ============> Form */
+
+.form-main-container {
+	width: 100%;
+	min-height: 100vh;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+	background: #efde25d4;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.form-wrapper {
+	width: 500px;
+	background: #fff;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-header {
+	background: url(../img/header.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+	position: relative;
+	align-items: center;
+	padding: 70px 15px 74px 15px;
+	z-index: 1;
+	flex-wrap: wrap;
+	flex-direction: column;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.form-header::before {
+	content: "";
+	display: block;
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.774);
+}
+
+.form-title {
+	font-family: 'Roboto', sans-serif;
+	font-size: 25px;
+	color: #fff;
+	line-height: 1.2;
+	text-align: center;
+	word-break: break-word;
+
+}
+
+.form-content {
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	padding: 50px 50px 100px 50px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* ============> Input */
+
+input {
+	outline: none;
+	border: none;
+}
+
+.input-wrapper {
+	width: 100%;
+	position: relative;
+	border-bottom: 1px solid #888409;
+	margin-bottom: 26px;
+}
+
+.input-style {
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	color: #555555;
+	line-height: 1.2;
+	display: block;
+	width: 100%;
+	background: transparent;
+	padding: 0 5px;
+}
+
+input.input-style {
+	height: 45px;
+}
+
+.input-style-focus {
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+}
+
+.input-style-focus::before {
+	content: "";
+	background: #4C2CB8;
+	display: block;
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	width: 0;
+	height: 1px;
+
+	-webkit-transition: all 0.6s;
+	-o-transition: all 0.6s;
+	-moz-transition: all 0.6s;
+	transition: all 0.6s;
+}
+
+.input-style:focus+.input-style-focus::before {
+	width: 100%;
+}
+
+.has-val.input-style+.input-style-focus::before {
+	width: 100%;
+}
+
+/* ============> Button */
+
+button {
+	outline: none !important;
+	border: none;
+	background: transparent;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+.button-style {
+	height: 50px;
+	background-color: #2f2e2c;
+	border-radius: 5px;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	color: #fff;
+	line-height: 1.2;
+	padding: 0 20px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.button-style:hover {
+	background-color: #423f33;
+}
+
+/* ============> Checkbox */
+
+.checkbox-wrapper {
+	padding-bottom: 30px;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-align-items: center;
+}
+
+.checkbox-style {
+	display: none;
+}
+
+.label-checkbox-style {
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	color: #4C2CB8;
+	line-height: 1.4;
+	padding-left: 26px;
+	display: block;
+	position: relative;
+	cursor: pointer;
+}
+
+.label-checkbox-style:hover {
+	text-decoration: none;
+	color: #9D8AB1;
+}
+
+.label-checkbox-style::before {
+	content: "\f00c";
+	width: 18px;
+	height: 18px;
+	font-family: FontAwesome;
+	font-size: 14px;
+	color: transparent;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	border-radius: 2px;
+	background: #fff;
+	border: 2px solid #4C2CB8;
+	left: 0;
+	top: 50%;
+
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.checkbox-style:checked+.label-checkbox-style::before {
+	color: #4C2CB8;
+}
+
+/* ============> Input Password */
+
+.form-control {
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+	color: #555555;
+	border: transparent;
+	padding: 0 5px 10px;
+}
+
+.form-control:focus {
+	box-shadow: none !important;
+}
+
+.form-control-focus::before {
+	content: "";
+	background: #4C2CB8;
+	display: block;
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	width: 0;
+	height: 1px;
+
+	-webkit-transition: all 0.6s;
+	-o-transition: all 0.6s;
+	-moz-transition: all 0.6s;
+	transition: all 0.6s;
+}
+
+.form-control:focus+.form-control-focus::before {
+	width: 100%;
+}
+
+.has-val.form-control+.form-control-focus::before {
+	width: 100%;
+}
+
+/* ============> Responsive */
+
+@media (max-width: 576px) {
+	.form-content {
+		padding: 64px 32px 67px 30px;
+	}
+}
+
+@media (max-width: 480px) {
+	.form-content {
+		padding: 43px 15px 57px 15px;
+	}
+
+	.label-input-style {
+		text-align: left;
+		position: unset;
+		top: unset;
+		left: unset;
+		width: 100%;
+		padding: 0 5px;
+	}
+}

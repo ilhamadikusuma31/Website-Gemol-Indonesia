@@ -1,0 +1,36 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+
+.section {
+    margin-top: 3em;
+}
+
+.navbar {
+    background-color: #f7f09686;
+}
+
+/* .btn-navbar,
+.navbar-brand {
+    background-color: #F8EB23;
+} */
+
+
+#carouselExampleSlidesOnly {
+    background-color: #F8EB23;
+}
+
+
+.founder {
+    background-color: #F8EB23;
+}
+
+.card .container.c-founder {
+    background-color: rgb(255, 253, 208);
+}
+
+.carousel.c-f .card {
+    background-color: rgb(244, 247, 72);
+}
