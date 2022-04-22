@@ -1,21 +1,21 @@
-<?php
+@php
 
-session_start();
+// session_start();
 //require "../function.php";
 
 
 //nama uname admin yang sekarang sedang mengakses
 //$uname = $_SESSION['nama_admin']; //diset di login.php
 
-$path_web_gemol    = "../index.php";
+$path_web_gemol    = "index.php";
 $path_login        = "login.php";
 $path_logout       = "logout.php";
 $path_registrasi   = "registrasi.php";
 $path_main         = "/";
-$path_img          = "img";
-$path_vendor       = "vendor";
-$path_css          = "css";
-$path_js           = "js";
+$path_img          = "../img";
+$path_vendor       = "../vendor";
+$path_css          = "../css";
+$path_js           = "../js";
 $path_setting_admin= "setting_admin.php";
 
 
@@ -55,7 +55,7 @@ $path_penjualan    ="penjualan/penjualan.php";
 
 
 
-?>
+@endphp
 
 <!DOCTYPE html>
 <html lang="en">
@@ -248,3 +248,27 @@ $path_penjualan    ="penjualan/penjualan.php";
 </body>
 
 </html>
+
+<script>
+$(document).ready(function () {
+    $("#table").DataTable();
+    });
+
+$('#table').DataTable( {
+    responsive: {
+        details: {
+            display: $.fn.dataTable.Responsive.display.childRowImmediate
+        }
+    }
+} );
+
+$(document).ready(function () {
+    $(".table").DataTable();
+});
+</script>
+
+
+
+
+
+
