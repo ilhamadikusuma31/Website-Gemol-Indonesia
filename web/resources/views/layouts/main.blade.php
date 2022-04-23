@@ -265,6 +265,20 @@ $('#table').DataTable( {
 $(document).ready(function () {
     $(".table").DataTable();
 });
+
+
+$(document).ready(function () {
+        $(".table").DataTable();
+    });
+
+function filePreview(event) {
+    if (event.target.files.length > 0) {
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("foto");
+        preview.src = src;
+        preview.style.display = "block";
+    }
+}
 </script>
 
 

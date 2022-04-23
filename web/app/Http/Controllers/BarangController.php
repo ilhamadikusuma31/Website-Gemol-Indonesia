@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateBarangRequest;
 use App\Models\Admin;
 use App\Models\JenisBarang;
 use App\Models\StatusBarang;
+// use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
@@ -50,9 +52,29 @@ class BarangController extends Controller
      * @param  \App\Http\Requests\StoreBarangRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBarangRequest $request)
+    // public function store(StoreBarangRequest $req)
+    // {
+
+
+    // }
+    public function store(Request $req)
     {
-        //
+        $penampung = $req->validate([
+            'foto_barang' => 'image|file|max:1024 ',
+            'nama_barang' => 'required|max:225',
+            'jenis_barang_id' => 'required',
+            'berat_barang' => 'required',
+            'harga_barang' => 'required',
+            'status_barang_id' => 'required',
+        ]);
+
+        //upload gambar ke directory
+        $penampung['foto_barang'] = $req->file('foto_barang')->store('barang-images');
+
+        //tulis data baru ke db
+        Barang::create($penampung);
+
+        return redirect('/barang')->with('pesanSukses', 'data baru berhasil ditambahkan');
     }
 
     /**

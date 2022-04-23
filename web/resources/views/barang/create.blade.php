@@ -9,8 +9,8 @@
             </div>
             <div class="card-body">
                 <!-- multipart/form-data : agar file foto bisa diup ke dir -->
-                <form action="" method="POST" enctype="multipart/form-data" id="uploadForm">
-
+                <form action="/create-barang" method="POST" enctype="multipart/form-data" id="uploadForm">
+                    @csrf
                     <div class="row mb-1">
                         <div class="col-md-2 preview">
                             <img src="" alt="" id="foto" width="200px">
@@ -19,14 +19,23 @@
                     <div class="row mb-1">
                         <div class="col-md-2">Foto</div>
                         <div class="col-md-5"><div class="form-group">
-                            <input type="file" class="form-control-file" id="foto" name="foto_brg" accept="image/*" onchange="filePreview(event);" Required>
+                            <input type="file" class="form-control-file
+                            @error('foto_barang')
+                                is-invalid
+                            @enderror"
+                            id="foto" name="foto_barang" accept="image/*" onchange="filePreview(event);" Required>
+                            @error('foto_barang')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div></div>
                     </div>
                     <div class="row mb-1">
                         <div class="col-md-2">Nama Barang</div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="formGroupExampleInput" name="nama_brg" autocomplete="off" Required>
+                                <input type="text" class="form-control" id="formGroupExampleInput" name="nama_barang" value="{{ old('nama_barang') }}" autocomplete="off" Required >
                             </div>
                         </div>
                     </div>
@@ -36,9 +45,9 @@
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1" name="jenis_brg" Required>
+                            <select class="form-control" id="exampleFormControlSelect1" name="jenis_barang_id"  Required>
                                 @foreach ($jenisBarang as $jb)
-                                    <option value="">{{ $jb['nama_jenis_barang'] }}</option>
+                                    <option value="{{ $jb->id }}">{{ $jb->nama_jenis_barang }}</option>
                                 @endforeach
                             </select>
                             </div>
@@ -50,7 +59,7 @@
                         </div>
                         <div class="col-md-5">
                             <div class="input-group mb-2">
-                                <input type="number" min=0 class="form-control" id="inlineFormInputGroup" placeholder="" name="berat_brg" autocomplete="off" Required>
+                                <input type="number" min=0 class="form-control" id="inlineFormInputGroup" placeholder="" name="berat_barang"  autocomplete="off" value="{{ old('berat_barang') }}" Required>
                                 <div class="input-group-append">
                                     <div class="input-group-text">gram</div>
                                 </div>
@@ -66,7 +75,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Rp.</div>
                                 </div>
-                                <input type="number" class="form-control" id="inlineFormInputGroup" placeholder="" name="harga_brg" autocomplete="off" Required>
+                                <input type="number" class="form-control" id="inlineFormInputGroup" placeholder="" name="harga_barang" autocomplete="off" value="{{ old('harga_barang') }}" Required>
                                 <div class="input-group-append">
                                     <div class="input-group-text">,00</div>
                                 </div>
@@ -79,9 +88,9 @@
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1" name="status_brg" Required>
+                            <select class="form-control" id="exampleFormControlSelect1" name="status_barang_id" Required>
                                 @foreach ($statusBarang as $sb)
-                                    <option value="">{{ $sb['nama_status_barang'] }}</option>
+                                    <option value="{{ $sb->id }}">{{ $sb->nama_status_barang }}</option>
                                 @endforeach
                             </select>
                             </div>

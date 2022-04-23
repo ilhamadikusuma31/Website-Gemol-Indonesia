@@ -31,6 +31,7 @@ Route::get('/',[DashboardController::class,'index'] )->middleware('auth') ;
 //ini route ngambil dari BarangController dengan method index
 Route::get('/barang', [BarangController::class,'index'])->middleware('auth');
 Route::get('/create-barang', [BarangController::class,'create'])->middleware('auth');
+Route::post('/create-barang', [BarangController::class,'store'])->middleware('auth');
 Route::get('/edit-barang/{id}', [BarangController::class, 'edit'])->middleware('auth');
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
