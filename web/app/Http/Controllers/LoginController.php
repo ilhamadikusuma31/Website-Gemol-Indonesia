@@ -52,4 +52,13 @@ class LoginController extends Controller
         return back()->with('pesanLoginError', 'gagal login!');
     }
 
+    //ini liat dokumentasi laravel untuk code logout
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
+
 }

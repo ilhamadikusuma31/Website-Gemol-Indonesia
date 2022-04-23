@@ -29,13 +29,14 @@ Route::get('/',[DashboardController::class,'index'] )->middleware('auth') ;
 
 
 //ini route ngambil dari BarangController dengan method index
-Route::get('/barang', [BarangController::class,'index'])   ;
+Route::get('/barang', [BarangController::class,'index'])->middleware('auth');
+Route::get('/create-barang', [BarangController::class,'create'])->middleware('auth');
+Route::get('/edit-barang/{id}', [BarangController::class, 'edit'])->middleware('auth');
 
-Route::get('/edit-barang/{id}', [BarangController::class, 'index2']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'storeData']);
-
-
-Route::get('/login',[LoginController::class, 'index'])->middleware('guest');
+//dikasih name('login') merujuk ke authenticate.php karena secara default kalo ada yang akses sebelum login redirect ke /login
+Route::get('/login',[LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login',[LoginController::class, 'autentikasi']);
+Route::post('/logout',[LoginController::class, 'logout']);

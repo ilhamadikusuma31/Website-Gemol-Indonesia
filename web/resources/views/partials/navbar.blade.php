@@ -191,10 +191,10 @@
                     Activity Log
                 </a> -->
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="<?= $path_logout; ?>" data-toggle="modal" data-target="#popUpConfirmLogout">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
-                </a>
+                <form action="/logout" method="post">
+                    @csrf
+                    <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" data-target="#popUpConfirmLogout"></i>Logout</button>
+                </form>
             </div>
         </li>
 

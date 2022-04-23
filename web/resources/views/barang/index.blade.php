@@ -14,7 +14,7 @@
                 <!-- Illustrations -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <a href="#"> <button type="button" class="btn btn-info">Tambah</button></a>
+                        <a href="/create-barang"> <button type="button" class="btn btn-info">Tambah</button></a>
                     </div>
                     <div class="card-body">
                         <div class="container">

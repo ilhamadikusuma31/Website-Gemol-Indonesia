@@ -21,7 +21,7 @@ class BarangController extends Controller
     public function index()
     {
         //ini merujuk ke folder views barang.blade.php
-        //sambil ngirim var judul
+        //sambil ngirim beberapa key yang terisi judul=untuk title web, barangs = mengambil semua data dari model Barang
         return view('barang.index', [
             'judul' => 'barang',
             'barangs' => Barang::all(),
@@ -30,16 +30,6 @@ class BarangController extends Controller
     }
 
 
-    //method ini dipanggil dari route yang di trigger setelah user ada di link edit barang
-    public function index2($id){
-        return view('barang.edit', [
-            'judul'              => 'edit-barang',
-            'barangYgMauDiedit'  => Barang::find($id),
-            'jenisBarang'        => JenisBarang::all(), //ini buat populate/build option di form edit di edit.blade.php
-            'statusBarang'       => StatusBarang::all(), //ini buat populate/build option di form edit di edit.blade.php
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -47,7 +37,11 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('barang.create', [
+            'judul'              => 'create-barang',
+            'jenisBarang'        => JenisBarang::all(), //ini buat populate/build option di form create di create.blade.php
+            'statusBarang'       => StatusBarang::all(), //ini buat populate/build option di form create di create.blade.php
+        ]);
     }
 
     /**
@@ -78,9 +72,15 @@ class BarangController extends Controller
      * @param  \App\Models\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function edit(Barang $barang)
+    //method ini dipanggil dari route yang di trigger setelah user ada di link edit barang
+    public function edit($id)
     {
-        //
+        return view('barang.edit', [
+            'judul'              => 'edit-barang',
+            'barangYgMauDiedit'  => Barang::find($id),
+            'jenisBarang'        => JenisBarang::all(), //ini buat populate/build option di form edit di edit.blade.php
+            'statusBarang'       => StatusBarang::all(), //ini buat populate/build option di form edit di edit.blade.php
+        ]);
     }
 
     /**

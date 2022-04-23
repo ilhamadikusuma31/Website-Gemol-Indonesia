@@ -31,7 +31,7 @@ class RegisterController extends Controller
 
 
     //method ini dipanggil dari route yang di trigger setelah user mengklik tombol register
-    public function storeData(Request $req)
+    public function store(Request $req)
     {
         //validasi apakah semua data sudah disii dan ada pengecekan langsung dari db di kolom uname
         $penampung = $req->validate([
