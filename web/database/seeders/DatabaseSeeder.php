@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\User;
 use App\Models\Barang;
 use App\Models\JenisBarang;
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        Barang::create([
+            Barang::create([
             'nama_barang' => 'cookies singkong cheese sago',
             'harga_barang' => 25000,
             'jenis_barang_id' => 1,
@@ -73,7 +74,6 @@ class DatabaseSeeder extends Seeder
             StatusBarang::create([
             'nama_status_barang' => 'rekomendasi',
             ]);
-
 
     }
 }

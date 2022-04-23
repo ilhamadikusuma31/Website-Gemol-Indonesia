@@ -21,7 +21,7 @@
                     <div class="row mb-1">
                         <div class="col-md-2">Foto</div>
                         <div class="col">
-                            <img src="img/<?= $barangYgMauDiedit['foto_barang'];?>" width="200px" alt="">
+                            <img src="../img/{{ $barangYgMauDiedit['foto_barang'] }}" width="200px" alt="">
                         </div>
                     </div>
                     <div class="row mb-1">
@@ -46,9 +46,9 @@
                         <div class="col-md-5">
                             <div class="form-group">
                             <select class="form-control" id="exampleFormControlSelect1" name="jenis_brg" Required>
-                                {{-- <?php foreach($jenis_brg as $j): ?>
-                                <option><?=$j["nama_jenis_barang"];?></option>
-                                <?php endforeach ?> --}}
+                                @foreach ($jenisBarang as $jb)
+                                    <option value="">{{ $jb['nama_jenis_barang'] }}</option>
+                                @endforeach
                             </select>
                             </div>
                         </div>
@@ -90,9 +90,9 @@
                         <div class="col-md-5">
                             <div class="form-group">
                             <select class="form-control" id="exampleFormControlSelect1" name="status_brg" Required>
-                                {{-- <?php foreach($status_brg as $s): ?>
-                                <option><?=$s["nama_status"];?></option>
-                                <?php endforeach ?> --}}
+                                @foreach ($statusBarang as $sb)
+                                    <option value="">{{ $sb['nama_status_barang'] }}</option>
+                                @endforeach
                             </select>
                             </div>
                         </div>

@@ -8,14 +8,14 @@
 //$uname = $_SESSION['nama_admin']; //diset di login.php
 
 $path_web_gemol    = "index.php";
-$path_login        = "login.php";
-$path_logout       = "logout.php";
-$path_registrasi   = "registrasi.php";
+$path_login        = "login";
+$path_logout       = "logout";
+$path_registrasi   = "registrasi";
 $path_main         = "/";
-$path_img          = "../img";
-$path_vendor       = "../vendor";
-$path_css          = "../css";
-$path_js           = "../js";
+$path_img          = "/img";
+$path_vendor       = "/vendor";
+$path_css          = "/css";
+$path_js           = "/js";
 $path_setting_admin= "setting_admin.php";
 
 

@@ -31,6 +31,6 @@ body {
     background-color: rgb(255, 253, 208);
 }
 
-.carousel.c-f .card {
+.carousel.c-f .card .bg-login {
     background-color: rgb(244, 247, 72);
 }

@@ -37,17 +37,18 @@
                                         @php
                                             $angka = 1
                                         @endphp
-                                        @foreach($barangs as $r)
+                                        @foreach($barangs as $b)
+
                                         <tr>
                                             <td>{{ $angka++}}</td>
-                                            <td><img src ="img/<?= $r['foto_barang']  ?>" width="150px" /></td>
-                                            <td><?= $r['nama_barang']  ?></td>
-                                            <td> {{ $r->JenisBarang->nama_jenis_barang }}  </td>
-                                            <td><?= $r['berat_barang']  ?></td>
-                                            <td><?= $r['harga_barang']  ?></td>
-                                            <td>{{ $r->StatusBarang->nama_status_barang }}</td>
+                                            <td><img src="img/{{ $b['foto_barang'] }}" alt="" width="150px"></td>
+                                            <td>{{ $b['nama_barang']   }}</td>
+                                            <td>{{ $b->JenisBarang->nama_jenis_barang }}  </td>
+                                            <td>{{ $b['berat_barang']  }}</td>
+                                            <td>{{ $b['harga_barang']  }}</td>
+                                            <td>{{ $b->StatusBarang->nama_status_barang }}</td>
                                             <td>
-                                                <a href="/edit-barang/{{ $r['id'] }}"><button type="button" class="btn btn-sm btn-warning mt-1">edit⠀</button></a>
+                                                <a href="/edit-barang/{{ $b['id'] }}"><button type="button" class="btn btn-sm btn-warning mt-1">edit⠀</button></a>
                                                 <a href="#" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?')"><button type="button" class="btn btn-danger btn-sm mt-1">hapus</button></a>
                                             </td>
                                         </tr>

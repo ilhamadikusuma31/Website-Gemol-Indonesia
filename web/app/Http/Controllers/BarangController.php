@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Http\Requests\StoreBarangRequest;
 use App\Http\Requests\UpdateBarangRequest;
+use App\Models\Admin;
+use App\Models\JenisBarang;
+use App\Models\StatusBarang;
 
 class BarangController extends Controller
 {
@@ -13,21 +16,27 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //method ini dipanggil dari route yang di trigger setelah user ada di link barang
     public function index()
     {
         //ini merujuk ke folder views barang.blade.php
         //sambil ngirim var judul
-        return view('barang', [
+        return view('barang.index', [
             'judul' => 'barang',
             'barangs' => Barang::all(),
+
         ]);
     }
 
 
+    //method ini dipanggil dari route yang di trigger setelah user ada di link edit barang
     public function index2($id){
-        return view('editBarang', [
-            'judul' => 'edit-barang',
-            'barangYgMauDiedit' => Barang::find($id),
+        return view('barang.edit', [
+            'judul'              => 'edit-barang',
+            'barangYgMauDiedit'  => Barang::find($id),
+            'jenisBarang'        => JenisBarang::all(), //ini buat populate/build option di form edit di edit.blade.php
+            'statusBarang'       => StatusBarang::all(), //ini buat populate/build option di form edit di edit.blade.php
         ]);
     }
 
