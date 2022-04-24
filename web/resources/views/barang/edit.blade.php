@@ -2,40 +2,49 @@
 @section('isi konten')
 
     <div class="container-fluid">
-        <!-- Form untuk modif -->
-        <!-- nb: kasih att name di tag input agar bisa dikirimkan datanya -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Edit Barang</h6>
             </div>
             <div class="card-body">
-                <!-- multipart/form-data : agar file foto bisa diup ke dir -->
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <!-- input hidden buat ngoper id ke func updateDataBarang di function.php -->
-                    <input type="hidden" name="id_brg" value="<?= $barangYgMauDiedit["id"];?>">
-                    <!-- akhir  input hidden buat ngoper id ke func updateDataBarang di function.php -->
-                    <!-- input hidden buat ngoper nama foto lama ke func updateDataBarang di function.php -->
-                    <input type="hidden" name="foto_brg_lama" value="<?= $barangYgMauDiedit["foto_barang"];?>">
-                    <!-- akhir input hidden buat ngoper nama foto lama ke func updateDataBarang di function.php -->
-
+                <form action="/edit-barang" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $barangYgMauDiedit->id}}">
+                    <input type="hidden" name="foto_barang_lama" value="{{ $barangYgMauDiedit->foto_barang }}">
                     <div class="row mb-1">
-                        <div class="col-md-2">Foto</div>
-                        <div class="col">
-                            <img src="../img/{{ $barangYgMauDiedit['foto_barang'] }}" width="200px" alt="">
+                        <div class="col-md-2 preview">
+                            <img src="{{ asset('storage/'.$barangYgMauDiedit->foto_barang) }}" alt="" id="foto" width="200px">
                         </div>
                     </div>
                     <div class="row mb-1">
+                        <div class="col-md-2">Foto</div>
+                        <div class="col-md-5"><div class="form-group">
+                            <input type="file" class="form-control-file
+                            @error('foto_barang')
+                                is-invalid
+                            @enderror" id="foto" name="foto_barang" accept="image/*" onchange="filePreview(event);">
+                            @error('foto_barang')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div></div>
+                    </div>
+                    {{-- <div class="row mb-1">
+                        <div class="col-md-2">Foto</div>
+                        <div class="col">
+                            <img src="{{ asset('storage/'.$barangYgMauDiedit->foto_barang) }}" width="200px" alt="">
+                        </div>
+                    </div> --}}
+                    {{-- <div class="row mb-1">
                     <div class="col-md-2">Upload Foto</div>
                         <div class="col-md-5"><div class="form-group">
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto_brg" value="<?= $barangYgMauDiedit['foto_barang'];?>">
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto_barang" value="{{ $barangYgMauDiedit->foto_barang }}">
                         </div></div>
-
-                    </div>
+                    </div> --}}
                     <div class="row mb-1">
                         <div class="col-md-2">Nama Barang</div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="formGroupExampleInput" name="nama_brg" value="<?= $barangYgMauDiedit['nama_barang']?>" autocomplete="off" Required>
+                                <input type="text" class="form-control" id="formGroupExampleInput" name="nama_barang"  autocomplete="off" value="{{ old('nama_barang',$barangYgMauDiedit->nama_barang) }}" Required>
                             </div>
                         </div>
                     </div>
@@ -45,9 +54,13 @@
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1" name="jenis_brg" Required>
+                            <select class="form-control" id="exampleFormControlSelect1" name="jenis_barang_id" Required>
                                 @foreach ($jenisBarang as $jb)
-                                    <option value="">{{ $jb['nama_jenis_barang'] }}</option>
+                                    @if (old($jb->id)==$jb->id)
+                                        <option value="{{ $jb->id }}" selected>{{ $jb->nama_jenis_barang }}</option>
+                                    @else
+                                        <option value="{{ $jb->id }}">{{ $jb->nama_jenis_barang }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             </div>
@@ -60,7 +73,7 @@
                         </div>
                         <div class="col-md-5">
                             <div class="input-group mb-2">
-                                <input type="number" min=0 class="form-control" id="inlineFormInputGroup" name="berat_brg" value="<?= $barangYgMauDiedit['berat_barang']?>" autocomplete="off" Required>
+                                <input type="number" min=0 class="form-control" id="inlineFormInputGroup" name="berat_barang" value="{{ old('berat_barang', $barangYgMauDiedit->berat_barang) }}" autocomplete="off" Required>
                                 <div class="input-group-append">
                                     <div class="input-group-text">gram</div>
                                 </div>
@@ -76,7 +89,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Rp.</div>
                                 </div>
-                                <input type="number" class="form-control" id="inlineFormInputGroup" name="harga_brg" value="<?= $barangYgMauDiedit['harga_barang']?>" autocomplete="off" Required>
+                                <input type="number" class="form-control" id="inlineFormInputGroup" name="harga_barang" value="{{ $barangYgMauDiedit->harga_barang}}" autocomplete="off" Required>
                                 <div class="input-group-append">
                                     <div class="input-group-text">,00</div>
                                 </div>
@@ -89,9 +102,13 @@
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1" name="status_brg" Required>
+                            <select class="form-control" id="exampleFormControlSelect1" name="status_barang_id" Required>
                                 @foreach ($statusBarang as $sb)
-                                    <option value="">{{ $sb['nama_status_barang'] }}</option>
+                                    @if (old($sb->id, $barangYgMauDiedit->id)==$sb->id)
+                                    <option value="{{ $sb->id }}" selected>{{ $sb->nama_status_barang }}</option>
+                                    @else
+                                    <option value="{{ $sb->id }}">{{ $sb->nama_status_barang }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             </div>

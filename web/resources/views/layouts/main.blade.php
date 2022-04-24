@@ -122,7 +122,7 @@ $path_penjualan    ="penjualan/penjualan.php";
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; PPLAM F5 2022</span>
                     </div>
                 </div>
             </footer>
@@ -172,11 +172,12 @@ $path_penjualan    ="penjualan/penjualan.php";
                 <div class="modal-body">
                     <div class="row g-3 align-items-center">
                         <div class="col-auto">
-                        <form id="formConfirmPW" method="POST">
+                        <form id="formConfirmPW" method="POST" action="/setting-akun">
+                            @csrf
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col">
-                                        <input class="form-control" type="password" placeholder="Password" id="password1" name="confirmPW" autocomplete="off" required>
+                                        <input class="form-control" type="password" placeholder="Password" id="password1" name="password" autocomplete="off" required>
                                         <span class="form-control-focus"></span>
                                     </div>
                                     <div class="col-2 mt-2 ms-1">
@@ -193,7 +194,7 @@ $path_penjualan    ="penjualan/penjualan.php";
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="<?= $path_logout; ?>">Logout</a>
+                    <button class="btn btn-primary" form="formConfirmPW" type="submit">Submit</button>
                 </div>
             </div>
         </div>

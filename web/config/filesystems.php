@@ -13,10 +13,10 @@ return [
     |
     */
 
-    // 'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'local'),
 
     //ganti jadi public biar foto bisa diakses public
-    'default' => env('FILESYSTEM_DRIVER', 'public'),
+
 
     /*
     |--------------------------------------------------------------------------

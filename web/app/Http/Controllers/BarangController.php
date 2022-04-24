@@ -10,6 +10,7 @@ use App\Models\JenisBarang;
 use App\Models\StatusBarang;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BarangController extends Controller
 {
@@ -60,13 +61,14 @@ class BarangController extends Controller
     public function store(Request $req)
     {
         $penampung = $req->validate([
-            'foto_barang' => 'image|file|max:1024 ',
+            'foto_barang' => 'image|file|max:1500',
             'nama_barang' => 'required|max:225',
             'jenis_barang_id' => 'required',
             'berat_barang' => 'required',
             'harga_barang' => 'required',
             'status_barang_id' => 'required',
         ]);
+
 
         //upload gambar ke directory
         $penampung['foto_barang'] = $req->file('foto_barang')->store('barang-images');
@@ -112,9 +114,32 @@ class BarangController extends Controller
      * @param  \App\Models\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBarangRequest $request, Barang $barang)
+    public function update(Request $req)
     {
-        //
+        // dd($req->file('foto_barang'));
+        $aturan=[
+            'foto_barang' => 'image|file|max:1500',
+            'nama_barang' => 'required|max:225',
+            'jenis_barang_id' => 'required',
+            'berat_barang' => 'required',
+            'harga_barang' => 'required',
+            'status_barang_id' => 'required',
+        ];
+
+        //validasi
+        $penampung =$req->validate($aturan);
+
+        //upload gambar ke direktori
+        if($req->file('foto_barang')){
+            Storage::delete($req->foto_barang_lama);
+            $penampung['foto_barang'] = $req->file('foto_barang')->store('barang-images');
+        }
+
+        //tuimpa data di db
+        Barang::where('id', $req->id)
+                ->update($penampung);
+
+        return redirect('/barang')->with('pesanSukses', 'data baru berhasil diubah');
     }
 
     /**
@@ -123,8 +148,10 @@ class BarangController extends Controller
      * @param  \App\Models\Barang  $barang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Barang $barang)
+    public function destroy($id)
     {
-        //
+        //hapus data dari db
+        Barang::destroy($id);
+        return redirect('/barang')->with('pesanSukses', 'data berhasil dihapus');
     }
 }

@@ -8,6 +8,13 @@
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-download fa-sm text-white-50"></i> Unduh Rekap</a>
         </div>
+
+        @if (session()->has('pesanSukses'))
+        <div class="alert alert-success" role="alert">
+            {{ session('pesanSukses') }}
+        </div>
+        @endif
+
         <!-- Content Row -->
         <div class="row">
             <div class="col mb-4">
@@ -48,8 +55,13 @@
                                             <td>{{ $b['harga_barang']  }}</td>
                                             <td>{{ $b->StatusBarang->nama_status_barang }}</td>
                                             <td>
-                                                <a href="/edit-barang/{{ $b['id'] }}"><button type="button" class="btn btn-sm btn-warning mt-1">edit⠀</button></a>
-                                                <a href="#" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?')"><button type="button" class="btn btn-danger btn-sm mt-1">hapus</button></a>
+                                                <a href="/edit-barang/{{ $b->id }}"><button type="button" class="btn btn-sm btn-warning mt-1">edit⠀</button></a>
+
+                                                <form action="/hapus-barang/{{ $b->id }}" method="POST">
+                                                    @csrf
+                                                    <button class="btn btn-danger btn-sm mt-1" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?')">hapus</button>
+                                                </form>
+                                                {{-- <a href="#" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?')"><button type="button" class="btn btn-danger btn-sm mt-1">hapus</button></a> --}}
                                             </td>
                                         </tr>
                                         @endforeach
