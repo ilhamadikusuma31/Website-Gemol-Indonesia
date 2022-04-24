@@ -9,6 +9,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditBarangController;
+use App\Http\Controllers\PengeluaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,15 +22,24 @@ use App\Http\Controllers\EditBarangController;
 |
 */
 // Route::get('/admin', function () {
-//     return view('login', [
-//         'judul' => "login"
+    //     return view('login', [
+        //         'judul' => "login"
 //     ]);
 // });
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
+
+//dikasih name('login') merujuk ke authenticate.php karena secara default kalo ada yang akses sebelum login redirect ke /login
+Route::get('/login',[LoginController::class, 'index'])->name('login');
+Route::post('/login',[LoginController::class, 'autentikasi']);
+Route::post('/logout',[LoginController::class, 'logout']);
+
 
 Route::get('/',[DashboardController::class,'index'] )->middleware('auth') ;
 Route::post('/setting-akun',[DashboardController::class,'autentikasi'] )->middleware('auth') ;
 Route::post('/setting-akun/admin',[DashboardController::class,'update'] ) ;
-// Route::post('/setting-akun-admin',[AdminController::class,'update'] )->middleware('auth') ;
+
 
 
 //ini route ngambil dari BarangController dengan method index
@@ -47,10 +57,10 @@ Route::post('/hapus-barang/{id}', [BarangController::class, 'destroy'])->middlew
 
 
 
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/pengeluaran', [PengeluaranController::class,'index'])->middleware('auth');
+Route::get('/create-pengeluaran', [PengeluaranController::class,'create'])->middleware('auth');
+Route::post('/create-pengeluaran', [PengeluaranController::class,'store'])->middleware('auth');
+Route::post('/hapus-pengeluaran/{id}', [PengeluaranController::class, 'destroy'])->middleware('auth');
 
-//dikasih name('login') merujuk ke authenticate.php karena secara default kalo ada yang akses sebelum login redirect ke /login
-Route::get('/login',[LoginController::class, 'index'])->name('login');
-Route::post('/login',[LoginController::class, 'autentikasi']);
-Route::post('/logout',[LoginController::class, 'logout']);
+
+

@@ -63,6 +63,7 @@
                 <a class="collapse-item" href="{{ $path_brg }}">barang</a>
                 <a class="collapse-item" href="#">jenis barang</a>
                 <a class="collapse-item" href="{{ $path_penjualan }}">penjualan</a>
+                <a class="collapse-item" href="{{ $path_pengeluaran }}">pengeluaran</a>
                 <a class="collapse-item" href="#">ulasan</a>
                 <a class="collapse-item" href="#">testimoni</a>
             </div>

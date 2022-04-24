@@ -16,13 +16,14 @@ $path_img          = "/img";
 $path_vendor       = "/vendor";
 $path_css          = "/css";
 $path_js           = "/js";
-$path_setting_admin= "setting_admin.php";
+// $path_setting_admin= "setting_admin.php";
 
 
 $path_brg          = "/barang";
-$path_edit_brg     = "barang/barang_edit.php";
-$path_hapus_brg    = "barang/barang_hapus.php";
-$path_tambah_brg   = "barang/barang_tambah.php";
+$path_pengeluaran  ="/pengeluaran";
+// $path_edit_brg     = "barang/barang_edit.php";
+// $path_hapus_brg    = "barang/barang_hapus.php";
+// $path_tambah_brg   = "barang/barang_tambah.php";
 $path_export       = "/eksport";
 
 $path_penjualan    ="penjualan/penjualan.php";

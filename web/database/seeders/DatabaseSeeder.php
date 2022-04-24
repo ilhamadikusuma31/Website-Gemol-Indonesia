@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\Pengeluaran;
 use App\Models\Barang;
 use App\Models\JenisBarang;
 use App\Models\StatusBarang;
@@ -19,6 +20,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+
+
+
+            Admin::create([
+                'username' => 'ilham',
+                'password' => bcrypt('12345678'),
+            ]);
             Barang::create([
             'nama_barang' => 'cookies singkong cheese sago',
             'harga_barang' => 25000,
@@ -74,6 +83,39 @@ class DatabaseSeeder extends Seeder
             StatusBarang::create([
             'nama_status_barang' => 'rekomendasi',
             ]);
+
+
+            Pengeluaran::create([
+            'nama_pengeluaran' => 'keperluan dong',
+            'tanggal_pengeluaran' => '2022/12/31',
+            'total_pengeluaran' => '213000',
+            ]);
+            Pengeluaran::create([
+            'nama_pengeluaran' => 'keperluan dong',
+            'tanggal_pengeluaran' => '2022/12/31',
+            'total_pengeluaran' => '1200',
+            ]);
+            Pengeluaran::create([
+            'nama_pengeluaran' => 'keperluan dong',
+            'tanggal_pengeluaran' => '2022/12/31',
+            'total_pengeluaran' => '13000',
+            ]);
+            Pengeluaran::create([
+            'nama_pengeluaran' => 'keperluan dong',
+            'tanggal_pengeluaran' => '2022/12/31',
+            'total_pengeluaran' => '41000',
+            ]);
+            Pengeluaran::create([
+            'nama_pengeluaran' => 'keperluan dong',
+            'tanggal_pengeluaran' => '2022/12/31',
+            'total_pengeluaran' => '13000',
+            ]);
+            Pengeluaran::create([
+            'nama_pengeluaran' => 'keperluan dong',
+            'tanggal_pengeluaran' => '2022/12/31',
+            'total_pengeluaran' => '13000',
+            ]);
+
 
     }
 }
