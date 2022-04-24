@@ -68,7 +68,7 @@ class DashboardController extends Controller
         }
 
         else{
-
+            return redirect('/')->with('pesanError', 'password tidak sama! harap masuk kembali');
         }
 
     }

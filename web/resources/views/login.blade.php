@@ -26,15 +26,13 @@
 				</div>
 
                 @if(session()->has('pesan'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="alert alert-success" role="alert">
                     {{ session('pesan') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
-                @if(session()->has('pesanLoginError'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('pesanLoginError') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                @if(session()->has('pesanError'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('pesanError') }}
                 </div>
                 @endif
 

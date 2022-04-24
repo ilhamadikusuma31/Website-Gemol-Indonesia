@@ -49,7 +49,7 @@ class LoginController extends Controller
         }
 
         //kalo engga maka akan beri pesan error ke login.blade.php
-        return back()->with('pesanLoginError', 'gagal login!');
+        return back()->with('pesanError', 'gagal login! username atau password salah');
     }
 
     //ini liat dokumentasi laravel untuk code logout
