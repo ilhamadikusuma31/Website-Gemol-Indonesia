@@ -135,7 +135,7 @@ class BarangController extends Controller
             $penampung['foto_barang'] = $req->file('foto_barang')->store('barang-images');
         }
 
-        //tuimpa data di db
+        //timpa data di db
         Barang::where('id', $req->id)
                 ->update($penampung);
 

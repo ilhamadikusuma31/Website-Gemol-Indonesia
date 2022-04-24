@@ -3,6 +3,7 @@
 use GuzzleHttp\Middleware;
 use Database\Factories\BarangFactory;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\RegisterController;
@@ -27,6 +28,8 @@ use App\Http\Controllers\EditBarangController;
 
 Route::get('/',[DashboardController::class,'index'] )->middleware('auth') ;
 Route::post('/setting-akun',[DashboardController::class,'autentikasi'] )->middleware('auth') ;
+Route::post('/setting-akun/admin',[DashboardController::class,'update'] ) ;
+// Route::post('/setting-akun-admin',[AdminController::class,'update'] )->middleware('auth') ;
 
 
 //ini route ngambil dari BarangController dengan method index

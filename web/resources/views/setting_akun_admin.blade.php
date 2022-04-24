@@ -1,22 +1,24 @@
 @extends('layouts.main')
 @section('isi konten')
 <div class="container-fluid">
-    <!-- Form untuk modif -->
-    <!-- nb: kasih att name di tag input agar bisa dikirimkan datanya -->
+    @if (session()->has('pesanError'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('pesanError') }}
+    </div>
+    @endif
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Edit</h6>
         </div>
         <div class="card-body">
-            <!-- multipart/form-data : agar file foto bisa diup ke dir -->
-            <form action="/setting-akun" method="POST" enctype="multipart/form-data">
-                <!-- input hidden buat ngoper id ke func updateDataAdmin di function.php -->
-                <input type="hidden" name="admin_id" value="{{ auth()->user()->id }}">
+            <form action="/setting-akun/admin" method="POST">
+                @csrf
+                <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                 <div class="row mb-1">
                     <div class="col-md-2">Username</div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="formGroupExampleInput" name="uname" value="{{ auth()->user()->username }}" autocomplete="off" Required>
+                            <input type="text" class="form-control" id="formGroupExampleInput" name="username" value="{{ auth()->user()->username }}" autocomplete="off" Required>
                         </div>
                     </div>
                 </div>
@@ -24,7 +26,7 @@
                     <div class="col-md-2">Password Baru</div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <input id="password1" type="password" class="form-control" id="formGroupExampleInput" name="pass1" value="" autocomplete="off" Required>
+                            <input id="password1" type="password" class="form-control" id="formGroupExampleInput" name="password" value="" autocomplete="off" Required>
                         </div>
                     </div>
                     <div class="col mt-1 ps-2">
@@ -38,7 +40,7 @@
                     <div class="col-md-2">Konfirmasi Password Baru</div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <input id="password2" type="password" class="form-control" id="formGroupExampleInput" name="pass2" value="" autocomplete="off" Required>
+                            <input id="password2" type="password" class="form-control" id="formGroupExampleInput" name="password2" value="" autocomplete="off" Required>
                         </div>
                     </div>
                     <div class="col mt-1 ms-2">
@@ -49,8 +51,12 @@
                     </div>
                 </div>
                 <div class="row justify-content-beetween">
-                <div class="col mb-1"><button class="btn btn-danger" type="reset" name="sbmt-cancel" onclick="location.href='/'">Cancel</button></div>
-                    <div class="col mb-1"><button class="btn btn-primary" type="submit" name="sbmt" onclick="return confirm('Apakah Anda yakin ingin mengubah data akun?')">Submit</button></div>
+                    <div class="col mb-1">
+                        <button class="btn btn-danger" type="reset" name="sbmt-cancel" onclick="location.href='/'">Cancel</button>
+                    </div>
+                    <div class="col mb-1">
+                        <button class="btn btn-primary" type="submit" name="sbmt" onclick="return confirm('Apakah Anda yakin ingin mengubah data akun?')">Submit</button>
+                    </div>
                 </div>
             </form>
         </div>

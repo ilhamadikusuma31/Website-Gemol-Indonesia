@@ -167,7 +167,11 @@
 
     <!-- Content Row -->
     <div class="row">
-
+        @if (session()->has('pesanSukses'))
+        <div class="alert alert-success" role="alert">
+            {{ session('pesanSukses') }}
+        </div>
+        @endif
         <!-- Content Column -->
         <div class="col-lg-6 mb-4">
 

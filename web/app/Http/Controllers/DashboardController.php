@@ -32,32 +32,45 @@ class DashboardController extends Controller
         ]);
     }
 
-    //method ini dipanggil dari route yang di trigger setelah user mengklik login di login.blade.php
+    //method ini dipanggil dari route yang di trigger setelah user mengklik submit ubah password di main.blade.php
+    //method ini untuk ganti pw admin
     public function autentikasi(Request $req){
 
-        // //validasi apakah user sudah mengisikannya, ngecek ke db admin (pengaturan kenapa bisa otomatis ada di auth.php)
-        // $kredensial = $req -> validate([
-        //     'password' => 'required',
-        // ]);
-
-
-        if(Hash::check($req->password,auth()->user()->password)){
-            return view('setting_akun',['judul' => 'ubah pw broh']);
+        //cek apakah req->password == password si user sekarang yg lagi login
+        if(Hash::check($req->password, auth()->user()->password)){
+            return view('setting_akun_admin',['judul' => 'ubah pw broh']);
         }
-
-        // if (auth()->user()->password == $req->password){
-        //     return view('setting_akun',['judul => ubah pw broh']);
-        // }
-
-        // //cek apakah valid jika iya maka redirect ke dashboard
-        // if(Auth::attempt($kredensial)){
-        //     $req->session()->regenerate();
-        //     return view('setting_akun',['judul => ubah pw broh']);
-        //     // return redirect()->intended('/setting-akun');
-        // }
 
         //kalo engga maka akan beri pesan error ke login.blade.php
         return back()->with('pesanLoginError', 'gagal login!');
+    }
+
+    public function update(Request $req)
+    {
+        // dd($req);
+        if($req->password == $req->password2){
+            $aturan=[
+                'username' => 'required|max:255',
+                'password' => 'required|min:8',
+            ];
+
+            //validasi
+            $penampung =$req->validate($aturan);
+
+            //enkripsi
+            $penampung['password'] = bcrypt($penampung['password']);
+
+
+            //timpa data di db
+            Admin::where('id', $req->id)->update($penampung);
+
+            return redirect('/')->with('pesanSukses','akun berhasil diperbarui');
+        }
+
+        else{
+
+        }
+
     }
 
 }
