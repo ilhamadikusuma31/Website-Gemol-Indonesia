@@ -54,17 +54,9 @@
                                                     @csrf
                                                     <button class="btn btn-danger btn-sm mt-1" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">hapus</button>
                                                 </form>
-                                                {{-- <a href="#" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?')"><button type="button" class="btn btn-danger btn-sm mt-1">hapus</button></a> --}}
                                             </td>
                                         </tr>
                                         @endforeach
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>{{ $pengeluarans->sum('total_pengeluaran') }}</td>
-                                            <td></td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>

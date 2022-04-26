@@ -11,6 +11,7 @@ use App\Models\StatusBarang;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BarangController extends Controller
 {
@@ -60,6 +61,7 @@ class BarangController extends Controller
     // }
     public function store(Request $req)
     {
+        //validasi, jika berhasil maka akan eksekusi kode dibawahnya
         $penampung = $req->validate([
             'foto_barang' => 'image|file|max:1500',
             'nama_barang' => 'required|max:225',
@@ -69,6 +71,8 @@ class BarangController extends Controller
             'status_barang_id' => 'required',
         ]);
 
+        //str to lower nama
+        $penampung['nama_barang'] = Str::lower($penampung['nama_barang']);
 
         //upload gambar ke directory
         $penampung['foto_barang'] = $req->file('foto_barang')->store('barang-images');
@@ -126,8 +130,11 @@ class BarangController extends Controller
             'status_barang_id' => 'required',
         ];
 
-        //validasi
+        //validasi, jika berhasil maka akan eksekusi kode dibawahnya
         $penampung =$req->validate($aturan);
+
+        //str to lower nama
+        $penampung['nama_barang'] = Str::lower($penampung['nama_barang']);
 
         //upload gambar ke direktori
         if($req->file('foto_barang')){

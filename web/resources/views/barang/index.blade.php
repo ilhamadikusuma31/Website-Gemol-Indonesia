@@ -10,8 +10,11 @@
         </div>
 
         @if (session()->has('pesanSukses'))
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('pesanSukses') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         @endif
 
@@ -45,7 +48,6 @@
                                             $angka = 1
                                         @endphp
                                         @foreach($barangs as $b)
-
                                         <tr>
                                             <td>{{ $angka++}}</td>
                                             <td><img src="{{ asset('storage/'.$b->foto_barang) }}" alt="" width="150px"></td>
@@ -56,12 +58,7 @@
                                             <td>{{ $b->StatusBarang->nama_status_barang }}</td>
                                             <td>
                                                 <a href="/edit-barang/{{ $b->id }}"><button type="button" class="btn btn-sm btn-warning mt-1">edit⠀</button></a>
-
-                                                <form action="/hapus-barang/{{ $b->id }}" method="POST">
-                                                    @csrf
-                                                    <button class="btn btn-danger btn-sm mt-1" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?')">hapus</button>
-                                                </form>
-                                                {{-- <a href="#" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?')"><button type="button" class="btn btn-danger btn-sm mt-1">hapus</button></a> --}}
+                                                <a data-toggle="modal" data-target="#popUpConfirmHapus" ><button type="button" class="btn btn-sm btn-danger mt-1">hapus</button></a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -71,6 +68,31 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Modal Confirm Hapus-->
+    <div class="modal fade" id="popUpConfirmHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">yakin mau hapus data ini?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Pilih "hapus" jika kamu yakin.</div>
+                <div class="modal-footer">
+                    {{-- cancel --}}
+                    <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                    {{-- submit --}}
+                    <form action="/hapus-barang/{{ $b->id }}" method="POST">
+                        @csrf
+                        <button class="btn btn-danger">hapus</button>
+                    </form>
+                    {{-- --}}
                 </div>
             </div>
         </div>

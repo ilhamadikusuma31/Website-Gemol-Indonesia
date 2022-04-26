@@ -1,13 +1,12 @@
 @extends('layouts/main')
 @section('isi konten')
-
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Edit Barang</h6>
             </div>
             <div class="card-body">
-                <form action="/edit-barang" method="POST" enctype="multipart/form-data">
+                <form action="/edit-barang" method="POST" enctype="multipart/form-data" id="formEdit">
                     @csrf
                     <input type="hidden" name="id" value="{{ $barangYgMauDiedit->id}}">
                     <input type="hidden" name="foto_barang_lama" value="{{ $barangYgMauDiedit->foto_barang }}">
@@ -28,18 +27,6 @@
                             @enderror
                         </div></div>
                     </div>
-                    {{-- <div class="row mb-1">
-                        <div class="col-md-2">Foto</div>
-                        <div class="col">
-                            <img src="{{ asset('storage/'.$barangYgMauDiedit->foto_barang) }}" width="200px" alt="">
-                        </div>
-                    </div> --}}
-                    {{-- <div class="row mb-1">
-                    <div class="col-md-2">Upload Foto</div>
-                        <div class="col-md-5"><div class="form-group">
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto_barang" value="{{ $barangYgMauDiedit->foto_barang }}">
-                        </div></div>
-                    </div> --}}
                     <div class="row mb-1">
                         <div class="col-md-2">Nama Barang</div>
                         <div class="col-md-5">
@@ -56,7 +43,7 @@
                             <div class="form-group">
                             <select class="form-control" id="exampleFormControlSelect1" name="jenis_barang_id" Required>
                                 @foreach ($jenisBarang as $jb)
-                                    @if (old($jb->id)==$jb->id)
+                                    @if (old($jb->id)==$jb->id or ($jb->id)==($barangYgMauDiedit->jenis_barang_id))
                                         <option value="{{ $jb->id }}" selected>{{ $jb->nama_jenis_barang }}</option>
                                     @else
                                         <option value="{{ $jb->id }}">{{ $jb->nama_jenis_barang }}</option>
@@ -104,7 +91,7 @@
                             <div class="form-group">
                             <select class="form-control" id="exampleFormControlSelect1" name="status_barang_id" Required>
                                 @foreach ($statusBarang as $sb)
-                                    @if (old($sb->id, $barangYgMauDiedit->id)==$sb->id)
+                                    @if (old($sb->id)==$sb->id or ($sb->id)==($barangYgMauDiedit->status_barang_id))
                                     <option value="{{ $sb->id }}" selected>{{ $sb->nama_status_barang }}</option>
                                     @else
                                     <option value="{{ $sb->id }}">{{ $sb->nama_status_barang }}</option>
@@ -115,11 +102,37 @@
                         </div>
                     </div>
                     <div class="row justify-content-beetween">
-                    <div class="col mb-1"><button class="btn btn-danger" type="reset" onclick="location.href='/barang'">Kembali</button></div>
-                        <div class="col mb-1"><button class="btn btn-primary" type="submit" name="sbmt" onclick="return confirm('Apakah Anda yakin ingin mengubah barang ini?')">Submit</button></div>
+                    <div class="col mb-1">
+                        <button class="btn btn-danger" type="reset" onclick="location.href='/barang'">Kembali</button>
+                    </div>
+                    <div class="col mb-1"><a data-toggle="modal" data-target="#popUpConfirmEdit" >
+                        <button type="button" class="btn btn-primary me-1">Submit</button></a>
+                    </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <!--  Modal Confirm Edit-->
+    <div class="modal fade" id="popUpConfirmEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">yakin mau mengubah data ini?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Pilih "mengubah" jika kamu yakin.</div>
+            <div class="modal-footer">
+                {{-- cancel --}}
+                <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                {{-- submit --}}
+                <button class="btn btn-danger" type="submit" form="formEdit">mengubah</button>
+                {{-- --}}
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
