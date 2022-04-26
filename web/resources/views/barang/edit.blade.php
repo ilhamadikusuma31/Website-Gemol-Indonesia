@@ -1,5 +1,6 @@
 @extends('layouts/main')
 @section('isi konten')
+
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -43,7 +44,7 @@
                             <div class="form-group">
                             <select class="form-control" id="exampleFormControlSelect1" name="jenis_barang_id" Required>
                                 @foreach ($jenisBarang as $jb)
-                                    @if (old($jb->id)==$jb->id or ($jb->id)==($barangYgMauDiedit->jenis_barang_id))
+                                    @if (old($jb->id)==$jb->id)
                                         <option value="{{ $jb->id }}" selected>{{ $jb->nama_jenis_barang }}</option>
                                     @else
                                         <option value="{{ $jb->id }}">{{ $jb->nama_jenis_barang }}</option>
@@ -91,7 +92,7 @@
                             <div class="form-group">
                             <select class="form-control" id="exampleFormControlSelect1" name="status_barang_id" Required>
                                 @foreach ($statusBarang as $sb)
-                                    @if (old($sb->id)==$sb->id or ($sb->id)==($barangYgMauDiedit->status_barang_id))
+                                    @if (old($sb->id, $barangYgMauDiedit->id)==$sb->id)
                                     <option value="{{ $sb->id }}" selected>{{ $sb->nama_status_barang }}</option>
                                     @else
                                     <option value="{{ $sb->id }}">{{ $sb->nama_status_barang }}</option>
@@ -102,12 +103,8 @@
                         </div>
                     </div>
                     <div class="row justify-content-beetween">
-                    <div class="col mb-1">
-                        <button class="btn btn-danger" type="reset" onclick="location.href='/barang'">Kembali</button>
-                    </div>
-                    <div class="col mb-1"><a data-toggle="modal" data-target="#popUpConfirmEdit" >
-                        <button type="button" class="btn btn-primary me-1">Submit</button></a>
-                    </div>
+                        <div class="col mb-1"><button class="btn btn-danger" type="reset" onclick="location.href='/barang'"><i class="bi bi-backspace"></i></button></div>
+                        <div class="col mb-1"><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmEdit" ><i class="bi bi-check-circle"></i></a></div>
                     </div>
                 </form>
             </div>
@@ -119,17 +116,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">yakin mau mengubah data ini?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">yakin mau ubah data ini?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Pilih "mengubah" jika kamu yakin.</div>
-            <div class="modal-footer">
+            <div class="modal-body">Pilih ubah jika kamu yakin.</div>
+            <div class="modal-footer" id='modal-footer'>
                 {{-- cancel --}}
                 <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
                 {{-- submit --}}
-                <button class="btn btn-danger" type="submit" form="formEdit">mengubah</button>
+                <button form="formEdit" type="submit" class="btn btn-danger">ubah</button>
                 {{-- --}}
             </div>
         </div>

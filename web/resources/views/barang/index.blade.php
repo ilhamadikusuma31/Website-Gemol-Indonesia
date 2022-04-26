@@ -57,10 +57,35 @@
                                             <td>{{ $b['harga_barang']  }}</td>
                                             <td>{{ $b->StatusBarang->nama_status_barang }}</td>
                                             <td>
-                                                <a href="/edit-barang/{{ $b->id }}"><button type="button" class="btn btn-sm btn-warning mt-1">edit⠀</button></a>
-                                                <a data-toggle="modal" data-target="#popUpConfirmHapus" ><button type="button" class="btn btn-sm btn-danger mt-1">hapus</button></a>
+                                                <a class="btn btn-sm btn-warning mt-1" href="/edit-barang/{{ $b->id }}"><i class="bi bi-pencil-square"></i></a>
+                                                <a class="btn btn-sm btn-danger mt-1" href="#" data-toggle="modal" data-target="#popUpConfirmHapus{{ $b->id }}"><i class="bi bi-trash-fill"></i></a>
                                             </td>
                                         </tr>
+                                          <!--  Modal Confirm Hapus-->
+                                            <div class="modal fade" id="popUpConfirmHapus{{ $b->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel" value="" >yakin mau hapus <b>{{ucfirst(strtoupper($b->nama_barang)) }}</b>?</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">Pilih "hapus" jika kamu yakin.</div>
+                                                        <div class="modal-footer" id='modal-footer'>
+                                                            {{-- cancel --}}
+                                                            <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                                                            {{-- submit --}}
+                                                            <form action="/hapus-barang/{{ $b->id }}" method="POST">
+                                                                @csrf
+                                                                <button class="btn btn-danger">hapus</button>
+                                                            </form>
+                                                            {{-- --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                         </tbody>
                                     </table>
@@ -72,32 +97,29 @@
             </div>
         </div>
     </div>
-    <!--  Modal Confirm Hapus-->
-    <div class="modal fade" id="popUpConfirmHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">yakin mau hapus data ini?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Pilih "hapus" jika kamu yakin.</div>
-                <div class="modal-footer">
-                    {{-- cancel --}}
-                    <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
-                    {{-- submit --}}
-                    <form action="/hapus-barang/{{ $b->id }}" method="POST">
-                        @csrf
-                        <button class="btn btn-danger">hapus</button>
-                    </form>
-                    {{-- --}}
-                </div>
-            </div>
-        </div>
-    </div>
+
+
 @endsection
+
+{{-- <script>
+    $(document).ready(function(){
+
+        $(document).on('click', '#submit',function(){
+
+            alert("adda");
+            var nama_brg = $(this).data('namaBrg');
+            var id_brg = $(this).data('idBrg');
+
+            $('#exampleModalLabel').val("yakin mau hapus data "+nama_brg+" ?");
+
+        })
+
+
+
+    })
+
+
+</script> --}}
 
 
 

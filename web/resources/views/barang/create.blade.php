@@ -9,7 +9,7 @@
             </div>
             <div class="card-body">
                 <!-- multipart/form-data : agar file foto bisa diup ke dir -->
-                <form action="/create-barang" method="POST" enctype="multipart/form-data" id="uploadForm">
+                <form action="/create-barang" method="POST" enctype="multipart/form-data" id="formTambah">
                     @csrf
                     <div class="row mb-1">
                         <div class="col-md-2 preview">
@@ -96,12 +96,36 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-beetween">
-                        <div class="col mb-1"><button class="btn btn-danger" type="" onclick="location.href = '/barang'">Kembali</button></div>
-                        <div class="col mb-1"><button class="btn btn-primary" type="submit" name="sbmt" onclick="return confirm('Apakah Anda yakin ingin menambah barang ini?')">Submit</button></div>
+                    <div class="row justify-content-center">
+                        <div class="col mb-1"><button class="btn btn-danger" type="" onclick="location.href = '/barang'"><i class="bi bi-backspace"></i></button></div>
+                        <div class="col mb-1 ms-2"><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-plus-circle"></i></a></div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <!--  Modal Confirm Tambah-->
+    <div class="modal fade" id="popUpConfirmTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">yakin mau tambah data ini?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Pilih "Tambah" jika kamu yakin.</div>
+            <div class="modal-footer" id='modal-footer'>
+                {{-- cancel --}}
+                <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                {{-- submit --}}
+                <button form="formTambah" type="submit" class="btn btn-danger">Tambah</button>
+                {{-- --}}
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
+

@@ -7,6 +7,7 @@ use App\Http\Requests\StorePengeluaranRequest;
 use App\Http\Requests\UpdatePengeluaranRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PengeluaranController extends Controller
 {
@@ -74,9 +75,12 @@ class PengeluaranController extends Controller
      * @param  \App\Models\Pengeluaran  $pengeluaran
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pengeluaran $pengeluaran)
+    public function edit($id)
     {
-        //
+        return view('pengeluaran.edit', [
+            'judul'                   => 'edit-pengeluaran',
+            'pengeluaranYgMauDiedit'  => Pengeluaran::find($id),
+        ]);
     }
 
     /**
@@ -86,9 +90,26 @@ class PengeluaranController extends Controller
      * @param  \App\Models\Pengeluaran  $pengeluaran
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePengeluaranRequest $request, Pengeluaran $pengeluaran)
+    public function update(Request $req)
     {
-        //
+        $aturan=[
+            'tanggal_pengeluaran' => 'required',
+            'nama_pengeluaran' => 'required',
+            'total_pengeluaran' => 'required',
+        ];
+
+        //validasi, jika berhasil maka akan eksekusi kode dibawahnya
+        $penampung =$req->validate($aturan);
+
+        //str to lower nama
+        $penampung['nama_pengeluaran'] = Str::lower($penampung['nama_pengeluaran']);
+
+
+        //timpa data di db
+        Pengeluaran::where('id', $req->id)
+                ->update($penampung);
+
+        return redirect('/pengeluaran')->with('pesanSukses', 'data berhasil diubah');
     }
 
     /**

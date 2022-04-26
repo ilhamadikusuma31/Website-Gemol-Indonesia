@@ -10,8 +10,11 @@
         </div>
 
         @if (session()->has('pesanSukses'))
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('pesanSukses') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         @endif
 
@@ -48,14 +51,38 @@
                                             <td>{{ $p->nama_pengeluaran   }}</td>
                                             <td>{{ $p->total_pengeluaran   }}</td>
                                             <td>
-                                                <a href="/edit-pengeluaran/{{ $p->id }}"><button type="button" class="btn btn-sm btn-warning mt-1">edit⠀</button></a>
+                                                <a href="/edit-pengeluaran/{{ $p->id }}"><button type="button" class="btn btn-sm btn-warning mt-1"><i class="bi bi-pencil-square"></i></button></a>
+                                                <a data-toggle="modal" data-target="#popUpConfirmHapus{{ $p->id }}" ><button type="button" class="btn btn-sm btn-danger mt-1"><i class="bi bi-trash-fill"></i></button></a>
+                                                {{-- <button id= 'deleteBtn' type="button" value="{{ $p->id }}" class="btn btn-sm btn-danger mt-1"><i class="bi bi-trash-fill"></i></button></a> --}}
 
-                                                <form action="/hapus-pengeluaran/{{ $p->id }}" method="POST">
-                                                    @csrf
-                                                    <button class="btn btn-danger btn-sm mt-1" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">hapus</button>
-                                                </form>
                                             </td>
                                         </tr>
+                                          <!--  Modal Confirm Hapus-->
+                                            <div class="modal fade" id="popUpConfirmHapus{{ $p->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <input type="hidden" name="" id="idPengeluaranDiModal" value="">
+                                                        <h5 class="modal-title" id="exampleModalLabel">yakin mau hapus data <b>{{ucfirst(strtoupper($p->nama_pengeluaran)) }}</b><br/> dengan jumlah <b>Rp.{{ $p->total_pengeluaran }}</b>?</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">Pilih "hapus" jika kamu yakin.</div>
+                                                    <div class="modal-footer">
+                                                        {{-- cancel --}}
+                                                        <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                                                        {{-- submit --}}
+                                                        <form action="/hapus-pengeluaran/{{ $p->id }}" method="POST">
+                                                            @csrf
+                                                            <button class="btn btn-danger">hapus</button>
+                                                        </form>
+                                                        {{-- --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         @endforeach
                                         </tbody>
                                     </table>
@@ -67,7 +94,10 @@
             </div>
         </div>
     </div>
+
 @endsection
+
+
 
 
 

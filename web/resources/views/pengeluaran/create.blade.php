@@ -1,15 +1,12 @@
 @extends('layouts.main')
 @section('isi konten')
     <div class="container-fluid">
-        <!-- Form untuk menambah -->
-        <!-- nb: kasih att name di tag input agar bisa dikirimkan datanya -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Tambah Pengeluaran</h6>
             </div>
             <div class="card-body">
-                <!-- multipart/form-data : agar file foto bisa diup ke dir -->
-                <form action="/create-pengeluaran" method="POST" id="uploadForm">
+                <form action="/create-pengeluaran" method="POST" id="formTambah">
                     @csrf
                     <div class="row mb-1">
                         <div class="col-md-2">Tanggal pengeluaran</div>
@@ -45,9 +42,31 @@
                     </div>
                     <div class="row justify-content-beetween">
                         <div class="col mb-1"><button class="btn btn-danger" type="" onclick="location.href = '/pengeluaran'">Kembali</button></div>
-                        <div class="col mb-1"><button class="btn btn-primary" type="submit" name="sbmt" onclick="return confirm('Apakah Anda yakin ingin menambah pengeluaran ini?')">Submit</button></div>
+                        <div class="col mb-1 ms-2"><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-plus-circle"></i></a></div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+        <!--  Modal Confirm Tambah-->
+        <div class="modal fade" id="popUpConfirmTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">yakin mau tambah data ini?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Pilih "Tambah" jika kamu yakin.</div>
+                <div class="modal-footer" id='modal-footer'>
+                    {{-- cancel --}}
+                    <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                    {{-- submit --}}
+                    <button form="formTambah" type="submit" class="btn btn-danger">Tambah</button>
+                    {{-- --}}
+                </div>
             </div>
         </div>
     </div>

@@ -80,6 +80,7 @@ $path_penjualan    ="penjualan/penjualan.php";
     <!-- Custom styles for this template-->
     <link href="{{ $path_css }}/style-admin.css" rel="stylesheet">
     <link href="{{ $path_css }}/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link rel="shortcut icon" href="{{ $path_img }}/Logo_Mitra_lingkaran.png">
@@ -241,6 +242,7 @@ $path_penjualan    ="penjualan/penjualan.php";
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
     <script src="//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css"></script>
+    @yield('script')
 
 
 </body>
@@ -252,6 +254,19 @@ $(document).ready(function () {
     $("#table").DataTable();
     });
 
+// $(document).ready(function () {
+//     $("#table").DataTable({
+//         "language": {
+//             "lengthMenu": "Display _MENU_ records per page",
+//             "zeroRecords": "Tidak ada data ditemuka - sorry",
+//             "info": "Menampilkan Halaman _PAGE_ of _PAGES_",
+//             "infoEmpty": "Tidak ada data",
+//             "infoFiltered": "(filtered from _MAX_ total records)"
+//         }
+//     });
+//     });
+
+
 $('#table').DataTable( {
     responsive: {
         details: {
@@ -259,6 +274,7 @@ $('#table').DataTable( {
         }
     }
 } );
+
 
 $(document).ready(function () {
     $(".table").DataTable();
@@ -277,6 +293,9 @@ function filePreview(event) {
         preview.style.display = "block";
     }
 }
+
+
+
 </script>
 
 

@@ -60,6 +60,8 @@ Route::post('/hapus-barang/{id}', [BarangController::class, 'destroy'])->middlew
 Route::get('/pengeluaran', [PengeluaranController::class,'index'])->middleware('auth');
 Route::get('/create-pengeluaran', [PengeluaranController::class,'create'])->middleware('auth');
 Route::post('/create-pengeluaran', [PengeluaranController::class,'store'])->middleware('auth');
+Route::get('/edit-pengeluaran/{id}', [PengeluaranController::class, 'edit'])->middleware('auth');
+Route::post('/edit-pengeluaran', [PengeluaranController::class, 'update'])->middleware('auth');
 Route::post('/hapus-pengeluaran/{id}', [PengeluaranController::class, 'destroy'])->middleware('auth');
 
 

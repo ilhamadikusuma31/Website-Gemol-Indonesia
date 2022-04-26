@@ -29,6 +29,8 @@ class BarangController extends Controller
         return view('barang.index', [
             'judul' => 'barang',
             'barangs' => Barang::all(),
+            // 'jenisBarang'        => JenisBarang::all(), //ini buat populate/build option di form create di create.blade.php
+            // 'statusBarang'       => StatusBarang::all(), //ini buat populate/build option di form create di create.blade.php
 
         ]);
     }
@@ -146,7 +148,7 @@ class BarangController extends Controller
         Barang::where('id', $req->id)
                 ->update($penampung);
 
-        return redirect('/barang')->with('pesanSukses', 'data baru berhasil diubah');
+        return redirect('/barang')->with('pesanSukses', 'data berhasil diubah');
     }
 
     /**
