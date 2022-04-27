@@ -98,28 +98,6 @@
         </div>
     </div>
 
-
 @endsection
-
-{{-- <script>
-    $(document).ready(function(){
-
-        $(document).on('click', '#submit',function(){
-
-            alert("adda");
-            var nama_brg = $(this).data('namaBrg');
-            var id_brg = $(this).data('idBrg');
-
-            $('#exampleModalLabel').val("yakin mau hapus data "+nama_brg+" ?");
-
-        })
-
-
-
-    })
-
-
-</script> --}}
-
 
 

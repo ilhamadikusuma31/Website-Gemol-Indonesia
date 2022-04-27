@@ -10,26 +10,26 @@
                     @csrf
                     <input type="hidden" name="id" value="{{ $pengeluaranYgMauDiedit->id }}">
                     <div class="row mb-1">
-                        <div class="col-md-2">Tanggal pengeluaran</div>
-                        <div class="col-md-5">
+                        <div class="col-md-3">Tanggal pengeluaran</div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <input type="date" class="form-control" id="formGroupExampleInput" name="tanggal_pengeluaran" value="{{ old('tanggal_pengeluaran', $pengeluaranYgMauDiedit->tanggal_pengeluaran) }}" autocomplete="off" Required >
                             </div>
                         </div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col-md-2">Nama pengeluaran</div>
-                        <div class="col-md-5">
+                        <div class="col-md-3">Nama pengeluaran</div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="formGroupExampleInput" name="nama_pengeluaran" value="{{ old('nama_pengeluaran', $pengeluaranYgMauDiedit->nama_pengeluaran) }}" autocomplete="off" Required >
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-1">
-                        <div class="col-md-2">
+                    <div class="row mb-1" >
+                        <div class="col-md-3">
                             Total Pengeluaran
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-6">
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">Rp.</div>
@@ -41,9 +41,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row justify-content-beetween">
-                        <div class="col mb-1"><button class="btn btn-danger" type="" onclick="location.href = '/pengeluaran'">Kembali</button></div>
-                        <div class="col mb-1 ms-2"><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-plus-circle"></i></a></div>
+                    <div class="row" >
+                        <div class="col-md-3">
+                            <p></p>
+                        </div>
+                        <div class="col">
+                                <a href="/pengeluaran" class="btn btn-danger"><i class="bi bi-backspace"></i></a>
+                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-plus-circle"></i></a>
+                        </div>
+                        <div class="col-md-3">
+                            <p></p>
                     </div>
                 </form>
             </div>
