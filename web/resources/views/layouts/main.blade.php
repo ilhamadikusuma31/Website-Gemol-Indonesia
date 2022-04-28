@@ -7,11 +7,11 @@
 //nama uname admin yang sekarang sedang mengakses
 //$uname = $_SESSION['nama_admin']; //diset di login.php
 
-$path_web_gemol    = "index.php";
+$path_web_gemol    = "/";
 $path_login        = "login";
 $path_logout       = "logout";
 $path_registrasi   = "registrasi";
-$path_main         = "/";
+$path_main         = "/admin";
 $path_img          = "/img";
 $path_vendor       = "/vendor";
 $path_css          = "/css";

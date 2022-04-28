@@ -3,6 +3,7 @@
 use GuzzleHttp\Middleware;
 use Database\Factories\BarangFactory;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WebController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BarangController;
@@ -27,6 +28,8 @@ use App\Http\Controllers\PengeluaranController;
 //     ]);
 // });
 
+Route::get('/',[WebController::class,'index']);
+
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
@@ -36,7 +39,7 @@ Route::post('/login',[LoginController::class, 'autentikasi']);
 Route::post('/logout',[LoginController::class, 'logout']);
 
 
-Route::get('/',[DashboardController::class,'index'] )->middleware('auth') ;
+Route::get('/admin',[DashboardController::class,'index'] )->middleware('auth') ;
 Route::post('/setting-akun',[DashboardController::class,'autentikasi'] )->middleware('auth') ;
 Route::post('/setting-akun/admin',[DashboardController::class,'update'] ) ;
 
