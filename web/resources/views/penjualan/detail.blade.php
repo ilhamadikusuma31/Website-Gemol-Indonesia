@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Kelola Penjualan</h1>
+            <h1 class="h3 mb-0 text-gray-800">Kelola {{ $nama_pembeli }}</h1>
 
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-download fa-sm text-white-50"></i> Unduh Rekap</a>
@@ -36,6 +36,8 @@
                                             <th>No</th>
                                             <th>Tanggal:</th>
                                             <th>Pembeli:</th>
+                                            <th>Barang:</th>
+                                            <th>Jumlah:</th>
                                             <th>Aksi:</th>
                                         </tr>
                                         </thead>
@@ -43,31 +45,25 @@
                                         @php
                                             $angka = 1
                                         @endphp
-                                        @foreach($penjualans as $p)
+                                        @foreach($detailpenjualans as $dp)
                                         <tr>
                                             <td>{{ $angka++}}</td>
-                                            <td>{{ $p->created_at }}  </td>
-                                            <td>{{ $p->Pembeli->nama_pembeli   }}</td>
+                                            <td>{{ $dp->created_at }}</td>
+                                            <td>{{ $nama_pembeli }}</td>
+                                            <td>{{ $dp->Barang->nama_barang}}</td>
+                                            <td>{{ $dp->jumlah_barang}}</td>
                                             <td>
-                                                <form action="/penjualan/detail" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" value='{{ $p->Pembeli->nama_pembeli }}' name ='nama_pembeli' >
-                                                    <input type="hidden" value='{{ $p->id }}' name ='penjualan_id' >
-                                                    {{-- <input type="hidden" value='{{ $p->Pembeli->nama_pembeli }}' name ='nama_pembeli' > --}}
-                                                    <button class="btn btn-sm btn-info" type="submit"><i class="bi bi-eye"></i></button>
-                                                </form>
-                                                {{-- <a class="btn btn-sm btn-info mt-1" href="/penjualan/detail/{{ $p->id }}"><i class="bi bi-eye"></i></a> --}}
-                                                {{-- <a class="btn btn-sm btn-warning mt-1" href="/edit-penjualan/{{ $p->id }}"><i class="bi bi-pencil-square"></i></a> --}}
-                                                {{-- <a class="btn btn-sm btn-danger mt-1" href="#" data-toggle="modal" data-target="#popUpConfirmHapus{{ $p->id }}"><i class="bi bi-trash-fill"></i></a> --}}
+                                                <a class="btn btn-sm btn-warning mt-1" href="/edit-penjualan/{{ $dp->id }}"><i class="bi bi-pencil-square"></i></a>
+                                                <a class="btn btn-sm btn-danger mt-1" href="#" data-toggle="modal" data-target="#popUpConfirmHapus{{ $dp->id }}"><i class="bi bi-trash-fill"></i></a>
                                             </td>
                                         </tr>
                                           <!--  Modal Confirm Hapus-->
-                                            <div class="modal fade" id="popUpConfirmHapus{{ $p->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                            <div class="modal fade" id="popUpConfirmHapus{{ $dp->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel" value="" >yakin mau hapus <b>{{ucfirst(strtoupper($p->nama_barang)) }}</b>?</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel" value="" >yakin mau hapus <b>{{ucfirst(strtoupper($dp->nama_barang)) }}</b>?</h5>
                                                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
@@ -77,7 +73,7 @@
                                                             {{-- cancel --}}
                                                             <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
                                                             {{-- submit --}}
-                                                            <form action="/hapus-penjualan/{{ $p->id }}" method="POST">
+                                                            <form action="/hapus-penjualan/detail/{{ $dp->id }}" method="POST">
                                                                 @csrf
                                                                 <button class="btn btn-danger">hapus</button>
                                                             </form>

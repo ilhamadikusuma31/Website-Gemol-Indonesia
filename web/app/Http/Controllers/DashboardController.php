@@ -6,6 +6,7 @@ use App\Models\Dashboard;
 use App\Http\Requests\StoreDashboardRequest;
 use App\Http\Requests\UpdateDashboardRequest;
 use App\Models\Admin;
+use App\Models\Barang;
 use GuzzleHttp\Promise\Create;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class DashboardController extends Controller
         //ini merujuk ke folder views Dashboard.blade.php
         //sambil ngirim var judul
         return view('Home', [
-            'judul' => 'Dashboard'
+            'judul' => 'Dashboard',
+            'barangs' => Barang::all(),
         ]);
     }
 

@@ -26,34 +26,8 @@ $path_pengeluaran  ="/pengeluaran";
 // $path_tambah_brg   = "barang/barang_tambah.php";
 $path_export       = "/eksport";
 
-$path_penjualan    ="penjualan/penjualan.php";
-
-//kalo sesi admin tidak ada, di redirect ke halaman login
-// if(!isset($_SESSION["admin_login"])){
-//     header("location: login.php");
-//     exit;
-// }
-
-//confirm pw dari modal untuk mengubah pw atau uname nanti di redirect ke form untuk mengisi uname dan pw baru
-// if(isset($_POST["sbmt-pw"])){
-//     $pw_db = getData("SELECT * FROM admin WHERE username = '$uname'")[0]['password'];
-//     $pw = $_POST["confirmPW"];
-
-//     if(password_verify($pw,$pw_db)){
-//         $_SESSION['admin_edit_akun'] = true;
-//         header("location: setting_admin.php");
-
-//     }
-//     else{
-//         echo
-//         "<script>
-//             $(document).ready(function(){
-//                 $('#popUpConfirmPwSalah').modal('show');
-//                 });
-//         </script>";
-//     }
-//     }
-
+$path_penjualan    ="penjualan/";
+$path_pembeli      ="/pembeli";
 
 
 @endphp
@@ -84,6 +58,14 @@ $path_penjualan    ="penjualan/penjualan.php";
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <link rel="shortcut icon" href="{{ $path_img }}/Logo_Mitra_lingkaran.png">
+
+    <!-- Bootstrap core JavaScript-->
+    <script src ="{{ $path_vendor}}/jquery/jquery.min.js"></script>
+    <script src="{{ $path_vendor}}/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ $path_vendor}}/jquery-easing/jquery.easing.min.js"></script>
+
 
 
 

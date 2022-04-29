@@ -10,8 +10,10 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PembeliController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\EditBarangController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\DetailPenjualanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +34,19 @@ use App\Http\Controllers\PengeluaranController;
 Route::get('/',[WebController::class,'index']);
 Route::post('/create-pesanan',[WebController::class,'store']);
 
+Route::get('/penjualan',[PenjualanController::class,'index'])->middleware('auth');
+Route::get('/create-penjualan',[PenjualanController::class,'create'])->middleware('auth');
+Route::post('/create-penjualan',[PenjualanController::class,'store'])->middleware('auth');
+
+Route::post('/penjualan/detail',[DetailPenjualanController::class,'index'])->middleware('auth');
+Route::post('/hapus-penjualan/detail/{id}',[DetailPenjualanController::class,'destroy'])->middleware('auth');
+
 Route::get('/pembeli',[PembeliController::class,'index'])->middleware('auth');
-Route::post('/create-pembeli',[PembeliController::class,'store']);
+Route::post('/create-pembeli',[PembeliController::class,'store'])->middleware('auth');
+Route::post('/edit-pembeli',[PembeliController::class,'update'])->middleware('auth');
+Route::post('/hapus-pembeli/{id}', [PembeliController::class, 'destroy'])->middleware('auth');
+
+// Route::post('/create-pembeli',[PembeliController::class,'store']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);

@@ -40,7 +40,7 @@
                 <h6 class="collapse-header">Admin Screens:</h6>
                 <a class="collapse-item" href="{{ $path_registrasi }}">Register</a>
                 <a class="collapse-item" href="{{ $path_login }}">Login</a>
-                <a class="collapse-item" href="#">Forgot Password</a>
+                {{-- <a class="collapse-item" href="#">Forgot Password</a> --}}
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
                 <a class="collapse-item" href="{{ $path_web_gemol}}">Website Gemol</a>
@@ -61,7 +61,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Items:</h6>
                 <a class="collapse-item" href="{{ $path_brg }}">barang</a>
-                <a class="collapse-item" href="#">jenis barang</a>
+                {{-- <a class="collapse-item" href="#">jenis barang</a> --}}
+                <a class="collapse-item" href="{{ $path_pembeli }}">pembeli</a>
                 <a class="collapse-item" href="{{ $path_penjualan }}">penjualan</a>
                 <a class="collapse-item" href="{{ $path_pengeluaran }}">pengeluaran</a>
                 <a class="collapse-item" href="#">ulasan</a>

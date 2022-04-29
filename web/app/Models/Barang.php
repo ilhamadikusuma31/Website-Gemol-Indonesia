@@ -18,4 +18,8 @@ class Barang extends Model
     public function StatusBarang(){ //relasi m-to-1  ke Status barang, func nya harus == nama model
         return $this->belongsTo(StatusBarang::class);
     }
+
+    public function DetailPenjualan(){ //relasi 1-to-m  ke detail penjualan, func nya harus == nama model
+        return $this->hasMany(DetailPenjualan::class);
+    }
 }
