@@ -7,6 +7,7 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\PembeliController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditBarangController;
@@ -29,6 +30,10 @@ use App\Http\Controllers\PengeluaranController;
 // });
 
 Route::get('/',[WebController::class,'index']);
+Route::post('/create-pesanan',[WebController::class,'store']);
+
+Route::get('/pembeli',[PembeliController::class,'index'])->middleware('auth');
+Route::post('/create-pembeli',[PembeliController::class,'store']);
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);

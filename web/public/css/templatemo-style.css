@@ -19,6 +19,10 @@ figure {
     padding: 0;
 }
 
+.modal-backdrop {
+    display: none;
+}
+
 .card {
     transition: 0.5s;
 }
@@ -26,6 +30,38 @@ figure {
 .card:hover {
     transform: scale(1.01, 1.01);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.jumbotron1 {
+    padding: 4rem 2rem;
+    margin-bottom: 0rem;
+    background-color: var(--bs-light);
+    border-radius: .3rem;
+    background-image: linear-gradient(to bottom right, #f14af1, rgb(82, 87, 235));
+}
+
+/* .jumbotron1 {
+    padding: 4rem 2rem;
+    margin-bottom: 0rem;
+    background-color: var(--bs-light);
+    border-radius: .3rem;
+    background-image: linear-gradient(to bottom right, #f14af1, rgb(82, 87, 235));
+} */
+/*
+.jumbotronForm {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 9999;
+} */
+
+.jumbotron2 {
+    padding: 4rem 2rem;
+    margin-bottom: 9rem;
+    background-color: var(--bs-light);
+    border-radius: .3rem;
+    background-image: linear-gradient(to bottom right, #ddff1e, rgba(238, 255, 83, 0.687));
 }
 
 a,
@@ -215,7 +251,7 @@ html {
 body {
     font-family: 'Open Sans', Arial, sans-serif;
     font-size: 17px;
-    background-color: #ccc;
+    background-color: rgb(250, 250, 250);
     overflow-x: hidden;
 }
 
@@ -245,14 +281,16 @@ address {
 }
 
 .parallax-window {
-    /* min-height: 460px; */
-    min-height: 700px;
+    min-height: 460px;
+    /* min-height: 600px; */
+    /* min-height: 700px; */
     background: transparent;
     position: relative;
 }
 
 .parallax-window-2 {
     min-height: 220px;
+    /* min-height: 300px; */
     width: 100%;
     margin-left: auto;
     margin-right: auto;

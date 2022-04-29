@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Gemol Indonesia</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
 	<link href="css/templatemo-style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <!--
 
@@ -51,8 +51,7 @@ Gemol Indonesia
         </div>
     </nav>
   <!-- akhir navbar -->
-
-	<!-- Top box -->
+        <!-- Top box -->
 		<!-- Logo & Site Name -->
 		<div class="placeholder">
 			<div class="parallax-window" data-parallax="scroll" data-image-src="img/gemol_1.jpg">
@@ -76,7 +75,6 @@ Gemol Indonesia
                 </nav>
             </div>
         </div>
-
 		<main>
 			<header class="row tm-welcome-section">
 				<h2 class="col-12 text-center tm-section-title">Welcome to Gemol Indonesia</h2>
@@ -96,7 +94,7 @@ Gemol Indonesia
 			<!-- Gallery -->
 			<div class="row tm-gallery">
 
-				<!-- gallery page 1 -->
+                <!-- gallery page 1 -->
 				<div id="tm-gallery-page-cookies" class="tm-gallery-page">
                     @foreach ($barangs as $b)
                     <div class="col-md-3 mb-4 me-3">
@@ -119,7 +117,7 @@ Gemol Indonesia
                       </div>
                     @endforeach
 				</div> <!-- gallery page 1 -->
-                {{-- <a href="https://api.whatsapp.com/send?phone=085740319465&text=Halo%20DafundaTekno.%0ASaya%20Ingin%20Bekerja%20Sama%20Dengan%20Situs%20Anda" class="btn btn-primary"></a> --}}
+
 
                 <div class="jumbotron1 h-100 mt-5">
                     <div class="row text-center">
@@ -128,16 +126,8 @@ Gemol Indonesia
                                 @if (session()->has('pesanSukses'))
                                 <div class="alert alert-success fade show" role="alert">
                                     {{ session('pesanSukses') }}
-                                    <a target="_blank" href="https://api.whatsapp.com/send?phone=6281382144239&text={{ session('templateChat') }}" class="btn btn-success"><i class="bi bi-whatsapp"></i></a>
+                                    <a href="https://api.whatsapp.com/send?phone=081382144239&text={{ session('templateChat') }}" class="btn btn-success"><i class="bi bi-whatsapp"></i></a>
                                 </div>
-
-                                <script>
-                                    // $(document).scrollTop($('#jumbotron1').height());
-
-                                    $(function () {
-                                            $("html, body").animate({scrollTop: $('html, body').get(0).scrollHeight}, 1000);
-                                        });
-                                </script>
                                 @endif
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
@@ -273,22 +263,26 @@ Gemol Indonesia
 			</div>
 		</main>
 
-    <div class="modal" tabindex="-1">
-        <div class="modal-dialog">
+        <!--  Modal Confirm Edit-->
+        <div class="modal fade" id="popUpConfirmTambah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">yakin mau ubah data ini?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Pilih ubah jika kamu yakin.</div>
+                <div class="modal-footer" id='modal-footer'>
+                    {{-- cancel --}}
+                    <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                    {{-- submit --}}
+                    <button form="formEdit" type="submit" class="btn btn-danger">ubah</button>
+                    {{-- --}}
+                </div>
             </div>
-            <div class="modal-body">
-                <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-            </div>
-        </div>
         </div>
 
 		<footer class="tm-footer text-center">
@@ -363,3 +357,4 @@ Gemol Indonesia
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
+
