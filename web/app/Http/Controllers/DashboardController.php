@@ -28,7 +28,7 @@ class DashboardController extends Controller
     {
         //ini merujuk ke folder views Dashboard.blade.php
         //sambil ngirim var judul
-        return view('Home', [
+        return view('home', [
             'judul' => 'Dashboard',
             'barangs' => Barang::all(),
         ]);

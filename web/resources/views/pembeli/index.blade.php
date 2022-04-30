@@ -100,10 +100,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                {{-- <div class="row justify-content-center">
-                                                                    <div class="col mb-1"><button class="btn btn-danger" type="" onclick="location.href = '/barang'"><i class="bi bi-backspace"></i></button></div>
-                                                                    <div class="col mb-1 ms-2"><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-plus-circle"></i></a></div>
-                                                                </div> --}}
                                                             </form>
 
                                                         </div>

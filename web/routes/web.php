@@ -37,9 +37,10 @@ Route::post('/create-pesanan',[WebController::class,'store']);
 Route::get('/penjualan',[PenjualanController::class,'index'])->middleware('auth');
 Route::get('/create-penjualan',[PenjualanController::class,'create'])->middleware('auth');
 Route::post('/create-penjualan',[PenjualanController::class,'store'])->middleware('auth');
+Route::post('/edit-penjualan',[PenjualanController::class,'update'])->middleware('auth');
 
 Route::post('/penjualan/detail',[DetailPenjualanController::class,'index'])->middleware('auth');
-Route::post('/hapus-penjualan/detail/{id}',[DetailPenjualanController::class,'destroy'])->middleware('auth');
+Route::post('/hapus-penjualan/detail/{id}',[PenjualanController::class,'destroy'])->middleware('auth');
 
 Route::get('/pembeli',[PembeliController::class,'index'])->middleware('auth');
 Route::post('/create-pembeli',[PembeliController::class,'store'])->middleware('auth');

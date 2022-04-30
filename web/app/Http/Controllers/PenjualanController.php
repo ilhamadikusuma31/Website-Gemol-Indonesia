@@ -8,6 +8,7 @@ use App\Models\Barang;
 use App\Models\Pembeli;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class PenjualanController extends Controller
 {
@@ -20,6 +21,7 @@ class PenjualanController extends Controller
     }
 
     public function create(){
+        // dd(Barang::all());
         return view('penjualan.create',[
             'judul' => 'Tambah Data Penjualan',
             'barangs' => Barang::all(),
@@ -29,7 +31,7 @@ class PenjualanController extends Controller
 
     public function store(Request $req)
     {
-        // dd($req);
+
 
 
         //store data ke db penjualan
@@ -58,5 +60,26 @@ class PenjualanController extends Controller
         // $req->session()->flash('templateChat', $template_chat);
         return redirect('/penjualan');
 
+    }
+
+    public function update(Request $req)
+    {
+
+        // $penampung = ['pembeli_id'=>$req->pembeli_id];
+        // Penjualan::where('id',$req->penjualan_id)->update($penampung);
+        $penampung = [
+            'jumlah_barang'=>$req->jumlah_barang,
+            'barang_id'    =>$req->barang_id,
+    ];
+        DetailPenjualan::where('id',$req->id)->update($penampung);
+
+        return redirect('/penjualan')->with('pesanSukses', 'data berhasil diubah');
+    }
+
+
+    public function destroy($id){
+
+        DetailPenjualan::destroy($id);
+        return redirect('/penjualan')->with('pesanSukses','data berhasil dihapus');
     }
 }

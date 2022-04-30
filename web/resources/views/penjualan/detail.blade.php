@@ -53,10 +53,64 @@
                                             <td>{{ $dp->Barang->nama_barang}}</td>
                                             <td>{{ $dp->jumlah_barang}}</td>
                                             <td>
-                                                <a class="btn btn-sm btn-warning mt-1" href="/edit-penjualan/{{ $dp->id }}"><i class="bi bi-pencil-square"></i></a>
+                                                <a class="btn btn-sm btn-warning mt-1" href="/edit-penjualan" data-toggle="modal" data-target="#popUpConfirmEdit{{ $dp->id }}"><i class="bi bi-pencil-square"></i></a>
                                                 <a class="btn btn-sm btn-danger mt-1" href="#" data-toggle="modal" data-target="#popUpConfirmHapus{{ $dp->id }}"><i class="bi bi-trash-fill"></i></a>
                                             </td>
                                         </tr>
+                                          <!--  Modal Confirm Edit-->
+                                          <div class="modal fade" id="popUpConfirmEdit{{ $dp->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel" value="" >Mengedit <b>{{ucfirst(strtoupper($dp->nama_pembeli)) }}</b>?</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form id="editPenjualan{{ $dp->id }}" action="/edit-penjualan" method="POST" enctype="multipart/form-data" id="formTambah">
+                                                            @csrf
+                                                            <input type="hidden" name="id" value= "{{ $dp->id }}">
+                                                            {{-- <input type="hidden" name="penjualan_id" value= "{{ $dp->penjualan_id }}"> --}}
+                                                            <div class="row mb-1">
+                                                                <div class="col-md-4">Barang</div>
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <select class="form-control" id="exampleFormControlSelect1" name="barang_id"  Required>
+                                                                            @foreach ($barangs as $b)
+                                                                                {{-- @if (old($b->id)==$b->id)
+                                                                                <option value="{{ $b->id }}" selected>{{ $b->nama_barang}}</option>
+                                                                                @else --}}
+                                                                                <option value="{{ $b->id }}" {{$dp->barang_id == $b->id  ? 'selected' : ''}}>{{ $b->nama_barang}}</option>
+                                                                                {{-- <option value="{{ $b->id }}">{{ $b->nama_barang}}</option> --}}
+                                                                                {{-- @endif --}}
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mb-1">
+                                                                <div class="col-md-4">Jumlah</div>
+                                                                <div class="col">
+                                                                    <div class="form-group">
+                                                                        <input type="number" min="0" class="form-control" id="formGroupExampleInput" name="jumlah_barang" value="{{ old('jumlah_barang',$dp->jumlah_barang) }}" autocomplete="off" Required >
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer" id='modal-footer'>
+                                                        {{-- cancel --}}
+                                                        <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                                                        {{-- submit --}}
+                                                        <button form="editPenjualan{{ $dp->id }}" class="btn btn-danger">ubah</button>
+
+                                                        {{-- --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                           <!--  Modal Confirm Hapus-->
                                             <div class="modal fade" id="popUpConfirmHapus{{ $dp->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                                 aria-hidden="true">

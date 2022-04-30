@@ -55,13 +55,13 @@ Gemol Indonesia
 	<!-- Top box -->
 		<!-- Logo & Site Name -->
 		<div class="placeholder">
-			<div class="parallax-window" data-parallax="scroll" data-image-src="img/gemol_1.jpg">
+			<div class="parallax-window" data-parallax="scroll" data-image-src="/img/gemol_1.jpg">
 			</div>
 		</div>
         <div class="tm-header">
             <div class="row tm-header-inner">
                 <div class="col-md-6 col-12">
-                    <img src="img/simple-house-logo.png" alt="Logo" class="tm-site-logo" />
+                    <img src="/img/simple-house-logo.png" alt="Logo" class="tm-site-logo" />
                     <div class="tm-site-text-box">
                         <h1 class="tm-site-title">Gemol Indonesia</h1>
                         <h6 class="tm-site-description">new restaurant template</h6>

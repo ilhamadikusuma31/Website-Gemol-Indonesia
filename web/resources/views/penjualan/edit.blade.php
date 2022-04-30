@@ -21,7 +21,7 @@
         <!-- Content Row -->
         <div class="jumbotron1 h-100 mt-5">
             <div class="row text-center">
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <div class="container-fluid">
                         @if (session()->has('pesanSukses'))
                         <div class="alert alert-success fade show" role="alert">
@@ -86,7 +86,7 @@
                                         </div>
                                     <div class="row justify-content-center">
                                         <div class="col mb-1"><button class="btn btn-danger" type="" onclick="location.href = '/barang'"><i class="bi bi-backspace"></i></button></div>
-                                        <div class="col mb-1 ms-2"><button class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-check-circle"></i></button></div>
+                                        <div class="col mb-1 ms-2"><button class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-cart-plus"></i></button></div>
                                         {{-- <div class="col mb-1 ms-2"><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-cart-plus"></i></a></div> --}}
                                     </div>
                                 </form>
