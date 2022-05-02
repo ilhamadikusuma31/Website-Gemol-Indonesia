@@ -19,6 +19,9 @@ $path_js           = "/js";
 // $path_setting_admin= "setting_admin.php";
 
 
+$path_ulasan = "/ulasan";
+$path_testimoni = "/testimoni";
+
 $path_brg          = "/barang";
 $path_pengeluaran  ="/pengeluaran";
 // $path_edit_brg     = "barang/barang_edit.php";
@@ -236,31 +239,6 @@ $(document).ready(function () {
     $("#table").DataTable();
     });
 
-// $(document).ready(function () {
-//     $("#table").DataTable({
-//         "language": {
-//             "lengthMenu": "Display _MENU_ records per page",
-//             "zeroRecords": "Tidak ada data ditemuka - sorry",
-//             "info": "Menampilkan Halaman _PAGE_ of _PAGES_",
-//             "infoEmpty": "Tidak ada data",
-//             "infoFiltered": "(filtered from _MAX_ total records)"
-//         }
-//     });
-//     });
-
-
-$('#table').DataTable( {
-    responsive: {
-        details: {
-            display: $.fn.dataTable.Responsive.display.childRowImmediate
-        }
-    }
-} );
-
-
-$(document).ready(function () {
-    $(".table").DataTable();
-});
 
 
 $(document).ready(function () {

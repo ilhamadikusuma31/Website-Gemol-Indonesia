@@ -116,6 +116,12 @@ class WebController extends Controller
 
     }
 
+    public function testimoni(){
+        return view('web.testimoni',[
+
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *

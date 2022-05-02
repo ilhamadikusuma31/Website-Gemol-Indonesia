@@ -33,6 +33,11 @@ use App\Http\Controllers\DetailPenjualanController;
 
 Route::get('/',[WebController::class,'index']);
 Route::post('/create-pesanan',[WebController::class,'store']);
+Route::get('/testimoni',[WebController::class,'testimoni']);
+
+
+
+
 
 Route::get('/penjualan',[PenjualanController::class,'index'])->middleware('auth');
 Route::get('/create-penjualan',[PenjualanController::class,'create'])->middleware('auth');
@@ -47,7 +52,16 @@ Route::post('/create-pembeli',[PembeliController::class,'store'])->middleware('a
 Route::post('/edit-pembeli',[PembeliController::class,'update'])->middleware('auth');
 Route::post('/hapus-pembeli/{id}', [PembeliController::class, 'destroy'])->middleware('auth');
 
-// Route::post('/create-pembeli',[PembeliController::class,'store']);
+
+Route::get('/ulasan',[UlasanController::class,'index'])->middleware('auth');
+Route::get('/testimoni',[UlasanController::class,'index'])->middleware('auth');
+
+
+
+
+
+
+
 
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);

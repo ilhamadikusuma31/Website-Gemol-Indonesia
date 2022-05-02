@@ -65,8 +65,8 @@
                 <a class="collapse-item" href="{{ $path_pembeli }}">pembeli</a>
                 <a class="collapse-item" href="{{ $path_penjualan }}">penjualan</a>
                 <a class="collapse-item" href="{{ $path_pengeluaran }}">pengeluaran</a>
-                <a class="collapse-item" href="#">ulasan</a>
-                <a class="collapse-item" href="#">testimoni</a>
+                <a class="collapse-item" href="{{ $path_ulasan }}">ulasan</a>
+                <a class="collapse-item" href="{{ $path_testimoni }}">testimoni</a>
             </div>
         </div>
     </li>

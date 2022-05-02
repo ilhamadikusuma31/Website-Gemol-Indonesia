@@ -50,6 +50,7 @@
                                         @foreach($barangs as $b)
                                         <tr>
                                             <td>{{ $angka++}}</td>
+                                            {{-- <td><img src="{{ asset('storage/'.$b->foto_barang) }}" alt="" width="150px"></td> --}}
                                             <td><img src="{{ asset('storage/'.$b->foto_barang) }}" alt="" width="150px"></td>
                                             <td>{{ $b['nama_barang']   }}</td>
                                             <td>{{ $b->JenisBarang->nama_jenis_barang }}  </td>
