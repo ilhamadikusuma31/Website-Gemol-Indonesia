@@ -8,6 +8,8 @@ use App\Models\Barang;
 use App\Models\Penjualan;
 use App\Models\DetailPenjualan;
 use App\Models\Pembeli;
+use App\Models\Testimoni;
+use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Database\Factories\BarangFactory;
@@ -29,6 +31,7 @@ class WebController extends Controller
             'barangs' => Barang::all(),
         ]);
     }
+
 
 
     /**
@@ -117,8 +120,13 @@ class WebController extends Controller
     }
 
     public function testimoni(){
-        return view('web.testimoni',[
-
+        return view('web.testimoni', [
+            'testimonis' => Testimoni::all(),
+        ]);
+    }
+    public function ulasan(){
+        return view('web.ulasan',[
+            'ulasans' => Ulasan::all(),
         ]);
     }
 

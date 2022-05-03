@@ -1,12 +1,4 @@
 @php
-
-// session_start();
-//require "../function.php";
-
-
-//nama uname admin yang sekarang sedang mengakses
-//$uname = $_SESSION['nama_admin']; //diset di login.php
-
 $path_web_gemol    = "/";
 $path_login        = "login";
 $path_logout       = "logout";
@@ -24,9 +16,6 @@ $path_testimoni = "/testimoni";
 
 $path_brg          = "/barang";
 $path_pengeluaran  ="/pengeluaran";
-// $path_edit_brg     = "barang/barang_edit.php";
-// $path_hapus_brg    = "barang/barang_hapus.php";
-// $path_tambah_brg   = "barang/barang_tambah.php";
 $path_export       = "/eksport";
 
 $path_penjualan    ="penjualan/";
@@ -121,87 +110,6 @@ $path_pembeli      ="/pembeli";
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="popUpConfirmLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">mau keluar?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Pilih "Logout" jika kamu yakin.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="<?= $path_logout; ?>">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Confirm PW Modal-->
-    <div class="modal fade" id="popUpConfirmPW" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Password</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                        <form id="formConfirmPW" method="POST" action="/setting-akun">
-                            {{-- @method('autentikasi') --}}
-                            @csrf
-                            <div class="mb-3">
-                                <div class="row">
-                                    <div class="col">
-                                        <input class="form-control" type="password" placeholder="Password" id="password1" name="password" autocomplete="off" required>
-                                        <span class="form-control-focus"></span>
-                                    </div>
-                                    <div class="col-2 mt-2 ms-1">
-                                        <div class="input-group-addon" onclick="passwordVisibility(1);">
-                                            <i class="fa fa-eye" id="showPass1"></i>
-                                            <i class="fa fa-eye-slash d-none" id="hidePass1"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" form="formConfirmPW" type="submit">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- PW salah modal-->
-    <div class="modal fade" id="popUpConfirmPwSalah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Password Salah!</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body"></div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="#">OK</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src ="{{ $path_vendor}}/jquery/jquery.min.js"></script>
     <script src="{{ $path_vendor}}/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -223,7 +131,7 @@ $path_pembeli      ="/pembeli";
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="{{ $path_js }}/password-visibility.js"></script>
-    <script src="{{ $path_js }}/script.js"></script>
+    {{-- <script src="{{ $path_js }}/script.js"></script> --}}
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
     <script src="//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css"></script>

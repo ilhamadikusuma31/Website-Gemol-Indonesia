@@ -172,8 +172,7 @@
                 @auth
                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->username }}</span>
                 @endauth
-                <img class="img-profile rounded-circle"
-                    src = "<?= $path_img;?>/admin/undraw_profile.svg">
+                <img class="img-profile rounded-circle" src = "{{ $path_img }}/admin/undraw_profile.svg">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -182,14 +181,14 @@
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
-                <!-- <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="#">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Settings
                 </a>
                 <a class="dropdown-item" href="#">
                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                     Activity Log
-                </a> -->
+                </a>
                 <div class="dropdown-divider"></div>
                 <form action="/logout" method="post">
                     @csrf
@@ -197,7 +196,90 @@
                 </form>
             </div>
         </li>
-
     </ul>
-
 </nav>
+
+
+<!-- Logout Modal-->
+<div class="modal fade" id="popUpConfirmLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">mau keluar?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Pilih "Logout" jika kamu yakin.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="<?= $path_logout; ?>">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Confirm PW Modal-->
+<div class="modal fade" id="popUpConfirmPW" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Password</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                    <form id="formConfirmPW" method="POST" action="/setting-akun">
+                        {{-- @method('autentikasi') --}}
+                        @csrf
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col">
+                                    <input class="form-control" type="password" placeholder="Password" id="password1" name="password" autocomplete="off" required>
+                                    <span class="form-control-focus"></span>
+                                </div>
+                                <div class="col-2 mt-2 ms-1">
+                                    <div class="input-group-addon" onclick="passwordVisibility(1);">
+                                        <i class="fa fa-eye" id="showPass1"></i>
+                                        <i class="fa fa-eye-slash d-none" id="hidePass1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" form="formConfirmPW" type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PW salah modal-->
+<div class="modal fade" id="popUpConfirmPwSalah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Password Salah!</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="#">OK</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,5 +1,5 @@
-@php
 
+@php
 $path_web_gemol    = "/";
 $path_login        = "login";
 $path_logout       = "logout";
@@ -24,9 +24,7 @@ $path_pembeli      ="/pembeli";
 @endphp
 
 @extends('layouts.mainWeb')
-
 @section('isi')
-
     <header class="row tm-welcome-section">
         <h2 class="col-12 text-center tm-section-title">Welcome to Gemol Indonesia</h2>
         <p class="col-12 text-center">Gemol merupakan Produsen yang bergerak dalam bidang inovasi olahan singkong, menggunakan bahan-bahan berkualitas terbaik (Premium)</p>
@@ -80,18 +78,33 @@ $path_pembeli      ="/pembeli";
                             {{ session('pesanSukses') }}
                             <a target="_blank" href="https://api.whatsapp.com/send?phone=6281382144239&text={{ session('templateChat') }}" class="btn btn-success"><i class="bi bi-whatsapp"></i></a>
                         </div>
-                        <script>
-                            $(function () {
-                                    $("html, body").animate({scrollTop: $('html, body').get(0).scrollHeight}, 1000);
-                                });
-                        </script>
+
+                        {{-- modal berhasil pesan --}}
+                        <div class="modal show" tabindex="-1" id="modalBerhasilPesan">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <p>Modal body text goes here.</p>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
                         @endif
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Pesan Boskuh</h6>
                             </div>
                             <div class="card-body">
-                                <form action="/create-pesanan" method="POST" enctype="multipart/form-data" id="formTambah">
+                                <form action="/create-pesanan" method="POST" enctype="multipart/form-data" id="formPesanan">
                                     @csrf
                                     <div class="row mb-1">
                                         <div class="col-md-2">
@@ -162,7 +175,10 @@ $path_pembeli      ="/pembeli";
                                         </div>
                                     <div class="row justify-content-center">
                                         <div class="col mb-1"><button class="btn btn-danger" type="" onclick="location.href = '/barang'"><i class="bi bi-backspace"></i></button></div>
-                                        <div class="col mb-1 ms-2"><button class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-cart-plus"></i></button></div>
+                                        {{-- <div class="col mb-1 ms-2"><button class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmPesan" ><i class="bi bi-cart-plus"></i></button></div> --}}
+                                        <div class="col mb-1 ms-2">
+                                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#popUpConfirmPesan"><i class="bi bi-cart-plus"></i></a>
+                                        </div>
                                         {{-- <div class="col mb-1 ms-2"><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-cart-plus"></i></a></div> --}}
                                     </div>
                                 </form>
@@ -220,30 +236,33 @@ $path_pembeli      ="/pembeli";
     </div>
 
 
-{{-- <div class="modal" tabindex="-1">
-<div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-        <p>Modal body text goes here.</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-    </div>
+<!-- Pesan Modal-->
+<div class="modal fade" id="popUpConfirmPesan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">mau pesan ini?</h5>
+                <button class="close btn" type="button" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Pilih "Pesan" jika kamu yakin.</div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger" type="submit" form="formPesanan">Pesan</button>
+                {{-- <a class="btn btn-primary" href="/">Pesan</a> --}}
+            </div>
+        </div>
     </div>
 </div>
-</div> --}}
+
 @endsection
-
-
 
 @section('script')
 <script src="js/parallax.min.js"></script>
 <script src="js/jquery.min.js"></script>
+
 <script>
     $(document).ready(function(){
         // Handle click on paging links
@@ -302,6 +321,8 @@ $path_pembeli      ="/pembeli";
         $(this).closest('#inputForm').remove();
     });
 </script>
+
+
 @endsection
 
 

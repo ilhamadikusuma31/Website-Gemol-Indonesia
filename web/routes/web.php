@@ -7,10 +7,12 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\PembeliController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\EditBarangController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\DetailPenjualanController;
@@ -31,12 +33,27 @@ use App\Http\Controllers\DetailPenjualanController;
 //     ]);
 // });
 
+
+
 Route::get('/',[WebController::class,'index']);
 Route::post('/create-pesanan',[WebController::class,'store']);
-Route::get('/testimoni',[WebController::class,'testimoni']);
+
+Route::get('/web/testimoni',[WebController::class,'testimoni'])->middleware('auth');
+Route::get('/web/ulasan',[WebController::class,'ulasan'])->middleware('auth');
+
+
+Route::get('/ulasan',[UlasanController::class,'index'])->middleware('auth');
+Route::post('/create-ulasan',[UlasanController::class,'store']);
+Route::post('/hapus-ulasan/{id}',[UlasanController::class,'destroy'])->middleware('auth');
 
 
 
+Route::get('/testimoni',[TestimoniController::class,'index'])->middleware('auth');
+Route::get('/create-testimoni',[TestimoniController::class,'create'])->middleware('auth');
+Route::post('/create-testimoni',[TestimoniController::class,'store'])->middleware('auth');
+
+Route::post('/edit-testimoni',[TestimoniController::class,'update'])->middleware('auth');
+Route::post('/hapus-testimoni/{id}',[TestimoniController::class,'destroy'])->middleware('auth');
 
 
 Route::get('/penjualan',[PenjualanController::class,'index'])->middleware('auth');
@@ -53,8 +70,9 @@ Route::post('/edit-pembeli',[PembeliController::class,'update'])->middleware('au
 Route::post('/hapus-pembeli/{id}', [PembeliController::class, 'destroy'])->middleware('auth');
 
 
-Route::get('/ulasan',[UlasanController::class,'index'])->middleware('auth');
-Route::get('/testimoni',[UlasanController::class,'index'])->middleware('auth');
+// Route::get('/testimoni',[TestimoniController::class,'index'])->middleware('auth');
+
+// Route::get('/ulasan',[UlasanController::class,'index'])->middleware('auth');
 
 
 
