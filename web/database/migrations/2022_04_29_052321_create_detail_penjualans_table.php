@@ -18,6 +18,7 @@ class CreateDetailPenjualansTable extends Migration
             $table->string('jumlah_barang');
             $table->foreignId('penjualan_id');
             $table->foreignId('barang_id');
+            //$table->string('total_harga');
             $table->timestamps();
         });
     }

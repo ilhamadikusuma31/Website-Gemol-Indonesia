@@ -62,7 +62,9 @@ $path_pembeli      ="/pembeli";
                                             <th>Tanggal:</th>
                                             <th>Pembeli:</th>
                                             <th>Barang:</th>
+                                            <th>Harga:</th>
                                             <th>Jumlah:</th>
+                                            <th>Total Harga:</th>
                                             <th>Aksi:</th>
                                         </tr>
                                         </thead>
@@ -76,7 +78,10 @@ $path_pembeli      ="/pembeli";
                                             <td>{{ $dp->created_at }}</td>
                                             <td>{{ $nama_pembeli }}</td>
                                             <td>{{ $dp->Barang->nama_barang}}</td>
+                                            <td>{{ $dp->Barang->harga_barang}}</td>
                                             <td>{{ $dp->jumlah_barang}}</td>
+                                            <td>{{ $dp->Barang->harga_barang * $dp->jumlah_barang}}</td>
+
                                             <td>
                                                 <a class="btn btn-sm btn-warning mt-1" href="/edit-penjualan" data-toggle="modal" data-target="#popUpConfirmEdit{{ $dp->id }}"><i class="bi bi-pencil-square"></i></a>
                                                 <a class="btn btn-sm btn-danger mt-1" href="#" data-toggle="modal" data-target="#popUpConfirmHapus{{ $dp->id }}"><i class="bi bi-trash-fill"></i></a>

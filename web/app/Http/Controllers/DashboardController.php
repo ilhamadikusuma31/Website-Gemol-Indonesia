@@ -7,6 +7,9 @@ use App\Http\Requests\StoreDashboardRequest;
 use App\Http\Requests\UpdateDashboardRequest;
 use App\Models\Admin;
 use App\Models\Barang;
+use App\Models\Penjualan;
+use App\Models\DetailPenjualan;
+use App\Models\Pengeluaran;
 use GuzzleHttp\Promise\Create;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
@@ -31,6 +34,7 @@ class DashboardController extends Controller
         return view('home', [
             'judul' => 'Dashboard',
             'barangs' => Barang::all(),
+            'detailPenjualans' => DetailPenjualan::all() //ini buat ngoper data ke js buat grafik
         ]);
     }
 

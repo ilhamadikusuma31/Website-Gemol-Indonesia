@@ -1,3 +1,28 @@
+@php
+$path_web_gemol    = "/";
+$path_login        = "login";
+$path_logout       = "logout";
+$path_registrasi   = "registrasi";
+$path_main         = "/admin";
+$path_img          = "/img";
+$path_vendor       = "/vendor";
+$path_css          = "/css";
+$path_js           = "/js";
+// $path_setting_admin= "setting_admin.php";
+
+
+$path_ulasan = "/ulasan";
+$path_testimoni = "/testimoni";
+
+$path_brg          = "/barang";
+$path_pengeluaran  ="/pengeluaran";
+$path_export       = "/eksport";
+
+$path_penjualan    ="penjualan/";
+$path_pembeli      ="/pembeli";
+
+
+@endphp
 @extends('layouts/main')
 @section('isi konten')
     <!-- Page Heading -->
@@ -20,15 +45,15 @@
     </div>
     <!-- Content Row -->
     <div class="row">
-        <!-- Earnings (Monthly) Card Example -->
+        <!-- Pendapatan (bulanan) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Earnings (Monthly)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                Pendapatan (bulanan)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp.40,000</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -38,15 +63,15 @@
             </div>
         </div>
 
-        <!-- Earnings (Monthly) Card Example -->
+        <!-- Pendapatan (bulanan) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Earnings (Annual)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                Pendapatan (Annual)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp.215,000</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -56,7 +81,7 @@
             </div>
         </div>
 
-        <!-- Earnings (Monthly) Card Example -->
+        <!-- Pendapatan (bulanan) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
@@ -114,7 +139,7 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Pendapatan Overview</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -328,4 +353,71 @@
 
         </div>
     </div>
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function () {
+        $("#table").DataTable();
+        });
+
+
+
+    $(document).ready(function () {
+            $(".table").DataTable();
+        });
+</script>
+ <!-- Bootstrap core JavaScript-->
+ <script src ="{{ $path_vendor}}/jquery/jquery.min.js"></script>
+ <script src="{{ $path_vendor}}/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ <!-- Core plugin JavaScript-->
+ <script src="{{ $path_vendor}}/jquery-easing/jquery.easing.min.js"></script>
+
+ <!-- Custom scripts for all pages-->
+ <script src="{{ $path_js }}/sb-admin-2.min.js"></script>
+
+ <!-- Page level plugins -->
+ <script src="{{ $path_vendor }}/chart.js/Chart.min.js"></script>
+
+ <!-- Page level custom scripts -->
+ {{-- <script src="{{ $path_js }}/demo/chart-area-demo.js"></script> --}}
+
+ <script>
+    var barangs = {!! json_encode($barangs->toArray()) !!};
+    var d_penjualans = {!! json_encode($detailPenjualans->toArray()) !!};
+
+    // list_pendapatan = [];
+    // function totalPendapatan(bulan, total){
+    //     if(bulan == 01){
+
+    //     }
+    // }
+
+    // var bulan = 01;
+    // d_penjualans.forEach(i => {
+    //     //dapetin bulan aja
+    //     let bulan = i['created_at'].slice(5,7);
+    //     barangs.forEach(j =>{
+    //         if (j['id']==i['barang_id']){
+    //             totalPendapatan(bulan, parseInt(i['jumlah_barang']) * j['harga_barang'] )
+    //         }
+    //     })
+    // });
+
+
+
+
+ </script>
+ <script src="{{ $path_js }}/demo/chart-pie-demo.js"></script>
+
+
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+ <script src="{{ $path_js }}/password-visibility.js"></script>
+ {{-- <script src="{{ $path_js }}/script.js"></script> --}}
+ <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+ <script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
+ <script src="//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css"></script>
+
 @endsection

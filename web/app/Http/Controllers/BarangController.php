@@ -15,11 +15,6 @@ use Illuminate\Support\Str;
 
 class BarangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     //method ini dipanggil dari route yang di trigger setelah user ada di link barang
     public function index()
@@ -36,11 +31,7 @@ class BarangController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('barang.create', [
@@ -50,17 +41,7 @@ class BarangController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBarangRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store(StoreBarangRequest $req)
-    // {
 
-
-    // }
     public function store(Request $req)
     {
         //validasi, jika berhasil maka akan eksekusi kode dibawahnya
@@ -85,23 +66,6 @@ class BarangController extends Controller
         return redirect('/barang')->with('pesanSukses', 'data baru berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Barang  $barang
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Barang $barang)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Barang  $barang
-     * @return \Illuminate\Http\Response
-     */
     //method ini dipanggil dari route yang di trigger setelah user ada di link edit barang
     public function edit($id)
     {
@@ -113,13 +77,6 @@ class BarangController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateBarangRequest  $request
-     * @param  \App\Models\Barang  $barang
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $req)
     {
         // dd($req->file('foto_barang'));
@@ -151,12 +108,6 @@ class BarangController extends Controller
         return redirect('/barang')->with('pesanSukses', 'data berhasil diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Barang  $barang
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //hapus data dari db

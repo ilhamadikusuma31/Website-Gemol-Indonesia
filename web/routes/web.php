@@ -38,8 +38,8 @@ use App\Http\Controllers\DetailPenjualanController;
 Route::get('/',[WebController::class,'index']);
 Route::post('/create-pesanan',[WebController::class,'store']);
 
-Route::get('/web/testimoni',[WebController::class,'testimoni'])->middleware('auth');
-Route::get('/web/ulasan',[WebController::class,'ulasan'])->middleware('auth');
+Route::get('/web/testimoni',[WebController::class,'testimoni']);
+Route::get('/web/ulasan',[WebController::class,'ulasan']);
 
 
 Route::get('/ulasan',[UlasanController::class,'index'])->middleware('auth');
@@ -100,6 +100,7 @@ Route::post('/setting-akun/admin',[DashboardController::class,'update'] ) ;
 Route::get('/barang', [BarangController::class,'index'])->middleware('auth');
 
 Route::get('/create-barang', [BarangController::class,'create'])->middleware('auth');
+
 Route::post('/create-barang', [BarangController::class,'store'])->middleware('auth');
 
 Route::get('/edit-barang/{id}', [BarangController::class, 'edit'])->middleware('auth');

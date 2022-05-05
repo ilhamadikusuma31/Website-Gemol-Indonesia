@@ -1,3 +1,28 @@
+@php
+$path_web_gemol    = "/";
+$path_login        = "login";
+$path_logout       = "logout";
+$path_registrasi   = "registrasi";
+$path_main         = "/admin";
+$path_img          = "/img";
+$path_vendor       = "/vendor";
+$path_css          = "/css";
+$path_js           = "/js";
+// $path_setting_admin= "setting_admin.php";
+
+
+$path_ulasan = "/ulasan";
+$path_testimoni = "/testimoni";
+
+$path_brg          = "/barang";
+$path_pengeluaran  ="/pengeluaran";
+$path_export       = "/eksport";
+
+$path_penjualan    ="penjualan/";
+$path_pembeli      ="/pembeli";
+
+
+@endphp
 @extends('layouts/main')
 @section('isi konten')
 
@@ -133,3 +158,32 @@
     </div>
 </div>
 @endsection
+@section('script')
+    <!-- Bootstrap core JavaScript-->
+    <script src ="{{ $path_vendor}}/jquery/jquery.min.js"></script>
+    <script src="{{ $path_vendor}}/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ $path_vendor}}/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ $path_js }}/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ $path_vendor }}/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ $path_js }}/demo/chart-area-demo.js"></script>
+    <script src="{{ $path_js }}/demo/chart-pie-demo.js"></script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="{{ $path_js }}/password-visibility.js"></script>
+    {{-- <script src="{{ $path_js }}/script.js"></script> --}}
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
+    <script src="//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css"></script>
+@endsection
+
+
