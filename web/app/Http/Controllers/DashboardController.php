@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dashboard;
 use App\Http\Requests\StoreDashboardRequest;
 use App\Http\Requests\UpdateDashboardRequest;
+use Illuminate\Support\Carbon;
 use App\Models\Admin;
 use App\Models\Barang;
 use App\Models\Penjualan;
@@ -14,29 +15,55 @@ use GuzzleHttp\Promise\Create;
 // use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB as DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Prophecy\Doubler\ClassPatch\ThrowablePatch;
+
+
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-
 
     //method ini dipanggil dari route yang di trigger setelah user ada di link Dashboard
-    public function index()
+    public function index($t = "kosong")
     {
-        //ini merujuk ke folder views Dashboard.blade.php
-        //sambil ngirim var judul
+
+        //kalo rutenya adalah "admin/", t di set tahun ini
+        if($t == "kosong"){
+            $t = Carbon::now()->format('Y');
+        }
+
+
+        $dp = DetailPenjualan::all();
+        $tahuns = [];
+
+
+        //ngambil tahuns yang tersedia(tercatat), yang duplikat dihilangkan buat dropdown opsi liat tahun lain
+        foreach($dp as $d){
+            $tahuns[] = Str::substr($d['created_at'], 0, 4);
+        }
+        $tahuns = array_unique($tahuns);
+
+        //ngambil data dari db sesuai yg diliat tahun nya
+        $dp = DB::table('detail_penjualans')
+                ->whereYear('created_at', $t)
+                ->get();
+
+        $pengeluarans = DB::table('pengeluarans')
+                ->whereYear('created_at', $t)
+                ->get();
+
         return view('home', [
             'judul' => 'Dashboard',
             'barangs' => Barang::all(),
-            'detailPenjualans' => DetailPenjualan::all() //ini buat ngoper data ke js buat grafik
+            'detailPenjualans' => $dp, //ini buat ngoper data ke js buat grafik
+            'pengeluarans' => $pengeluarans, //ini buat ngoper data ke js buat grafik
+            'tahunYgTersedia' => $tahuns,
+            'tahunIni' => $t,
         ]);
     }
+
 
     //method ini dipanggil dari route yang di trigger setelah user mengklik submit ubah password di main.blade.php
     //method ini untuk ganti pw admin

@@ -76,7 +76,7 @@ $path_pembeli      ="/pembeli";
                         @if (session()->has('pesanSukses'))
                         <div class="alert alert-success fade show" role="alert">
                             {{ session('pesanSukses') }}
-                            <a target="_blank" href="https://api.whatsapp.com/send?phone=6281382144239&text={{ session('templateChat') }}" class="btn btn-success"><i class="bi bi-whatsapp"></i></a>
+                            <a target="_blank" href="https://api.whatsapp.com/send?phone=6281291855701&text={{ session('templateChat') }}" class="btn btn-success"><i class="bi bi-whatsapp"></i></a>
                         </div>
 
                         {{-- modal berhasil pesan --}}

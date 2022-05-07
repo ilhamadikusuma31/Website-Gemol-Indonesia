@@ -91,8 +91,11 @@ Route::post('/logout',[LoginController::class, 'logout']);
 
 
 Route::get('/admin',[DashboardController::class,'index'] )->middleware('auth') ;
+Route::get('/admin/{t}',[DashboardController::class,'index'] )->middleware('auth') ;
 Route::post('/setting-akun',[DashboardController::class,'autentikasi'] )->middleware('auth') ;
 Route::post('/setting-akun/admin',[DashboardController::class,'update'] ) ;
+
+// Route::get('/admin/{$tahun}',[DashboardController::class, 'showGrafikPendapatan']);
 
 
 
