@@ -168,7 +168,7 @@ $path_pembeli      ="/pembeli";
     <div class="row">
 
         <!-- Area Chart -->
-        <div class="col-xl-8 col-lg-7">
+        <div class="col-xl-12 col-lg-7">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div
@@ -196,7 +196,7 @@ $path_pembeli      ="/pembeli";
                 </div>
             </div>
         </div>
-        <div class="col-xl-8 col-lg-7">
+        <div class="col-xl-12 col-lg-7">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div
@@ -231,7 +231,7 @@ $path_pembeli      ="/pembeli";
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Total Item Terjual</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -252,17 +252,16 @@ $path_pembeli      ="/pembeli";
                     <div class="chart-pie pt-4 pb-2">
                         <canvas id="myPieChart"></canvas>
                     </div>
+                    @php
+                        $indeks = 0
+                    @endphp
+                    @foreach ($barangs as $b )
                     <div class="mt-4 text-center small">
                         <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Direct
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Social
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Referral
+                            <i id="textPie{{ $indeks++ }}" class="fas fa-circle text-primary"></i> {{ $b['nama_barang'] }}
                         </span>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -790,26 +789,38 @@ $path_pembeli      ="/pembeli";
     Chart.defaults.global.defaultFontColor = '#858796';
 
 
-    // var id_brg = [];
-    // var labels = [];
-    // var data = [];
-    // barangs.forEach(e => {
-    //     data.push([])
-    //     labels.push(e['nama_barang'])
-    //     id_brg.push(e['id'])
-    // });
+    //menyiapkan arr untuk build pie chart
+    var id_brg = [];
+    var labels = [];
+    var data = [];
+    var colors = [];
+    var colors2 = [];
+    barangs.forEach(e => {
+        data.push(0)
+        labels.push(e['nama_barang'])
+        id_brg.push(e['id'])
+    });
 
-    // // alert(data.length);
 
-    // indeks = 0;
-    // forEach.d_penjualans(i){
-    //     id_brg.forEach(j => {
-    //         if(j == i['barang_id'] ){
-    //             data.push(data[indeks])
-    //         }
-    //         indeks +=1;
-    //     });
-    // }
+    //bulid warna untuk pie chart
+    for(i=0; i<=labels.length; i++){
+        let random = Math.floor(Math.random()*16777215).toString(16);
+        colors.push("#"+random)
+        colors2.push("#"+random-1)
+        document.getElementById("textPie1").style.Color = colors
+        // document.getElementById("textPie1"+ i.toString()).style.color = colors
+    }
+
+
+    //mengecek dan menambahkan barang_id yg sesuai di d_penjualans ke arr data
+    d_penjualans.forEach(e => {
+        id_brg.forEach(j =>{
+            if(j == e['barang_id'] ){
+                data[id_brg.indexOf(j)] += parseInt(e['jumlah_barang'])
+            }
+        })
+    });
+
 
 
     // Pie Chart Example
@@ -817,12 +828,11 @@ $path_pembeli      ="/pembeli";
     var myPieChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        // labels: ["Direct", "Referral", "Social"],
         labels: labels,
         datasets: [{
-        data: [55, 30, 15],
-        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+        data: data,
+        backgroundColor: colors,
+        hoverBackgroundColor: colors2,
         hoverBorderColor: "rgba(234, 236, 244, 1)",
         }],
     },
