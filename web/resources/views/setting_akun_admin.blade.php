@@ -52,7 +52,7 @@
                 </div>
                 <div class="row justify-content-beetween">
                     <div class="col mb-1">
-                        <button class="btn btn-danger" type="reset" name="sbmt-cancel" onclick="location.href='/'">Cancel</button>
+                        <button class="btn btn-danger" type="reset" name="sbmt-cancel" onclick="location.href='/admin'">Batal</button>
                     </div>
                     <div class="col mb-1">
                         <button class="btn btn-primary" type="submit" name="sbmt" onclick="return confirm('Apakah Anda yakin ingin mengubah data akun?')">Submit</button>

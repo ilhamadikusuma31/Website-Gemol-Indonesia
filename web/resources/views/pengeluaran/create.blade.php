@@ -66,7 +66,8 @@ $path_pembeli      ="/pembeli";
                         </div>
                     </div>
                     <div class="row justify-content-beetween">
-                        <div class="col mb-1"><button class="btn btn-danger" type="" onclick="location.href = '/pengeluaran'">Kembali</button></div>
+                        <div class="col mb-1"><a class="btn btn-danger" href="{{ $path_pengeluaran }}">Kembali</a></div>
+                        {{-- <div class="col mb-1"><button class="btn btn-danger" type="" onclick="location.href = '/pengeluaran'">Kembali</button></div> --}}
                         <div class="col mb-1 ms-2"><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-plus-circle"></i></a></div>
                     </div>
                 </form>
@@ -87,7 +88,7 @@ $path_pembeli      ="/pembeli";
                 <div class="modal-body">Pilih "Tambah" jika kamu yakin.</div>
                 <div class="modal-footer" id='modal-footer'>
                     {{-- cancel --}}
-                    <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
                     {{-- submit --}}
                     <button form="formTambah" type="submit" class="btn btn-danger">Tambah</button>
                     {{-- --}}

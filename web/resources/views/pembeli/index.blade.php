@@ -53,11 +53,22 @@ $path_pembeli      ="/pembeli";
             </button>
         </div>
         @endif
+        @error ('nama_pembeli')
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ $message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @enderror
+
+
 
         <!-- Content Row -->
         <div class="row">
             <div class="col mb-4">
                 <!-- Illustrations -->
+
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <a class="btn btn-info mt-1" href="#" data-toggle="modal" data-target="#popUpConfirmTambah">Tambah</a>
@@ -141,7 +152,7 @@ $path_pembeli      ="/pembeli";
                                                         </div>
                                                         <div class="modal-footer" id='modal-footer'>
                                                             {{-- cancel --}}
-                                                            <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                                                            <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
                                                             {{-- submit --}}
                                                             <button form="editPembeli{{ $p->id }}" class="btn btn-danger">ubah</button>
 
@@ -164,7 +175,7 @@ $path_pembeli      ="/pembeli";
                                                         <div class="modal-body">Pilih "hapus" jika kamu yakin.</div>
                                                         <div class="modal-footer" id='modal-footer'>
                                                             {{-- cancel --}}
-                                                            <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                                                            <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
                                                             {{-- submit --}}
                                                             <form action="/hapus-pembeli/{{ $p->id }}" method="POST">
                                                                 @csrf
@@ -201,6 +212,11 @@ $path_pembeli      ="/pembeli";
                     <form id="tambahPembeli" action="/create-pembeli" method="POST" enctype="multipart/form-data">
                         @csrf
                         {{-- <input type="hidden" name="id" value= ""> --}}
+                        @error('nama_pembeli')
+                        <div class="invalid-error text-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
                         <div class="row mb-1">
                             <div class="col">Nama Pembeli</div>
                             <div class="col">
@@ -221,7 +237,7 @@ $path_pembeli      ="/pembeli";
                             <div class="col">No Telp</div>
                             <div class="col">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="formGroupExampleInput" name="no_telp_pembeli" value="{{ old('no_telp_pembeli') }}" autocomplete="off" Required >
+                                    <input type="number" class="form-control" id="formGroupExampleInput" name="no_telp_pembeli" value="{{ old('no_telp_pembeli') }}" autocomplete="off" Required >
                                 </div>
                             </div>
                         </div>
@@ -230,7 +246,7 @@ $path_pembeli      ="/pembeli";
                 </div>
                 <div class="modal-footer" id='modal-footer'>
                     {{-- cancel --}}
-                    <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
                     {{-- submit --}}
                     <button form="tambahPembeli" class="btn btn-danger">tambah</button>
 
@@ -267,6 +283,16 @@ $path_pembeli      ="/pembeli";
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
     <script src="//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css"></script>
+
+    <script>
+        $('.table').DataTable( {
+        responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.childRowImmediate
+            }
+        }
+    } );
+    </script>
 @endsection
 
 

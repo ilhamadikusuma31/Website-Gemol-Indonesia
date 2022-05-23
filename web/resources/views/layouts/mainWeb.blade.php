@@ -61,18 +61,18 @@ Gemol Indonesia
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mt-2">
             <li class="nav-item ">
-                <a href="/" class="btn btn-navbar me-1 h6 {{ (request()->is('/')) ? 'btn-warning' : '' }}" >Home</a>
+                <a href="/" class="btn btn-navbar me-1 h6 {{ Request::is('/')? 'text-black' : 'text-white'}}  {{ Request::is('/')? 'btn-warning' : ''}}" >Home</a>
             </li>
             <li class="nav-item ">
-                <a href="/profile" class="btn btn-navbar me-1 h6 {{ (request()->is('/profile')) ? 'btn-warning' : '' }}" >Profile</a>
+                <a href="/profile" class="btn btn-navbar me-1 h6 {{ Request::is('/profile')? 'text-black' : 'text-white'}} {{ Request::is('/web/profile')? 'btn-warning' : ''}}" >Profile</a>
             </li>
             <li class="nav-item">
-                <a href="{{ $path_testimoni }}" class="btn btn-navbar me-1 h6 {{ (request()->is($path_testimoni)) ? 'btn-warning' : '' }}" >Testimoni</a>
+                <a href="{{ $path_testimoni }}" class="btn btn-navbar me-1 h6 {{ Request::is('web/testimoni')? 'text-black' : 'text-white'}} {{ Request::is('web/testimoni')? 'btn-warning' : ''}}" >Testimoni</a>
             </li>
             <li class="nav-item">
-                <a href="{{ $path_ulasan }}" class="btn btn-navbar me-1 h6 {{ (request()->is($path_ulasan)) ? 'btn-warning' : '' }}" >Ulasan</a>
+                <a href="{{ $path_ulasan }}" class="btn btn-navbar me-1 h6 {{ Request::is('web/ulasan')? 'text-black' : 'text-white'}} {{ Request::is('web/ulasan')? 'btn-warning' : ''}}" >Ulasan</a>
             </li>
             </ul>
         </div>
@@ -86,13 +86,13 @@ Gemol Indonesia
 			<div class="parallax-window" data-parallax="scroll" data-image-src="{{ $path_img }}/gemol_1.jpg">
 			</div>
 		</div>
-        <div class="tm-header">
+        {{-- <div class="tm-header">
             <div class="row tm-header-inner">
                 <div class="col-md-6 col-12">
                     <img src="{{ $path_img }}/simple-house-logo.png" alt="Logo" class="tm-site-logo" />
                     <div class="tm-site-text-box">
                         <h1 class="tm-site-title">Gemol Indonesia</h1>
-                        {{-- <h6 class="tm-site-description">new restaurant template</h6> --}}
+                        <h6 class="tm-site-description">new restaurant template</h6>
                     </div>
                 </div>
                 <nav class="col-md-6 col-12 tm-nav">
@@ -103,7 +103,7 @@ Gemol Indonesia
                     </ul>
                 </nav>
             </div>
-        </div>
+        </div> --}}
         <main>
             @yield('isi')
         </main>

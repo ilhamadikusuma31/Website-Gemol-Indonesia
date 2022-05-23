@@ -18,7 +18,7 @@ $path_brg          = "/barang";
 $path_pengeluaran  ="/pengeluaran";
 $path_export       = "/eksport";
 
-$path_penjualan    ="penjualan/";
+$path_penjualan    ="/penjualan";
 $path_pembeli      ="/pembeli";
 
 
@@ -144,7 +144,7 @@ $path_pembeli      ="/pembeli";
             <div class="modal-body">Pilih "Tambah" jika kamu yakin.</div>
             <div class="modal-footer" id='modal-footer'>
                 {{-- cancel --}}
-                <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
                 {{-- submit --}}
                 <button form="formTambah" type="submit" class="btn btn-danger">Tambah</button>
                 {{-- --}}
@@ -171,7 +171,18 @@ $path_pembeli      ="/pembeli";
     <script src="{{ $path_js }}/demo/chart-area-demo.js"></script>
     <script src="{{ $path_js }}/demo/chart-pie-demo.js"></script>
 
+    <script>
 
+        function filePreview(event) {
+            if (event.target.files.length > 0) {
+                var src = URL.createObjectURL(event.target.files[0]);
+                var preview = document.getElementById("foto");
+                preview.src = src;
+                preview.style.display = "block";
+            }
+        }
+
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="{{ $path_js }}/password-visibility.js"></script>

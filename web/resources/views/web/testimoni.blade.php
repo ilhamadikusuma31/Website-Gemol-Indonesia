@@ -32,15 +32,14 @@ $path_pembeli      ="/pembeli";
         <h2 class="col-12 text-center tm-section-title">Welcome to Gemol Indonesia</h2>
         <p class="col-12 text-center">Gemol merupakan Produsen yang bergerak dalam bidang inovasi olahan singkong, menggunakan bahan-bahan berkualitas terbaik (Premium)</p>
     </header>
-    <div class="h1">haiiii ini testii boss</div>
     <div class="row tm-gallery">
     <!-- gallery page 1 -->
     <div id="tm-gallery-page-cookies" class="tm-gallery-page justify-content-center">
         @foreach ($testimonis as $t)
         <div class="col-md-3 mb-4 me-2">
             <div class="card h-100"  style="background-color: blanchedalmond">
-                <img src="{{ asset('storage/'.$t->foto_testimoni) }}" alt="" class="img-fluid tm-gallery-img">
-                {{-- <img src="/laravel/storage/app/public/{{ $t->foto_testimoni }}" alt="" class="img-fluid tm-gallery-img"> --}}
+                {{-- <img src="{{ asset('storage/'.$t->foto_testimoni) }}" alt="" class="img-fluid tm-gallery-img"> --}}
+                <img src="/laravel/storage/app/public/{{ $t->foto_testimoni }}" alt="" class="img-fluid tm-gallery-img">
                 <div class="container">
                 <div class="card-body">
                     <div class="row ">

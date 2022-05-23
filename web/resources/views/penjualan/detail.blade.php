@@ -132,7 +132,7 @@ $path_pembeli      ="/pembeli";
                                                     </div>
                                                     <div class="modal-footer" id='modal-footer'>
                                                         {{-- cancel --}}
-                                                        <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                                                        <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
                                                         {{-- submit --}}
                                                         <button form="editPenjualan{{ $dp->id }}" class="btn btn-danger">ubah</button>
 
@@ -155,7 +155,7 @@ $path_pembeli      ="/pembeli";
                                                         <div class="modal-body">Pilih "hapus" jika kamu yakin.</div>
                                                         <div class="modal-footer" id='modal-footer'>
                                                             {{-- cancel --}}
-                                                            <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                                                            <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
                                                             {{-- submit --}}
                                                             <form action="/hapus-penjualan/detail/{{ $dp->id }}" method="POST">
                                                                 @csrf

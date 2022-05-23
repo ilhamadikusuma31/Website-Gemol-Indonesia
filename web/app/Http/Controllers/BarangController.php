@@ -114,4 +114,12 @@ class BarangController extends Controller
         Barang::destroy($id);
         return redirect('/barang')->with('pesanSukses', 'data berhasil dihapus');
     }
+
+    public function export()
+    {
+        return view('barang.export', [
+            'judul' => 'barang',
+            'barangs' => Barang::all(),
+        ]);
+    }
 }

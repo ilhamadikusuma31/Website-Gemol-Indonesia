@@ -48,8 +48,8 @@ $path_pembeli      ="/pembeli";
             @foreach ($barangs as $b)
             <div class="col-md-3 mb-4 me-2">
                 <div class="card h-100"  style="background-color: blanchedalmond">
-                    <img src="{{ asset('storage/'.$b->foto_barang) }}" alt="" class="img-fluid tm-gallery-img">
-                    {{-- <img src="/laravel/storage/app/public/{{ $b->foto_barang }}" alt="" class="img-fluid tm-gallery-img"> --}}
+                    {{-- <img src="{{ asset('storage/'.$b->foto_barang) }}" alt="" class="img-fluid tm-gallery-img"> --}}
+                    <img src="/laravel/storage/app/public/{{ $b->foto_barang }}" alt="" class="img-fluid tm-gallery-img">
                   <div class="container">
                     <div class="card-body">
                       <div class="row ">
@@ -104,7 +104,7 @@ $path_pembeli      ="/pembeli";
                                 <h6 class="m-0 font-weight-bold text-primary">Pesan Boskuh</h6>
                             </div>
                             <div class="card-body">
-                                <form action="/create-pesanan" method="POST" enctype="multipart/form-data" id="formPesanan">
+                                <form action="/create-pesanan" method="POST" id="formPesanan">
                                     @csrf
                                     <div class="row mb-1">
                                         <div class="col-md-2">
@@ -249,7 +249,7 @@ $path_pembeli      ="/pembeli";
             </div>
             <div class="modal-body">Pilih "Pesan" jika kamu yakin.</div>
             <div class="modal-footer">
-                <button class="btn btn-success" type="button" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn btn-success" type="button" data-bs-dismiss="modal">Batal</button>
                 <button class="btn btn-danger" type="submit" form="formPesanan">Pesan</button>
                 {{-- <a class="btn btn-primary" href="/">Pesan</a> --}}
             </div>

@@ -18,7 +18,7 @@ $path_brg          = "/barang";
 $path_pengeluaran  ="/pengeluaran";
 $path_export       = "/eksport";
 
-$path_penjualan    ="penjualan/";
+$path_penjualan    ="/penjualan";
 $path_pembeli      ="/pembeli";
 
 
@@ -149,7 +149,7 @@ $path_pembeli      ="/pembeli";
             <div class="modal-body">Pilih ubah jika kamu yakin.</div>
             <div class="modal-footer" id='modal-footer'>
                 {{-- cancel --}}
-                <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
                 {{-- submit --}}
                 <button form="formEdit" type="submit" class="btn btn-danger">ubah</button>
                 {{-- --}}

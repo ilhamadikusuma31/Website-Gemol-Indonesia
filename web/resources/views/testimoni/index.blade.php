@@ -72,8 +72,8 @@ $path_pembeli      ="/pembeli";
                                     @foreach($testimonis as $t)
                                     <tr>
                                         <td>{{ $angka++}}</td>
+                                        <td><img src="/laravel/storage/app/public/{{ $t->foto_testimoni }}" alt="" width="150px"></td>
                                         {{-- <td><img src="{{ asset('storage/'.$t->foto_testimoni) }}" alt="" width="150px"></td> --}}
-                                        <td><img src="{{ asset('storage/'.$t->foto_testimoni) }}" alt="" width="150px"></td>
                                         <td>{{ $t->isi_testimoni   }}</td>
                                         <td>
                                             <a class="btn btn-sm btn-warning mt-1" href="#" data-toggle="modal" data-target="#popUpConfirmEdit{{ $t->id }}"><i class="bi bi-pencil-square"></i></a>
@@ -100,7 +100,8 @@ $path_pembeli      ="/pembeli";
                                                     <input type="hidden" name="foto_testimoni_lama" value="{{ $t->foto_testimoni }}">
                                                     <div class="row mb-1">
                                                         <div class="col-md-2 preview">
-                                                            <img src="{{ asset('storage/'.$t->foto_testimoni) }}" alt="" id="foto" width="200px">
+                                                            {{-- <img src="{{ asset('storage/'.$t->foto_testimoni) }}" alt="" id="foto" width="200px"> --}}
+                                                            <img src="/laravel/storage/app/public/{{ $t->foto_testimoni }}" alt="" id="foto" width="200px">
                                                         </div>
                                                     </div>
                                                     <div class="row mb-1">
@@ -131,7 +132,7 @@ $path_pembeli      ="/pembeli";
                                             </div>
                                             <div class="modal-footer" id='modal-footer'>
                                                 {{-- cancel --}}
-                                                <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                                                <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
                                                 {{-- submit --}}
                                                 <button form="formEditTestimoni{{ $t->id }}" class="btn btn-danger">ubah</button>
 
@@ -155,7 +156,7 @@ $path_pembeli      ="/pembeli";
                                                     <div class="modal-body">Pilih "hapus" jika kamu yakin.</div>
                                                     <div class="modal-footer" id='modal-footer'>
                                                         {{-- cancel --}}
-                                                        <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                                                        <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
                                                         {{-- submit --}}
                                                         <form action="/hapus-testimoni/{{ $t->id }}" method="POST">
                                                             @csrf
@@ -225,7 +226,7 @@ aria-hidden="true">
         </div>
         <div class="modal-footer" id='modal-footer'>
             {{-- cancel --}}
-            <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+            <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
             {{-- submit --}}
             <button form="formTambahTestimoni" class="btn btn-danger">tambah</button>
 
@@ -272,4 +273,14 @@ aria-hidden="true">
  <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
  <script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
  <script src="//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css"></script>
+
+ <script>
+    $('.table').DataTable( {
+    responsive: {
+        details: {
+            display: $.fn.dataTable.Responsive.display.childRowImmediate
+        }
+    }
+} );
+</script>
 @endsection

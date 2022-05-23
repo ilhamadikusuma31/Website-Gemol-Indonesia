@@ -109,7 +109,7 @@ $path_pembeli      ="/pembeli";
                             <div class="h5 mb-0 font-weight-bold text-gray-800" id="pengeluaranTahunan"></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -168,7 +168,7 @@ $path_pembeli      ="/pembeli";
     <div class="row">
 
         <!-- Area Chart -->
-        <div class="col-xl-12 col-lg-7">
+        <div class="col-xl-9 col-lg-7">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div
@@ -196,7 +196,47 @@ $path_pembeli      ="/pembeli";
                 </div>
             </div>
         </div>
-        <div class="col-xl-12 col-lg-7">
+        <!-- Pie Chart -->
+        <div class="col-xl-3 col-lg-5">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Total Item Terjual {{ $tahunIni }}</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                            aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Pilih Tahun:</div>
+                            @foreach ($tahunYgTersedia as $t )
+                                <a class="dropdown-item" href="/admin/{{ $t }}">{{$t}}</a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-pie pb-2">
+                        <canvas id="myPieChart"></canvas>
+                    </div>
+                    @php
+                        $indeks = 0
+                    @endphp
+                    @foreach ($barangs as $b )
+                    <div class="mt-1 text-center small">
+                        <span class="text-left">
+                            <div class="display-5 text-white fw-2" id="textPie{{ $indeks++ }}">{{ $b['nama_barang'] }} </div>
+                            {{-- <i id="textPie{{ $indeks++ }}" class="" style="background-color: red"></i> {{ $b['nama_barang'] }} --}}
+                        </span>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-7">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div
@@ -225,207 +265,139 @@ $path_pembeli      ="/pembeli";
             </div>
         </div>
 
-        <!-- Pie Chart -->
-        <div class="col-xl-4 col-lg-5">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Total Item Terjual</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+        <div class="col-md-12">
+             <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <div class="m-0 font-weight-bold text-primary">Penjualan</div>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table id="table" class="table table-striped table-bordered display responsive" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>jumlah barang:</th>
+                                        <th>nama barang :</th>
+                                        <th>harga:</th>
+                                        <th>total:</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @php
+                                        $angka = 1
+                                    @endphp
+                                    @foreach($detailPenjualansFull as $d)
+                                    <tr>
+                                        <td>{{ $angka++}}</td>
+                                        <td>{{ $d->created_at}}</td>
+                                        <td>{{ $d->jumlah_barang }}</td>
+                                        <td>{{ $d->Barang->nama_barang }}</td>
+                                        <td>{{ $d->Barang->harga_barang }}</td>
+                                        <td>{{ $d->Barang->harga_barang*$d->jumlah_barang }}</td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
-                    @php
-                        $indeks = 0
-                    @endphp
-                    @foreach ($barangs as $b )
-                    <div class="mt-4 text-center small">
-                        <span class="mr-2">
-                            <i id="textPie{{ $indeks++ }}" class="fas fa-circle text-primary"></i> {{ $b['nama_barang'] }}
-                        </span>
-                    </div>
-                    @endforeach
-                </div>
             </div>
+            {{-- akhir tabel --}}
         </div>
-    </div>
-
-    <!-- Content Row -->
-    <div class="row">
-        <!-- Content Column -->
-        <div class="col-lg-6 mb-4">
-
-            <!-- Project Card Example -->
-            <div class="card shadow mb-4">
+        <div class="col-md-12">
+             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                    <div class="m-0 font-weight-bold text-danger">Pengeluaran</div>
                 </div>
                 <div class="card-body">
-                    <h4 class="small font-weight-bold">Server Migration <span
-                            class="float-right">20%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Sales Tracking <span
-                            class="float-right">40%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Customer Database <span
-                            class="float-right">60%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Payout Details <span
-                            class="float-right">80%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Account Setup <span
-                            class="float-right">Complete!</span></h4>
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Color System -->
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-primary text-white shadow">
-                        <div class="card-body">
-                            Primary
-                            <div class="text-white-50 small">#4e73df</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-success text-white shadow">
-                        <div class="card-body">
-                            Success
-                            <div class="text-white-50 small">#1cc88a</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-info text-white shadow">
-                        <div class="card-body">
-                            Info
-                            <div class="text-white-50 small">#36b9cc</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-warning text-white shadow">
-                        <div class="card-body">
-                            Warning
-                            <div class="text-white-50 small">#f6c23e</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-danger text-white shadow">
-                        <div class="card-body">
-                            Danger
-                            <div class="text-white-50 small">#e74a3b</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-secondary text-white shadow">
-                        <div class="card-body">
-                            Secondary
-                            <div class="text-white-50 small">#858796</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-light text-black shadow">
-                        <div class="card-body">
-                            Light
-                            <div class="text-black-50 small">#f8f9fc</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-dark text-white shadow">
-                        <div class="card-body">
-                            Dark
-                            <div class="text-white-50 small">#5a5c69</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table id="table2" class="table table-striped table-bordered display responsive" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Tanggal</th>
+                                        <th>Keperluan:</th>
+                                        <th>Total:</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @php
+                                        $angka = 1
+                                    @endphp
+                                    @foreach($pengeluaransFull as $p)
+                                    <tr>
+                                        <td>{{ $angka++}}</td>
+                                        <td>{{ $p->created_at}}</td>
+                                        <td>{{ $p->nama_pengeluaran }}</td>
+                                        <td>{{ $p->total_pengeluaran }}</td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
-
-        <div class="col-lg-6 mb-4">
-
-            <!-- Illustrations -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                </div>
-                <div class="card-body">
-                    <div class="text-center">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                            src="../img/admin/undraw_posting_photo.svg" alt="...">
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis ipsum officia molestias culpa soluta, maxime delectus facilis nemo ipsa harum!<a
-                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                        constantly updated collection of beautiful svg images that you can use
-                        completely free and without attribution!</p>
-                </div>
-            </div>
-
-            <!-- Approach -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                </div>
-                <div class="card-body">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum explicabo corrupti dolor quia eaque placeat, repellendus pariatur illo consequuntur excepturi quas voluptate reprehenderit dolores, non et! Numquam reprehenderit iste distinctio?</p>
-                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda consequatur ad laudantium magni rerum quidem nobis voluptatum sint soluta reprehenderit.</p>
-                </div>
-            </div>
-
+            {{-- akhir tabel --}}
         </div>
     </div>
 @endsection
 
 @section('script')
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="{{ $path_js }}/password-visibility.js"></script>
+<script src="{{ $path_js }}/script.js"></script>
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
+<script src="//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css"></script>
+
 <script>
     $(document).ready(function () {
-        $("#table").DataTable();
+        $('#table').dataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {extend: 'copy', className: "btn btn-primary ms-1 bi bi-clipboard"},
+                {extend: 'excel', className: "btn btn-primary bi bi-file-earmark-spreadsheet"},
+                {extend: 'pdf', className: "btn btn-primary bi bi-file-earmark-pdf"},
+                {extend: 'print', className: "btn btn-primary bi bi-printer"},
+                // 'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
         });
-
-
-
+    });
     $(document).ready(function () {
-            $(".table").DataTable();
+        $('#table2').dataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {extend: 'copy', className: "btn btn-primary ms-1 bi bi-clipboard"},
+                {extend: 'excel', className: "btn btn-primary bi bi-file-earmark-spreadsheet"},
+                {extend: 'pdf', className: "btn btn-primary bi bi-file-earmark-pdf"},
+                {extend: 'print', className: "btn btn-primary bi bi-printer"},
+                // 'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
         });
+    });
+
+//     $('.table').DataTable( {
+//     responsive: {
+//         details: {
+//             display: $.fn.dataTable.Responsive.display.childRowImmediate
+//         }
+//     }
+// } );
+
+
+    // $(document).ready(function () {
+    //         $(".table").DataTable();
+    //     });
 </script>
 <!-- Bootstrap core JavaScript-->
 <script src ="{{ $path_vendor}}/jquery/jquery.min.js"></script>
@@ -440,9 +412,6 @@ $path_pembeli      ="/pembeli";
  <!-- Page level plugins -->
  <script src="{{ $path_vendor }}/chart.js/Chart.min.js"></script>
 
- <!-- Page level custom scripts -->
- {{-- <script src="{{ $path_js }}/demo/chart-area-demo.js"></script> --}}
- {{-- <script src="{{ $path_js }}/demo/chart-pie-demo.js"></script> --}}
 
  <script>
      //CHART AREA
@@ -611,7 +580,7 @@ $path_pembeli      ="/pembeli";
                 lineTension: 0.3,
                 backgroundColor: "rgba(78, 115, 223, 0.05)",
                 borderColor: "rgba(78, 115, 223, 1)",
-                pointRadius: 8,
+                pointRadius: 3,
                 pointBackgroundColor: "rgba(78, 115, 223, 1)",
                 pointBorderColor: "rgba(78, 115, 223, 1)",
                 pointHoverRadius: 3,
@@ -699,7 +668,7 @@ $path_pembeli      ="/pembeli";
                 lineTension: 0.3,
                 backgroundColor: "rgba(78, 115, 223, 0.05)",
                 borderColor: "red",
-                pointRadius: 8,
+                pointRadius: 3,
                 pointBackgroundColor: "red",
                 pointBorderColor: "pink",
                 pointHoverRadius: 3,
@@ -805,11 +774,13 @@ $path_pembeli      ="/pembeli";
     //bulid warna untuk pie chart
     for(i=0; i<=labels.length; i++){
         let random = Math.floor(Math.random()*16777215).toString(16);
-        colors.push("#"+random)
-        colors2.push("#"+random-1)
-        document.getElementById("textPie1").style.Color = colors
+        colors.push("#"+random);
+        colors2.push("#545454");
+        // document.getElementById('myID').style.backgroundColor = 'green';
         // document.getElementById("textPie1"+ i.toString()).style.color = colors
     }
+
+
 
 
     //mengecek dan menambahkan barang_id yg sesuai di d_penjualans ke arr data
@@ -855,17 +826,28 @@ $path_pembeli      ="/pembeli";
     },
     });
 
+    // let i = 0;
+    // colors.forEach(e=>{
+    //     document.getElementById("textPie"+i).style.backgroundColor = e;
+    //     i++;
+    // })
+
+    for(i=0; i<=colors.length;  i++){
+        document.getElementById("textPie"+i).style.backgroundColor = colors[i];
+    }
+
 </script>
 
 
 
-
-
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
- <script src="{{ $path_js }}/password-visibility.js"></script>
- {{-- <script src="{{ $path_js }}/script.js"></script> --}}
- <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
- <script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
- <script src="//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css"></script>
-
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
 @endsection

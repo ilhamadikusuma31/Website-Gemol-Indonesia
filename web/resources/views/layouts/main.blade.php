@@ -1,5 +1,5 @@
 @php
-$path_web_gemol    = "/";
+$path_web_gemol    = "/web";
 $path_login        = "login";
 $path_logout       = "logout";
 $path_registrasi   = "registrasi";
@@ -59,8 +59,6 @@ $path_pembeli      ="/pembeli";
     <script src="{{ $path_vendor}}/jquery-easing/jquery.easing.min.js"></script>
 
 
-
-
 </head>
 
 <body id="page-top">
@@ -109,32 +107,31 @@ $path_pembeli      ="/pembeli";
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+     <!-- Bootstrap core JavaScript-->
+     <script src ="{{ $path_vendor}}/jquery/jquery.min.js"></script>
+     <script src="{{ $path_vendor}}/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src ="{{ $path_vendor}}/jquery/jquery.min.js"></script>
-    <script src="{{ $path_vendor}}/bootstrap/js/bootstrap.bundle.min.js"></script>
+     <!-- Core plugin JavaScript-->
+     <script src="{{ $path_vendor}}/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{ $path_vendor}}/jquery-easing/jquery.easing.min.js"></script>
+     <!-- Custom scripts for all pages-->
+     <script src="{{ $path_js }}/sb-admin-2.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{ $path_js }}/sb-admin-2.min.js"></script>
+     <!-- Page level plugins -->
+     <script src="{{ $path_vendor }}/chart.js/Chart.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="{{ $path_vendor }}/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    {{-- <script src="{{ $path_js }}/demo/chart-area-demo.js"></script> --}}
-    {{-- <script src="{{ $path_js }}/demo/chart-pie-demo.js"></script> --}}
-
+     <!-- Page level custom scripts -->
+     {{-- <script src="{{ $path_js }}/demo/chart-area-demo.js"></script> --}}
+     {{-- <script src="{{ $path_js }}/demo/chart-pie-demo.js"></script> --}}
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="{{ $path_js }}/password-visibility.js"></script>
-    {{-- <script src="{{ $path_js }}/script.js"></script> --}}
-    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
-    <script src="//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css"></script>
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+     <script src="{{ $path_js }}/password-visibility.js"></script>
+     {{-- <script src="{{ $path_js }}/script.js"></script> --}}
+     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+     <script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
+     <script src="//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css"></script>
     @yield('script')
 
 
@@ -143,24 +140,17 @@ $path_pembeli      ="/pembeli";
 </html>
 
 <script>
-$(document).ready(function () {
-    $("#table").DataTable();
-    });
+// $(document).ready(function () {
+//     $("#table").DataTable();
+//     });
 
 
 
-$(document).ready(function () {
-        $(".table").DataTable();
-    });
+// $(document).ready(function () {
+//         $(".table").DataTable();
+//     });
 
-function filePreview(event) {
-    if (event.target.files.length > 0) {
-        var src = URL.createObjectURL(event.target.files[0]);
-        var preview = document.getElementById("foto");
-        preview.src = src;
-        preview.style.display = "block";
-    }
-}
+
 
 
 

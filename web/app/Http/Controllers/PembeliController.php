@@ -20,7 +20,7 @@ class PembeliController extends Controller
     {
         //validasi, jika berhasil maka akan eksekusi kode dibawahnya
         $penampung = $req->validate([
-            'nama_pembeli' => 'required|max:225',
+            'nama_pembeli' => 'required|max:225|unique:pembelis',
             'no_telp_pembeli' => 'required',
             'alamat_pembeli' => 'required',
 

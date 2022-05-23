@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\DB as DB;
+use App\Events\NotifPenjualan;
 use App\Models\Barang;
 use App\Models\Penjualan;
 use App\Models\DetailPenjualan;
 use App\Models\Pembeli;
+use App\Models\DetailPenjualanTemp;
+use App\Models\PembeliTemp;
+use App\Models\PenjualanTemp;
 use App\Models\Testimoni;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
@@ -33,26 +37,6 @@ class WebController extends Controller
     }
 
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreWebRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store(StoreWebRequest $req)
-    // {
-
-
     // }
     public function store(Request $req)
     {
@@ -65,15 +49,22 @@ class WebController extends Controller
                         'no_telp_pembeli'=> $req->no_telp_pembeli,
                         'alamat_pembeli' => $req->alamat_pembeli
                     ];
-        Pembeli::create($data_pembeli);
+        $cekUname = Pembeli::where('nama_pembeli','like','%'.$req->nama_pembeli.'%') -> first();
+        if(!$cekUname){
+            //kalo ga ada data pembeli di db dengan nama tsb, buatkan data pembeli baru
+            PembeliTemp::create($data_pembeli);
+        }
 
 
         //store data ke db penjualan
         $data_penjualan = [
-            'pembeli_id' => Pembeli::all()->last()->id,
+            // 'pembeli_id' => Pembeli::all()->last()->id,
+            'pembeli_id'=> PembeliTemp::select('id')->where('nama_pembeli', $req->nama_pembeli)->first()['id'],
             'tanggal' => Carbon::now(),
         ];
-        Penjualan::create($data_penjualan);
+
+        // var_dump($data_penjualan['pembeli_id']);die;
+        PenjualanTemp::create($data_penjualan);
 
 
         //arr ini menampung data untuk generate chat wa
@@ -91,10 +82,10 @@ class WebController extends Controller
 
             $data_detail_penjualan= [
                 'jumlah_barang' => $req->jumlah_barang[$i],
-                'penjualan_id' => Penjualan::all()->last()->id,
+                'penjualan_id' => PenjualanTemp::all()->last()->id,
                 'barang_id' => $req->nama_barang[$i],
             ];
-            DetailPenjualan::create($data_detail_penjualan);
+            DetailPenjualanTemp::create($data_detail_penjualan);
         }
 
         //array to string
@@ -112,6 +103,9 @@ class WebController extends Controller
         jumlah%20produk%20:%20[$jumlah]%0A
 
         ";
+
+        NotifPenjualan::dispatch("ada-pesanan-baru");
+
 
         $req->session()->flash('pesanSukses', 'data pesanan akan segera diproses, silakan hubungi dan klik via');
         $req->session()->flash('templateChat', $template_chat);

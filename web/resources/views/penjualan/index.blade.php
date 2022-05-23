@@ -18,7 +18,7 @@ $path_brg          = "/barang";
 $path_pengeluaran  ="/pengeluaran";
 $path_export       = "/eksport";
 
-$path_penjualan    ="penjualan/";
+$path_penjualan    ="/penjualan";
 $path_pembeli      ="/pembeli";
 
 
@@ -100,7 +100,7 @@ $path_pembeli      ="/pembeli";
                                                         <div class="modal-body">Pilih "hapus" jika kamu yakin.</div>
                                                         <div class="modal-footer" id='modal-footer'>
                                                             {{-- cancel --}}
-                                                            <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                                                            <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
                                                             {{-- submit --}}
                                                             <form action="/hapus-penjualan/{{ $p->id }}" method="POST">
                                                                 @csrf
@@ -150,6 +150,16 @@ $path_pembeli      ="/pembeli";
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.js"></script>
     <script src="//cdn.datatables.net/responsive/2.2.9/css/dataTables.responsive.css"></script>
+
+    <script>
+        $('.table').DataTable( {
+        responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.childRowImmediate
+            }
+        }
+    } );
+    </script>
 @endsection
 
 

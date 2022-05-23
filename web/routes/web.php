@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NotifPenjualan;
 use GuzzleHttp\Middleware;
 use Database\Factories\BarangFactory;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,7 @@ use App\Http\Controllers\EditBarangController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\DetailPenjualanController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +35,10 @@ use App\Http\Controllers\DetailPenjualanController;
 //     ]);
 // });
 
-
+// Route::post('/pesanan-baru', function(){
+//     NotifPenjualan::dispatch("ada-pesanan-baru");
+//     return view('home');
+// });
 
 Route::get('/',[WebController::class,'index']);
 Route::post('/create-pesanan',[WebController::class,'store']);
@@ -99,18 +104,16 @@ Route::post('/setting-akun/admin',[DashboardController::class,'update'] ) ;
 
 
 
+
+
 //ini route ngambil dari BarangController dengan method index
 Route::get('/barang', [BarangController::class,'index'])->middleware('auth');
-
 Route::get('/create-barang', [BarangController::class,'create'])->middleware('auth');
-
 Route::post('/create-barang', [BarangController::class,'store'])->middleware('auth');
-
 Route::get('/edit-barang/{id}', [BarangController::class, 'edit'])->middleware('auth');
 Route::post('/edit-barang', [BarangController::class, 'update'])->middleware('auth');
-
-
 Route::post('/hapus-barang/{id}', [BarangController::class, 'destroy'])->middleware('auth');
+Route::get('/export-barang', [BarangController::class, 'export'])->middleware('auth');
 
 
 

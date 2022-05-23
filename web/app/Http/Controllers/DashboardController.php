@@ -61,6 +61,8 @@ class DashboardController extends Controller
             'pengeluarans' => $pengeluarans, //ini buat ngoper data ke js buat grafik
             'tahunYgTersedia' => $tahuns,
             'tahunIni' => $t,
+            'detailPenjualansFull' => DetailPenjualan::with(['barang'])->whereYear('created_at', $t)->get(),
+            'pengeluaransFull' => Pengeluaran::whereYear('created_at', $t)->get()
         ]);
     }
 
@@ -103,6 +105,10 @@ class DashboardController extends Controller
         else{
             return redirect('/')->with('pesanError', 'password tidak sama! harap masuk kembali');
         }
+
+    }
+
+    public function penjualan_temp(Request $req){
 
     }
 

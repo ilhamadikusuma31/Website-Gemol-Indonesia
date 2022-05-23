@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
@@ -45,33 +46,47 @@
                 </form>
             </div>
         </li>
-
+        {{-- <style>
+            .dropdown-menu {
+            height: auto;
+            max-height: 200px;
+            overflow-x: hidden;
+            }
+        </style> --}}
         <!-- Nav Item - Alerts -->
+        @php
+            use App\Models\PenjualanTemp;
+            $p_t = PenjualanTemp::select("*")->orderBy("created_at","desc")->get();
+        @endphp
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <!-- <span class="badge badge-danger badge-counter">3+</span> -->
+                <span class="badge badge-danger badge-counter" id="notifDot">{{ PenjualanTemp::all()->count() }}</span>
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                    Alerts Center
+                    pesanan!
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                            <i class="fas fa-file-alt text-white"></i>
+
+                @foreach ($p_t as $d)
+                    <a href="#" data-toggle="modal" data-target="#popUpConfirm{{ $d->id }}" class="dropdown-item d-flex align-items-center">
+                        <div class="mr-3">
+                            <div class="icon-circle bg-primary">
+                                <i class="fas fa-file-alt text-white"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">December 12, 2019</div>
-                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                    </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div>
+                            <div class="small text-gray-500">{{ $d->created_at }}</div>
+                            <span class="font-weight-bold">{{ $d->Pembeli->nama_pembeli }}</span>
+                        </div>
+                    </a>
+                @endforeach
+
+                {{-- <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="mr-3">
                         <div class="icon-circle bg-success">
                             <i class="fas fa-donate text-white"></i>
@@ -93,7 +108,7 @@
                         Spending Alert: We've noticed unusually high spending for your account.
                     </div>
                 </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a> --}}
             </div>
         </li>
 
@@ -103,7 +118,7 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
-                <!-- <span class="badge badge-danger badge-counter">7</span> -->
+                {{-- <span class="badge badge-danger badge-counter">7</span> --}}
             </a>
             <!-- Dropdown - Messages -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -261,25 +276,85 @@
         </div>
     </div>
 </div>
-<!-- PW salah modal-->
-<div class="modal fade" id="popUpConfirmPwSalah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+@foreach ($p_t as $d)
+    <!-- confirm si Admin untuk pemesanan baru yg masuk, modal-->
+<div class="modal fade" id="popUpConfirm{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Password Salah!</h5>
+                <h5 class="modal-title" id="exampleModalLabel" value="" >si {{ $d->Pembeli->nama_pembeli }} mau beli ini?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="#">OK</a>
+            <div class="modal-body">Pilih "submit" jika kamu yakin.
+                <div class="container">
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table id="table" class="table table-striped table-bordered display responsive" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Barang:</th>
+                                    <th>Harga:</th>
+                                    <th>Jumlah:</th>
+                                    <th>Total Harga:</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @php
+                                    use App\Models\DetailPenjualanTemp;
+                                    $angka = 1;
+                                    $dp_t = DetailPenjualanTemp::all->where('id_penjualan',$d->id)->get();
+                                @endphp
+                                @foreach($dp_t as $d)
+                                <tr>
+                                    <td>{{ $angka++}}</td>
+                                    <td>{{ $d->Barang->nama_barang}}</td>
+                                    <td>{{ $d->Barang->harga_barang}}</td>
+                                    <td>{{ $d->jumlah_barang}}</td>
+                                    <td>{{ $d->Barang->harga_barang * $dp->jumlah_barang}}</td>
+                                    <td>
+                                        {{-- <a class="btn btn-sm btn-warning mt-1" href="/edit-pembeli/{{ $p->id }}"><i class="bi bi-pencil-square"></i></a> --}}
+                                        <a class="btn btn-sm btn-warning mt-1" href="#" data-toggle="modal" data-target="#popUpConfirmEdit{{ $p->id }}"><i class="bi bi-pencil-square"></i></a>
+                                        <a class="btn btn-sm btn-danger mt-1" href="#" data-toggle="modal" data-target="#popUpConfirmHapus{{ $p->id }}"><i class="bi bi-trash-fill"></i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id='modal-footer'>
+                {{-- cancel --}}
+                <button class="btn btn-success" type="button" data-dismiss="modal">Batal</button>
+                {{-- submit --}}
+                <form action="/create-pesanan" method="POST">
+                    @csrf
+                    <button class="btn btn-danger">submit</button>
+                </form>
+                {{-- --}}
             </div>
         </div>
     </div>
 </div>
+@endforeach
 
-
+@php
+    $count = PenjualanTemp::all()->count();
+@endphp
+<script src="/js/app.js"></script>
+<script>
+    let angka = {{ $count }};
+    window.Echo.channel("kirimSinyalPesan").listen("NotifPenjualan", (event) => {
+        angka+=1;
+        document.getElementById('notifDot').innerHTML = angka ;
+        var audio = new Audio("/js/pesananSoundEfek.mp3");
+        audio.play();
+    })
+</script>
 

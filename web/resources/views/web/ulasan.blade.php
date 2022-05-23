@@ -31,7 +31,6 @@ $path_pembeli      ="/pembeli";
         <h2 class="col-12 text-center tm-section-title">Welcome to Gemol Indonesia</h2>
         <p class="col-12 text-center">Gemol merupakan Produsen yang bergerak dalam bidang inovasi olahan singkong, menggunakan bahan-bahan berkualitas terbaik (Premium)</p>
     </header>
-    <div class="h1">haiiii ini ulasan boss</div>
     <div class="row tm-gallery">
         <div class="jumbotron1 h-100 mt-5">
             <div class="row text-center">
