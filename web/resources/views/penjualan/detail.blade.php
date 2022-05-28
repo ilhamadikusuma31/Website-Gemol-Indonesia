@@ -18,7 +18,7 @@ $path_brg          = "/barang";
 $path_pengeluaran  ="/pengeluaran";
 $path_export       = "/eksport";
 
-$path_penjualan    ="penjualan/";
+$path_penjualan    ="/penjualan";
 $path_pembeli      ="/pembeli";
 
 
@@ -73,14 +73,20 @@ $path_pembeli      ="/pembeli";
                                             $angka = 1
                                         @endphp
                                         @foreach($detailpenjualans as $dp)
+                                        @php
+                                            $nama_brg = $dp->Barang->nama_barang;
+                                            $harga_brg = $dp->Barang->harga_barang;
+                                            $jumlah_brg = $dp->jumlah_barang;
+                                            $total = $harga_brg*$jumlah_brg;
+                                        @endphp
                                         <tr>
                                             <td>{{ $angka++}}</td>
                                             <td>{{ $dp->created_at }}</td>
                                             <td>{{ $nama_pembeli }}</td>
-                                            <td>{{ $dp->Barang->nama_barang}}</td>
-                                            <td>{{ $dp->Barang->harga_barang}}</td>
-                                            <td>{{ $dp->jumlah_barang}}</td>
-                                            <td>{{ $dp->Barang->harga_barang * $dp->jumlah_barang}}</td>
+                                            <td>{{ $nama_brg}}</td>
+                                            <td>{{ $harga_brg}}</td>
+                                            <td>{{ $jumlah_brg}}</td>
+                                            <td>{{ $total}}</td>
 
                                             <td>
                                                 <a class="btn btn-sm btn-warning mt-1" href="/edit-penjualan" data-toggle="modal" data-target="#popUpConfirmEdit{{ $dp->id }}"><i class="bi bi-pencil-square"></i></a>

@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             ]);
             Barang::create([
             'nama_barang' => 'cookies singkong cheese sago',
-            'harga_barang' => 25000,
+            'harga_barang' => 35000,
             'jenis_barang_id' => 1,
             'foto_barang' => 'cookies_singkong_cheese_sago_225_gram.jpg',
             'berat_barang' => 225,
@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
             Barang::create([
             'nama_barang' => 'cookies singkong chocolate chip',
-            'harga_barang' => 25000,
+            'harga_barang' => 35000,
             'jenis_barang_id' => 1,
             'foto_barang' => 'cookies_singkong_chocolate_chip_225_gram.jpg',
             'berat_barang' => 225,
@@ -57,10 +57,34 @@ class DatabaseSeeder extends Seeder
 
 
             Barang::create([
-            'nama_barang' => 'cookies singkong chocostick',
-            'harga_barang' => 50000,
+            'nama_barang' => 'cookies singkong edamame',
+            'harga_barang' => 40000,
             'jenis_barang_id' => 1,
-            'foto_barang' => 'cookies_singkong_chocostick_250_gram.jpg',
+            'foto_barang' => '',
+            'berat_barang' => 225,
+            'status_barang_id' => 1
+            ]);
+            Barang::create([
+            'nama_barang' => 'cookies singkong palm cheese',
+            'harga_barang' => 40000,
+            'jenis_barang_id' => 1,
+            'foto_barang' => '',
+            'berat_barang' => 225,
+            'status_barang_id' => 1
+            ]);
+            Barang::create([
+            'nama_barang' => 'cookies singkong snowball',
+            'harga_barang' => 38000,
+            'jenis_barang_id' => 1,
+            'foto_barang' => '',
+            'berat_barang' => 225,
+            'status_barang_id' => 1
+            ]);
+            Barang::create([
+            'nama_barang' => 'cookies singkong nastar',
+            'harga_barang' => 45000,
+            'jenis_barang_id' => 1,
+            'foto_barang' => '',
             'berat_barang' => 225,
             'status_barang_id' => 1
             ]);

@@ -45,6 +45,7 @@ Route::post('/create-pesanan',[WebController::class,'store']);
 
 Route::get('/web/testimoni',[WebController::class,'testimoni']);
 Route::get('/web/ulasan',[WebController::class,'ulasan']);
+Route::get('/web/profile',[WebController::class,'profile']);
 
 
 Route::get('/ulasan',[UlasanController::class,'index'])->middleware('auth');
@@ -99,6 +100,8 @@ Route::get('/admin',[DashboardController::class,'index'] )->middleware('auth') ;
 Route::get('/admin/{t}',[DashboardController::class,'index'] )->middleware('auth') ;
 Route::post('/setting-akun',[DashboardController::class,'autentikasi'] )->middleware('auth') ;
 Route::post('/setting-akun/admin',[DashboardController::class,'update'] ) ;
+Route::post('/pesanan-di-acc',[WebController::class,'store_db'] ) ;
+Route::get('/pesanan-di-tolak/{id}',[WebController::class,'destroy_db'] ) ;
 
 // Route::get('/admin/{$tahun}',[DashboardController::class, 'showGrafikPendapatan']);
 

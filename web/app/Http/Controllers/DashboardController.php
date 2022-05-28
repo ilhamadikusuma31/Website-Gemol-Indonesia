@@ -73,7 +73,7 @@ class DashboardController extends Controller
 
         //cek apakah req->password == password si user sekarang yg lagi login
         if(Hash::check($req->password, auth()->user()->password)){
-            return view('setting_akun_admin',['judul' => 'ubah pw broh']);
+            return view('setting_akun_admin',['judul' => 'ubah password']);
         }
 
         //kalo engga maka akan beri pesan error ke login.blade.php

@@ -1,11 +1,3 @@
-/*
-
-Simple House
-
-https://templatemo.com/tm-539-simple-house
-
-*/
-
 ul,
 nav,
 body,
@@ -248,16 +240,17 @@ html {
     height: auto;
 }
 
-body {
+body,
+.container {
     font-family: 'Open Sans', Arial, sans-serif;
     font-size: 17px;
-    background-color: rgb(250, 250, 250);
+    background-color: rgb(250, 255, 238);
     overflow-x: hidden;
 }
 
-.container {
+/* .container {
     background-color: white;
-}
+} */
 
 p,
 address {
@@ -281,22 +274,22 @@ address {
 }
 
 .parallax-window {
-    min-height: 460px;
-    /* min-height: 600px; */
+    /* min-height: 460px; */
+    min-height: 600px;
     /* min-height: 700px; */
     background: transparent;
     position: relative;
 }
 
+/*
 .parallax-window-2 {
-    min-height: 220px;
-    /* min-height: 300px; */
+    min-height: 300px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     background: transparent;
     position: relative;
-}
+} */
 
 .parallax-mirror {
     z-index: 999 !important;

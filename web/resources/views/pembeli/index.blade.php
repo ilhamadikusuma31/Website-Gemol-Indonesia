@@ -24,12 +24,9 @@ $path_testimoni = "/testimoni";
 
 $path_brg          = "/barang";
 $path_pengeluaran  ="/pengeluaran";
-// $path_edit_brg     = "barang/barang_edit.php";
-// $path_hapus_brg    = "barang/barang_hapus.php";
-// $path_tambah_brg   = "barang/barang_tambah.php";
 $path_export       = "/eksport";
 
-$path_penjualan    ="penjualan/";
+$path_penjualan    ="/penjualan";
 $path_pembeli      ="/pembeli";
 
 

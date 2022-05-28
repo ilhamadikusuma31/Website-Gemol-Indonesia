@@ -176,7 +176,18 @@ $path_pembeli      ="/pembeli";
     <script src="{{ $path_js }}/demo/chart-area-demo.js"></script>
     <script src="{{ $path_js }}/demo/chart-pie-demo.js"></script>
 
+    <script>
 
+        function filePreview(event) {
+            if (event.target.files.length > 0) {
+                var src = URL.createObjectURL(event.target.files[0]);
+                var preview = document.getElementById("foto");
+                preview.src = src;
+                preview.style.display = "block";
+            }
+        }
+
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="{{ $path_js }}/password-visibility.js"></script>

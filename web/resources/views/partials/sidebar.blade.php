@@ -43,7 +43,7 @@
                 {{-- <a class="collapse-item" href="#">Forgot Password</a> --}}
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
-                <a class="collapse-item" href="{{ $path_web_gemol}}">Website Gemol</a>
+                <a class="collapse-item" href="/">Website Gemol</a>
                 <!-- <a class="collapse-item" href="404.php">404 Page</a>
                 <a class="collapse-item" href="blank.php">Blank Page</a> -->
             </div>

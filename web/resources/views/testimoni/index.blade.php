@@ -18,7 +18,7 @@ $path_brg          = "/barang";
 $path_pengeluaran  ="/pengeluaran";
 $path_export       = "/eksport";
 
-$path_penjualan    ="penjualan/";
+$path_penjualan    ="/penjualan";
 $path_pembeli      ="/pembeli";
 
 

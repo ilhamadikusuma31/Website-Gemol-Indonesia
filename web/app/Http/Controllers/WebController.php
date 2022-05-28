@@ -33,6 +33,7 @@ class WebController extends Controller
     {
         return view('web.index', [
             'barangs' => Barang::all(),
+            'barang_rekomendasis' => Barang::where('status_barang_id','2')->get(),
         ]);
     }
 
@@ -40,8 +41,6 @@ class WebController extends Controller
     // }
     public function store(Request $req)
     {
-
-        // dd(->nama_barang$req->nama_barang[0]);
 
         //store data ke db pembeli
         $data_pembeli = [
@@ -106,10 +105,70 @@ class WebController extends Controller
 
         NotifPenjualan::dispatch("ada-pesanan-baru");
 
-
         $req->session()->flash('pesanSukses', 'data pesanan akan segera diproses, silakan hubungi dan klik via');
         $req->session()->flash('templateChat', $template_chat);
         return redirect('/');
+
+    }
+
+    public function destroy_db($id){
+
+        //kalo hapus pembeli otomatis data pembeliannya beliau juga dihapus
+        PenjualanTemp::where('id',"$id")->delete();
+
+        //kalo hapus pembeli otomatis data pembeliannya beliau juga dihapus
+        DetailPenjualanTemp::where('penjualan_id',"$id")->delete();
+
+        return redirect('/admin');
+    }
+    public function store_db(Request $req)
+    {
+
+        //store data ke db pembeli
+        $data_pembeli = [
+                        'nama_pembeli' => $req->nama_pembeli,
+                        'no_telp_pembeli'=> $req->no_telp_pembeli,
+                        'alamat_pembeli' => $req->alamat_pembeli
+                    ];
+        $cekUname = Pembeli::where('nama_pembeli','like','%'.$req->nama_pembeli.'%') -> first();
+        if(!$cekUname){
+            //kalo ga ada data pembeli di db dengan nama tsb, buatkan data pembeli baru
+            Pembeli::create($data_pembeli);
+        }
+
+        //store data ke db penjualan
+        $data_penjualan = [
+            // 'pembeli_id' => Pembeli::all()->last()->id,
+            'pembeli_id'=> Pembeli::select('id')->where('nama_pembeli', $req->nama_pembeli)->first()['id'],
+            'tanggal' => Carbon::now(),
+        ];
+
+        // var_dump($data_penjualan['pembeli_id']);die;
+        Penjualan::create($data_penjualan);
+
+
+        //store data ke db detail penjualan
+        for($i = 0; $i < count($req->jumlah_barang); $i++ ){
+
+            $jumlah[] = $req->jumlah_barang[$i];
+            $barang[] = Barang::find($req->nama_barang[$i])->nama_barang;
+
+            $data_detail_penjualan= [
+                'jumlah_barang' => $req->jumlah_barang[$i],
+                'penjualan_id' => Penjualan::all()->last()->id,
+                'barang_id' => $req->nama_barang[$i],
+            ];
+            DetailPenjualan::create($data_detail_penjualan);
+        }
+
+        //kalo udah fix, data pembeliannya temp beliau dihapus
+        PenjualanTemp::where('id',"$req->id_penjualan")->delete();
+
+        //kalo udah fix, data detailpembeliannya temp beliau dihapus
+        DetailPenjualanTemp::whereIn('penjualan_id', $req->id_detail_penjualan)->delete();
+
+        $req->session()->flash('pesanSukses', 'data penjualan berhasil ditambah');
+        return redirect('/penjualan');
 
     }
 
@@ -122,6 +181,9 @@ class WebController extends Controller
         return view('web.ulasan',[
             'ulasans' => Ulasan::all(),
         ]);
+    }
+    public function profile(){
+        return view('web.profile');
     }
 
     /**

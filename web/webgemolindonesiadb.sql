@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 12, 2022 at 06:28 PM
+-- Generation Time: May 25, 2022 at 01:57 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -40,7 +40,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'ilham', '$2y$10$3XVUC7eQCBmIjymuR7nsGOGuVCn8r8rcjmqnJyf957vTwY/4TOBzW', '2022-05-04 07:18:37', '2022-05-04 07:18:37');
+(1, 'ilham', '$2y$10$Nv8cCBeyTMhTEXh6fcPNFO9IQL9S5I5GwyjkDJvSAtasMM3nWqbF6', '2022-05-24 10:30:49', '2022-05-24 10:30:49');
 
 -- --------------------------------------------------------
 
@@ -65,9 +65,13 @@ CREATE TABLE `barangs` (
 --
 
 INSERT INTO `barangs` (`id`, `nama_barang`, `harga_barang`, `jenis_barang_id`, `foto_barang`, `berat_barang`, `status_barang_id`, `created_at`, `updated_at`) VALUES
-(1, 'cookies singkong cheese sago', 25000, 1, 'barang-images/pInYrdY1cjG3iHNerDHHQoWHDL711Ihpb23AbTMM.jpg', 225, 1, '2022-05-04 07:18:37', '2022-05-12 01:47:20'),
-(2, 'cookies singkong chocolate chip', 25000, 1, 'barang-images/mysdvka7VSxbuK5pKkZjDe57CJb6IRh8x0xuDTNi.jpg', 225, 2, '2022-05-04 07:18:37', '2022-05-12 01:47:44'),
-(3, 'cookies singkong chocostick', 50000, 1, 'barang-images/IDXzIVLB0kCQZawtIAjJjcwaOtV8l4vtM78HeEqj.jpg', 225, 1, '2022-05-04 07:18:37', '2022-05-12 01:47:54');
+(1, 'cookies singkong cheese sago', 35000, 1, 'barang-images/zpteuYqmmHE5DJTcfdAz1B8XjSYFjvG1jsh3jSi3.jpg', 225, 1, '2022-05-24 10:30:49', '2022-05-24 10:31:16'),
+(2, 'cookies singkong chocolate chip', 35000, 1, 'barang-images/6Z3hvYourBVDSaS2xCd9QjU9ks8UscLLyil8BaHa.jpg', 225, 2, '2022-05-24 10:30:49', '2022-05-24 10:31:26'),
+(3, 'cookies singkong chocostick', 50000, 1, 'barang-images/TpuQwxFlERAITxWpsAsS8yd8LVUaU6GgkwYmHDDb.jpg', 225, 1, '2022-05-24 10:30:49', '2022-05-24 10:31:40'),
+(4, 'cookies singkong edamame', 40000, 1, 'barang-images/45HH7sAJB09BhKInZwss3TtvzYdgo956fQmnAd5P.png', 225, 1, '2022-05-24 10:30:49', '2022-05-24 10:31:55'),
+(5, 'cookies singkong palm cheese', 40000, 1, 'barang-images/1bytzzHl0cOmcTnniLz6SkztTbcZ2Ae0LWIOxwZH.jpg', 225, 1, '2022-05-24 10:30:49', '2022-05-24 10:32:05'),
+(6, 'cookies singkong snowball', 38000, 1, 'barang-images/Y2GhIqDHCivYUMZ942JmUVjWrRabuk8Blf5SRqKt.jpg', 225, 1, '2022-05-24 10:30:49', '2022-05-24 10:32:16'),
+(7, 'cookies singkong nastar', 45000, 1, 'barang-images/LB0183UD7YK3xQx8h01ZaceUOEzYO0fXkxVCNsb6.jpg', 225, 1, '2022-05-24 10:30:49', '2022-05-24 10:32:28');
 
 -- --------------------------------------------------------
 
@@ -84,22 +88,20 @@ CREATE TABLE `detail_penjualans` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `detail_penjualans`
+-- Table structure for table `detail_penjualan_temps`
 --
 
-INSERT INTO `detail_penjualans` (`id`, `jumlah_barang`, `penjualan_id`, `barang_id`, `created_at`, `updated_at`) VALUES
-(1, '200', 1, 1, '2020-05-20 11:58:39', '2022-05-05 11:58:39'),
-(2, '100', 1, 2, '2022-05-05 11:58:39', '2022-05-05 11:58:39'),
-(3, '10', 2, 1, '2022-05-05 11:59:45', '2022-05-05 11:59:45'),
-(4, '12', 2, 2, '2022-05-05 11:59:45', '2022-05-05 11:59:45'),
-(5, '32', 2, 3, '2022-05-05 11:59:45', '2022-05-05 11:59:45'),
-(6, '1', 3, 1, '2022-04-01 00:50:42', '2022-05-07 00:50:42'),
-(7, '122', 4, 1, '2022-05-12 05:00:44', '2022-05-12 05:00:44'),
-(8, '1234213', 4, 2, '2022-05-12 05:00:44', '2022-05-12 05:00:44'),
-(9, '123123', 4, 3, '2022-05-12 05:00:44', '2022-05-12 05:00:44'),
-(10, '12', 4, 2, '2022-05-12 05:00:44', '2022-05-12 05:00:44'),
-(11, '13123', 4, 1, '2022-05-12 05:00:44', '2022-05-12 05:00:44');
+CREATE TABLE `detail_penjualan_temps` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `jumlah_barang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `penjualan_id` bigint(20) UNSIGNED NOT NULL,
+  `barang_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -135,8 +137,8 @@ CREATE TABLE `jenis_barangs` (
 --
 
 INSERT INTO `jenis_barangs` (`id`, `nama_jenis_barang`, `created_at`, `updated_at`) VALUES
-(1, 'cookies', '2022-05-04 07:18:37', '2022-05-04 07:18:37'),
-(2, 'coffee', '2022-05-04 07:18:37', '2022-05-04 07:18:37');
+(1, 'cookies', '2022-05-24 10:30:49', '2022-05-24 10:30:49'),
+(2, 'coffee', '2022-05-24 10:30:49', '2022-05-24 10:30:49');
 
 -- --------------------------------------------------------
 
@@ -168,7 +170,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2022_04_29_051110_create_pembelis_table', 1),
 (12, '2022_04_29_052321_create_detail_penjualans_table', 1),
 (13, '2022_05_02_141325_create_testimonis_table', 1),
-(14, '2022_05_02_171501_create_ulasans_table', 1);
+(14, '2022_05_02_171501_create_ulasans_table', 1),
+(15, '2022_05_22_070027_create_penjualan_temps_table', 1),
+(16, '2022_05_22_070100_create_pembeli_temps_table', 1),
+(17, '2022_05_22_070126_create_detail_penjualan_temps_table', 1);
 
 -- --------------------------------------------------------
 
@@ -197,15 +202,20 @@ CREATE TABLE `pembelis` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `pembelis`
+-- Table structure for table `pembeli_temps`
 --
 
-INSERT INTO `pembelis` (`id`, `nama_pembeli`, `no_telp_pembeli`, `alamat_pembeli`, `created_at`, `updated_at`) VALUES
-(1, 'ilham', '081219855701', 'Jl.werkudoro', '2022-05-05 11:58:39', '2022-05-05 12:00:08'),
-(2, 'Adikusuma', '081219855701', 'Jl.werkudoro', '2022-05-05 11:59:45', '2022-05-05 11:59:45'),
-(3, 'Ilham Adikusuma', '081219855701', 'Jl.werkudoro', '2022-05-07 00:50:42', '2022-05-07 00:50:42'),
-(4, 'Ilham Adikusuma', '081219855701', 'Jl.werkudoro', '2022-05-12 05:00:44', '2022-05-12 05:00:44');
+CREATE TABLE `pembeli_temps` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama_pembeli` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_telp_pembeli` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alamat_pembeli` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -227,12 +237,12 @@ CREATE TABLE `pengeluarans` (
 --
 
 INSERT INTO `pengeluarans` (`id`, `tanggal_pengeluaran`, `nama_pengeluaran`, `total_pengeluaran`, `created_at`, `updated_at`) VALUES
-(1, '2022-12-31', 'keperluan dong', '213000', '2022-05-04 07:18:37', '2022-05-04 07:18:37'),
-(2, '2022-12-31', 'keperluan dong', '1200', '2022-05-04 07:18:37', '2022-05-04 07:18:37'),
-(3, '2022-12-31', 'keperluan dong', '13000', '2022-05-04 07:18:37', '2022-05-04 07:18:37'),
-(4, '2022-12-31', 'keperluan dong', '41000', '2022-05-04 07:18:37', '2022-05-04 07:18:37'),
-(5, '2022-12-31', 'keperluan dong', '13000', '2022-05-04 07:18:37', '2022-05-04 07:18:37'),
-(6, '2022-12-31', 'keperluan dong', '13000', '2022-05-04 07:18:37', '2022-05-04 07:18:37');
+(1, '2022-12-31', 'keperluan dong', '213000', '2022-05-24 10:30:49', '2022-05-24 10:30:49'),
+(2, '2022-12-31', 'keperluan dong', '1200', '2022-05-24 10:30:49', '2022-05-24 10:30:49'),
+(3, '2022-12-31', 'keperluan dong', '13000', '2022-05-24 10:30:49', '2022-05-24 10:30:49'),
+(4, '2022-12-31', 'keperluan dong', '41000', '2022-05-24 10:30:49', '2022-05-24 10:30:49'),
+(5, '2022-12-31', 'keperluan dong', '13000', '2022-05-24 10:30:49', '2022-05-24 10:30:49'),
+(6, '2022-12-31', 'keperluan dong', '13000', '2022-05-24 10:30:49', '2022-05-24 10:30:49');
 
 -- --------------------------------------------------------
 
@@ -248,15 +258,19 @@ CREATE TABLE `penjualans` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `penjualans`
+-- Table structure for table `penjualan_temps`
 --
 
-INSERT INTO `penjualans` (`id`, `pembeli_id`, `tanggal`, `created_at`, `updated_at`) VALUES
-(1, 1, '2022-05-05', '2021-05-19 11:58:39', '2022-05-05 11:58:39'),
-(2, 2, '2022-05-05', '2022-05-05 11:59:45', '2022-05-05 11:59:45'),
-(3, 3, '2022-04-01', '2022-04-01 00:50:42', '2022-05-07 00:50:42'),
-(4, 4, '2022-05-12', '2022-05-12 05:00:44', '2022-05-12 05:00:44');
+CREATE TABLE `penjualan_temps` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `pembeli_id` bigint(20) UNSIGNED NOT NULL,
+  `tanggal` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -294,8 +308,8 @@ CREATE TABLE `status_barangs` (
 --
 
 INSERT INTO `status_barangs` (`id`, `nama_status_barang`, `created_at`, `updated_at`) VALUES
-(1, 'normal', '2022-05-04 07:18:37', '2022-05-04 07:18:37'),
-(2, 'rekomendasi', '2022-05-04 07:18:37', '2022-05-04 07:18:37');
+(1, 'normal', '2022-05-24 10:30:49', '2022-05-24 10:30:49'),
+(2, 'rekomendasi', '2022-05-24 10:30:49', '2022-05-24 10:30:49');
 
 -- --------------------------------------------------------
 
@@ -311,6 +325,13 @@ CREATE TABLE `testimonis` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `testimonis`
+--
+
+INSERT INTO `testimonis` (`id`, `foto_testimoni`, `isi_testimoni`, `created_at`, `updated_at`) VALUES
+(1, 'testimoni-images/kUeBN0hdVIM4G5TWpcakkCp6CwCnkJlD2VRNBgt0.png', 'pak bagus', '2022-05-24 14:32:59', '2022-05-24 14:32:59');
+
 -- --------------------------------------------------------
 
 --
@@ -324,6 +345,13 @@ CREATE TABLE `ulasans` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ulasans`
+--
+
+INSERT INTO `ulasans` (`id`, `user`, `isi_ulasan`, `created_at`, `updated_at`) VALUES
+(1, 'y', 'ad', '2022-05-24 14:31:43', '2022-05-24 14:31:43');
 
 -- --------------------------------------------------------
 
@@ -364,6 +392,12 @@ ALTER TABLE `detail_penjualans`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `detail_penjualan_temps`
+--
+ALTER TABLE `detail_penjualan_temps`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -395,6 +429,12 @@ ALTER TABLE `pembelis`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pembeli_temps`
+--
+ALTER TABLE `pembeli_temps`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pengeluarans`
 --
 ALTER TABLE `pengeluarans`
@@ -404,6 +444,12 @@ ALTER TABLE `pengeluarans`
 -- Indexes for table `penjualans`
 --
 ALTER TABLE `penjualans`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `penjualan_temps`
+--
+ALTER TABLE `penjualan_temps`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -453,13 +499,19 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `barangs`
 --
 ALTER TABLE `barangs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `detail_penjualans`
 --
 ALTER TABLE `detail_penjualans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `detail_penjualan_temps`
+--
+ALTER TABLE `detail_penjualan_temps`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -477,13 +529,19 @@ ALTER TABLE `jenis_barangs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `pembelis`
 --
 ALTER TABLE `pembelis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pembeli_temps`
+--
+ALTER TABLE `pembeli_temps`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pengeluarans`
@@ -495,7 +553,13 @@ ALTER TABLE `pengeluarans`
 -- AUTO_INCREMENT for table `penjualans`
 --
 ALTER TABLE `penjualans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `penjualan_temps`
+--
+ALTER TABLE `penjualan_temps`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -513,13 +577,13 @@ ALTER TABLE `status_barangs`
 -- AUTO_INCREMENT for table `testimonis`
 --
 ALTER TABLE `testimonis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ulasans`
 --
 ALTER TABLE `ulasans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

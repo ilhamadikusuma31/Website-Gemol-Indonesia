@@ -1,5 +1,5 @@
 @php
-$path_web_gemol    = "/web";
+$path_web_gemol    = "/";
 $path_login        = "login";
 $path_logout       = "logout";
 $path_registrasi   = "registrasi";
@@ -13,14 +13,11 @@ $path_js           = "/js";
 
 $path_ulasan = "/ulasan";
 $path_testimoni = "/testimoni";
-
 $path_brg          = "/barang";
 $path_pengeluaran  ="/pengeluaran";
 $path_export       = "/eksport";
-
-$path_penjualan    ="penjualan/";
+$path_penjualan    ="/penjualan";
 $path_pembeli      ="/pembeli";
-
 
 @endphp
 

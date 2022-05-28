@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\WebController;
 use App\Models\Penjualan;
+use App\Models\PenjualanTemp;
 use App\Models\DetailPenjualan;
+use App\Models\DetailPenjualanTemp;
 use App\Models\Barang;
 use App\Models\Pembeli;
 use Illuminate\Http\Request;
@@ -32,8 +35,6 @@ class PenjualanController extends Controller
     public function store(Request $req)
     {
 
-
-
         //store data ke db penjualan
         $data_penjualan = [
             'pembeli_id' => $req->id,
@@ -56,8 +57,9 @@ class PenjualanController extends Controller
             DetailPenjualan::create($data_detail_penjualan);
         }
 
+
+
         $req->session()->flash('pesanSukses', 'data penjualan berhasil ditambah');
-        // $req->session()->flash('templateChat', $template_chat);
         return redirect('/penjualan');
 
     }

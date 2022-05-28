@@ -14,7 +14,7 @@ class DetailPenjualanController extends Controller
     public function index(Request $req){
         return view('penjualan.detail', [
             'judul' => 'Detail | '.$req->nama_pembeli,
-            'detailpenjualans' => DetailPenjualan::where('penjualan_id', $req->penjualan_id)->get(),
+            'detailpenjualans' => DetailPenjualan::with('Barang')->where('penjualan_id', $req->penjualan_id)->get(),
             'nama_pembeli' => $req->nama_pembeli,
             'nama_barang' => Barang::where('barang_id', $req),
             'pembelis' => Pembeli::all(),

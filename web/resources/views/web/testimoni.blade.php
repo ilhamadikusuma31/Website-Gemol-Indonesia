@@ -12,16 +12,6 @@ $path_js           = "/js";
 // $path_setting_admin= "setting_admin.php";
 
 $path_testimoni = "/web/testimoni";
-$path_ulasan = "/web/ulasan";
-$path_brg          = "/testimoni";
-$path_pengeluaran  ="/pengeluaran";
-// $path_edit_brg     = "testimoni/testimoni_edit.php";
-// $path_hapus_brg    = "testimoni/testimoni_hapus.php";
-// $path_tambah_brg   = "testimoni/testimoni_tambah.php";
-$path_export       = "/eksport";
-
-$path_penjualan    ="penjualan/";
-$path_pembeli      ="/pembeli";
 
 @endphp
 @extends('layouts.mainWeb')
@@ -56,7 +46,4 @@ $path_pembeli      ="/pembeli";
 </div>
 
 @endsection
-@section('script')
-    <script src="{{ $path_js }}/parallax.min.js"></script>
-    <script src="{{ $path_js }}/jquery.min.js"></script>
-@endsection
+

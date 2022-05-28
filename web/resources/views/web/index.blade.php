@@ -9,21 +9,19 @@ $path_img          = "/img";
 $path_vendor       = "/vendor";
 $path_css          = "/css";
 $path_js           = "/js";
-// $path_setting_admin= "setting_admin.php";
 
 
-$path_brg          = "/barang";
-$path_pengeluaran  ="/pengeluaran";
-// $path_edit_brg     = "barang/barang_edit.php";
-// $path_hapus_brg    = "barang/barang_hapus.php";
-// $path_tambah_brg   = "barang/barang_tambah.php";
-$path_export       = "/eksport";
 
-$path_penjualan    ="penjualan/";
-$path_pembeli      ="/pembeli";
+
 @endphp
 
 @extends('layouts.mainWeb')
+@section('parallax-jumbotron')
+<div class="placeholder">
+    <div class="parallax-window" data-parallax="scroll" data-image-src="{{ $path_img }}/gemol_1.png">
+    </div>
+</div>
+@endsection
 @section('isi')
     <header class="row tm-welcome-section">
         <h2 class="col-12 text-center tm-section-title">Welcome to Gemol Indonesia</h2>
@@ -44,34 +42,92 @@ $path_pembeli      ="/pembeli";
     <div class="row tm-gallery">
 
         <!-- gallery page 1 -->
-        <div id="tm-gallery-page-cookies" class="tm-gallery-page justify-content-center">
-            @foreach ($barangs as $b)
-            <div class="col-md-3 mb-4 me-2">
-                <div class="card h-100"  style="background-color: blanchedalmond">
-                    {{-- <img src="{{ asset('storage/'.$b->foto_barang) }}" alt="" class="img-fluid tm-gallery-img"> --}}
-                    <img src="/laravel/storage/app/public/{{ $b->foto_barang }}" alt="" class="img-fluid tm-gallery-img">
-                  <div class="container">
-                    <div class="card-body">
-                      <div class="row ">
-                        <div class="col-12 ms-0">
-                          <h5 class="card-title"><h4 class="tm-gallery-title">{{ucfirst(trans($b->nama_barang)) }}</h4></h5>
-                          <h5 class="card-title"><span class="badge rounded-pill bg-dark">{{ $b->berat_barang }} gram</span></h5>
+        <div id="tm-gallery-page-cookies" class="tm-gallery-page justify-content-center row">
+            <div class="row">
+                <h5 class="h3 mt-5 mb-3 row justify-content-center">Katalog</h5>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($barangs as $b)
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100"  style="background-color: blanchedalmond">
+                        <img src="{{ asset('storage/'.$b->foto_barang) }}" alt="" class="img-fluid tm-gallery-img">
+                        {{-- <img src="/laravel/storage/app/public/{{ $b->foto_barang }}" alt="" class="img-fluid tm-gallery-img"> --}}
+                      <div class="container">
+                        <div class="card-body">
+                          <div class="row ">
+                            <div class="col-12 ms-0">
+                              <h5 class="card-title"><h4 class="tm-gallery-title">{{ucfirst(trans($b->nama_barang)) }}</h4></h5>
+                              <h5 class="card-title"><span class="badge rounded-pill bg-dark">{{ $b->berat_barang }} gram</span></h5>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="h5 ms-1"><p class="tm-gallery-price"><span class="badge rounded-pill bg-success">Rp.{{ $b->harga_barang }}</p></span></p></div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="row">
-                        <div class="h5 ms-1"><p class="tm-gallery-price"><span class="badge rounded-pill bg-success">Rp.{{ $b->harga_barang }}</p></span></p></div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            @endforeach
+                @endforeach
+            </div>
+            <div class="row">
+                <h5 class="h3 mt-5 mb-2 row justify-content-center">Pilihan Terbaik</h5>
+            </div>
+            <div class="row justify-content-center">
+                @foreach ($barang_rekomendasis as $b)
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100"  style="background-color: blanchedalmond">
+                        <img src="{{ asset('storage/'.$b->foto_barang) }}" alt="" class="img-fluid tm-gallery-img">
+                        {{-- <img src="/laravel/storage/app/public/{{ $b->foto_barang }}" alt="" class="img-fluid tm-gallery-img"> --}}
+                      <div class="container">
+                        <div class="card-body">
+                          <div class="row ">
+                            <div class="col-12 ms-0">
+                              <h5 class="card-title"><h4 class="tm-gallery-title">{{ucfirst(trans($b->nama_barang)) }}</h4></h5>
+                              <h5 class="card-title"><span class="badge rounded-pill bg-dark">{{ $b->berat_barang }} gram</span></h5>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="h5 ms-1"><p class="tm-gallery-price"><span class="badge rounded-pill bg-success">Rp.{{ $b->harga_barang }}</p></span></p></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @endforeach
+            </div>
         </div> <!-- gallery page 1 -->
-        {{-- <a href="https://api.whatsapp.com/send?phone=085740319465&text=Halo%20DafundaTekno.%0ASaya%20Ingin%20Bekerja%20Sama%20Dengan%20Situs%20Anda" class="btn btn-primary"></a> --}}
+
+        {{-- <div class="row">
+
+            <div class="col-md-6">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <img src="{{ $path_img }}/gemol_5.jpg" class="d-block w-100" alt="{{ $path_img }}/gemol_5.jpg">
+                        </div>
+                      <div class="carousel-item">
+                        <img src="{{ $path_img }}/gemol_2.jpg" class="d-block w-100" alt="{{ $path_img }}/gemol_2.jpg">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="{{ $path_img }}/gemol_7.jpg" class="d-block w-100" alt="{{ $path_img }}/gemol_7.jpg">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div> --}}
+
 
         <div class="jumbotron1 h-100 mt-5">
             <div class="row text-center">
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="container-fluid">
                         @if (session()->has('pesanSukses'))
                         <div class="alert alert-success fade show" role="alert">
@@ -97,8 +153,9 @@ $path_pembeli      ="/pembeli";
                             </div>
                             </div>
                         </div>
-
                         @endif
+                        <div class="row">
+                        </div>
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Pesan Boskuh</h6>
@@ -136,6 +193,16 @@ $path_pembeli      ="/pembeli";
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row mb-1">
+                                        <div class="col-md-2 mt-3">
+                                            <b>Total Harga</b>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-2">
+                                                <input id="totalHarga" type="number" class="form-control" id="inlineFormInputGroup" autocomplete="off" value="" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     {{-- field input dinamis --}}
                                     <div class="col" id="inputForm">
@@ -150,12 +217,12 @@ $path_pembeli      ="/pembeli";
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-2 mt-2">
+                                            <div class="col-md-1 mt-2">
                                                 <b>Jumlah</b>
                                              </div>
                                              <div class="col-md-3">
                                                 <div class="input-group mb-2">
-                                                    <input type="number" min="0" class="form-control" id="inlineFormInputGroup" placeholder="" name="jumlah_barang[]" autocomplete="off" value="{{ old('jumlah_barang') }}" Required>
+                                                    <input id="jumlahBarang" type="number" min="0" class="form-control jumlahBarang" id="inlineFormInputGroup" placeholder="" name="jumlah_barang[]" autocomplete="off" value="{{ old('jumlah_barang') }}" Required>
                                                     <div class="input-group-append">
                                                         <div class="input-group-text">pcs</div>
                                                     </div>
@@ -169,18 +236,12 @@ $path_pembeli      ="/pembeli";
                                     </div>
                                     {{-- akhir input dinamis --}}
                                     <div id="newRow"></div>
-                                        <div class="col">
+                                        <div class="col mb-1">
                                             <button class="btn btn-success" id="addRow"><i class="bi bi-plus-circle"></i></button>
-                                            {{-- <a href="#" class="btn btn-success" id="addRow"></a> --}}
                                         </div>
-                                    <div class="row justify-content-center">
-                                        <div class="col mb-1"><button class="btn btn-danger" type="" onclick="location.href = '/barang'"><i class="bi bi-backspace"></i></button></div>
-                                        {{-- <div class="col mb-1 ms-2"><button class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmPesan" ><i class="bi bi-cart-plus"></i></button></div> --}}
-                                        <div class="col mb-1 ms-2">
+                                        <div class="col">
                                             <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#popUpConfirmPesan"><i class="bi bi-cart-plus"></i></a>
                                         </div>
-                                        {{-- <div class="col mb-1 ms-2"><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#popUpConfirmTambah" ><i class="bi bi-cart-plus"></i></a></div> --}}
-                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -199,7 +260,7 @@ $path_pembeli      ="/pembeli";
         <div id="tm-gallery-page-coffee" class="tm-gallery-page hidden">
             <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
                 <figure>
-                    <img src="{{ $path_img }}/comingsoon.png" alt="Image" class="img-fluid tm-gallery-img" />
+                    {{-- <img src="{{ $path_img }}/comingsoon.png" alt="Image" class="img-fluid tm-gallery-img" /> --}}
                     <figcaption>
                         <h4 class="tm-gallery-title"></h4>
                         <p class="tm-gallery-description"></p>
@@ -207,32 +268,6 @@ $path_pembeli      ="/pembeli";
                     </figcaption>
                 </figure>
         </div> <!-- gallery page 2 -->
-    </div>
-    <div class="tm-section tm-container-inner">
-        <div class="row">
-            <div class="col-md-6">
-                <figure class="tm-description-figure">
-                    <div class="row">
-                        <div class="col">
-                            <img src="{{ $path_img }}/gemol_2.jpg" alt="Image" class="img-fluid" width="400px"/>
-                        </div>
-                        <div class="col">
-                            <img src="{{ $path_img }}/gemol_3.jpg" alt="Image" class="img-fluid" width="400px"/>
-                        </div>
-                    </div>
-                </figure>
-            </div>
-            <div class="col-md-6">
-                <div class="tm-description-box">
-                    <h4 class="tm-gallery-title">Informasi dan Pemesanan :</h4>
-                    <p class="tm-mb-45">08222 941 5735</p>
-                    <h4 class="tm-gallery-title">Follow us :</h4>
-                    <p class="tm-mb-45">@Gemol.indonesia @Gemol Indonesia</p>
-                    <h4 class="tm-gallery-title">Rumah Produksi :</h4>
-                    <p class="tm-mb-45">Bumi Tegal Besar Blok CA No. 49, Tegal Besar, Kaliwates - Jember 68133</p>
-                </div>
-            </div>
-        </div>
     </div>
 
 
@@ -264,6 +299,7 @@ $path_pembeli      ="/pembeli";
 <script src="js/jquery.min.js"></script>
 
 <script>
+    let angka = 1;
     $(document).ready(function(){
         // Handle click on paging links
         $('.tm-paging-link').click(function(e){
@@ -275,11 +311,26 @@ $path_pembeli      ="/pembeli";
             $('.tm-paging-link').removeClass('active');
             $(this).addClass("active");
         });
+
+
     });
 
 
+    // function hitungTotalHarga(){
+    //     let jumlah_barang = $("input[name='jumlah_barang[]']").map(function(){return $(this).val();}).get();
+    //     let nama_barang = $("input[name='nama_barang[]']").map(function(){return $(this).val();}).get();
+    //     alert(jumlah_barang);
+    //     alert(nama_barang);
+    // }
+
+    // $('.jumlahBarang').on('change', function() {
+    //         $('#totalHarga').val(angka++);
+    //         hitungTotalHarga();
+    //     });
+
     $('#addRow').click(function(e){
         e.preventDefault();
+        hitungTotalHarga();
         var html = '';
             html+= '<div class="col" id="inputForm">';
             html+= '<div class="row mb-1">';
@@ -294,12 +345,12 @@ $path_pembeli      ="/pembeli";
             html+= '</div>';
             html+= '</div>';
 
-            html+= '<div class="col-md-2 mt-2">';
+            html+= '<div class="col-md-1 mt-2">';
             html+= '<b>Jumlah</b>';
             html+= '</div>';
             html+= '<div class="col-md-3">';
             html+= '<div class="input-group mb-2">';
-            html+= '<input type="number" min="0" class="form-control" id="inlineFormInputGroup" placeholder="" name="jumlah_barang[]" autocomplete="off" value="{{ old('jumlah_barang') }}" Required>';
+            html+= '<input id="jumlahBarang" type="number" min="0" class="form-control jumlahBarang" id="inlineFormInputGroup" placeholder="" name="jumlah_barang[]" autocomplete="off" value="{{ old('jumlah_barang') }}" Required>';
             html+= '<div class="input-group-append">';
             html+= '<div class="input-group-text">pcs</div>';
             html+= '</div>';

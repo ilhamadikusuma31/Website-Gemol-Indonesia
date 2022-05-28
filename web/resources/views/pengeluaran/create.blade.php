@@ -10,7 +10,6 @@ $path_css          = "/css";
 $path_js           = "/js";
 // $path_setting_admin= "setting_admin.php";
 
-
 $path_ulasan = "/ulasan";
 $path_testimoni = "/testimoni";
 
@@ -18,7 +17,7 @@ $path_brg          = "/barang";
 $path_pengeluaran  ="/pengeluaran";
 $path_export       = "/eksport";
 
-$path_penjualan    ="penjualan/";
+$path_penjualan    ="/penjualan";
 $path_pembeli      ="/pembeli";
 
 
